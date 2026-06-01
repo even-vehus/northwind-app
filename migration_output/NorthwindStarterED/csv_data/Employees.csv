@@ -1,0 +1,11 @@
+EmployeeID,FirstName,LastName,EmailAddress,JobTitle,PrimaryPhone,SecondaryPhone,Title,Notes,Attachments,SupervisorID,WindowsUserName,AddedBy,AddedOn,ModifiedBy,ModifiedOn
+1,Nancy,Freehafer,nancy@northwindtraders.com,Sales Representative,123-555-0100,123-555-0200,Ms.,,NancyF.jpg,,,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+2,Andrew,Cencini,andrew@northwindtraders.com,"Vice President, Sales",123-555-0101,,Mr.,"Joined the company as a sales representative, was promoted to sales manager and was then named vice president of sales.",AndrewC.jpg,,,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+3,Jan,Kotas,jan@northwindtraders.com,Sales Representative,123-555-0102,,,Was hired as a sales associate and was promoted to sales representative.,JanK.jpg,2,,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+4,Mariya,Sergienko,mariya@northwindtraders.com,Sales Representative,123-555-0103,,,,MariyaS.jpg,,,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+5,Steven,Thorpe,steven@northwindtraders.com,Sales Manager,123-555-0104,,,Joined the company as a sales representative and was promoted to sales manager.  Fluent in French.,StevenT.jpg,3,,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+6,Michael,Neipper,michael@northwindtraders.com,Sales Representative,123-555-0105,,,"Fluent in Japanese and can read and write French, Portuguese, and Spanish.",MichaelN.jpg,,,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+7,Robert,Zare,robert@northwindtraders.com,Sales Representative,123-555-0106,,,,RobertZ.jpg,,,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+8,Laura,Giussani,laura@northwindtraders.com,Sales Coordinator,123-555-0107,,,Reads and writes French.,LauraG.jpg,,,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+9,Anne,Hellung-Larsen,anne@northwindtraders.com,Sales Representative,123-555-0108,,,Fluent in French and German.,AnneH.jpg,2,,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+10,Internet,Sales,,Internet Bot,,,,,,,,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31

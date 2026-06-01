@@ -1,0 +1,24 @@
+# gitignore for northwind-app
+
+# ── .NET ──────────────────────────────────────────────────────────────────────
+**/bin/
+**/obj/
+**/*.user
+**/*.suo
+.vs/
+backend/**/*.Development.json
+backend/**/*.Production.json
+
+# ── Node / frontend ───────────────────────────────────────────────────────────
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+frontend/.env.*.local
+
+# ── Environment / secrets ─────────────────────────────────────────────────────
+.env
+*.env
+
+# ── OS ───────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db

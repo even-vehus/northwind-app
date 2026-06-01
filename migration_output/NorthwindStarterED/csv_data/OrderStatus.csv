@@ -1,0 +1,6 @@
+OrderStatusID,OrderStatusCode,OrderStatusName,SortOrder,AddedBy,AddedOn,ModifiedBy,ModifiedOn
+1,CLO,Closed,40,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+2,INV,Invoiced,20,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+3,NEW,New,10,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+4,SHI,Shipped,30,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+5,PAY,Paid,35,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31

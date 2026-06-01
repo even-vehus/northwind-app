@@ -1,0 +1,17 @@
+ProductCategoryID,ProductCategoryName,ProductCategoryCode,ProductCategoryDesc,ProductCategoryImage,AddedBy,AddedOn,ModifiedBy,ModifiedOn
+1,Baked Goods & Mixes,BAK,Baked Goods and Baking Mixes,Baked3.jpg,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+2,Beverages,BEV,"Coffee, Soda, Water, Juices and Beers",Beverage3.jpg,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+3,Candy,CDY,"Chocolate, Hard Candy and Mints",Candy3.jpg,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+4,Canned Fruit & Vegetables,CFV,Fruits and Vegetables in Cans and Jars,Canned Fruit.jpg,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+5,Canned Meat,CM,"Tinned Fish, Beef and Pork",Canned Meat2.jpg,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+6,Cereal,CER,"Oatmeal, Granola and Boxed Cereals",Cereal2.jpg,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+7,"Chips, Snacks",SNK,"Chips, Pretzels, Popcorn and Cheese Puffs",Chips3.jpg,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+8,Condiments,CON,"Whole and Ground Spices, Herbs and Bottled Sauces",Condiment3.jpg,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+9,Dairy Products,DAI,Milk and Cheese from Satisfied Cows,Dairy.jpg,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+10,Dried Fruit & Nuts,DRI,"Raw and Roasted Nuts, Seeds and Dehydrated Fruits",Dried Fruit3.jpg,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+11,Grains,GRA,"Rice, Whole Wheat and Oats",Grains.jpg,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+12,"Jams, Preserves",JAM,Preserved Fruit in Jars,Jam2.jpg,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+13,Oil,OIL,Cooking and Salad Oils,Oil.jpg,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+14,Pasta,PAS,Dried Wheat and Rice Pasta in Various Shapes and Varieties,Pasta3.jpg,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+15,Sauces,SAU,"Tomato Sauces, Gravies and Hot Sauce",Sauce.jpg,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+16,Soups,SOU,"Canned Soups, Chowders and Bisques",Soup.jpg,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31

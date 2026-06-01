@@ -1,0 +1,4139 @@
+{
+  "db_name": "NorthwindStarterED",
+  "schema": {
+    "entities": {
+      "Catalog_TableOfContents": {
+        "table_name": "Catalog_TableOfContents",
+        "entity_name": "CatalogTableofcontents",
+        "scope": "later",
+        "row_count": 16,
+        "fields": [
+          {
+            "name": "TocTitle",
+            "csharp_name": "Toctitle",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "TocPage",
+            "csharp_name": "Tocpage",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 5
+          }
+        ],
+        "foreign_keys": [],
+        "primary_keys": [
+          "TocTitle"
+        ]
+      },
+      "Companies": {
+        "table_name": "Companies",
+        "entity_name": "Companies",
+        "scope": "v1_core",
+        "row_count": 13,
+        "fields": [
+          {
+            "name": "CompanyID",
+            "csharp_name": "Companyid",
+            "access_type": "LONG",
+            "csharp_type": "int",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": false,
+            "max_length": 10
+          },
+          {
+            "name": "CompanyName",
+            "csharp_name": "Companyname",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 50
+          },
+          {
+            "name": "CompanyTypeID",
+            "csharp_name": "Companytypeid",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 10
+          },
+          {
+            "name": "BusinessPhone",
+            "csharp_name": "Businessphone",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 20
+          },
+          {
+            "name": "Address",
+            "csharp_name": "Address",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "City",
+            "csharp_name": "City",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "StateAbbrev",
+            "csharp_name": "Stateabbrev",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 2
+          },
+          {
+            "name": "Zip",
+            "csharp_name": "Zip",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 10
+          },
+          {
+            "name": "Website",
+            "csharp_name": "Website",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 1073741823
+          },
+          {
+            "name": "Notes",
+            "csharp_name": "Notes",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 1073741823
+          },
+          {
+            "name": "StandardTaxStatusID",
+            "csharp_name": "Standardtaxstatusid",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 3
+          },
+          {
+            "name": "AddedBy",
+            "csharp_name": "Addedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "AddedOn",
+            "csharp_name": "Addedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ModifiedBy",
+            "csharp_name": "Modifiedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "ModifiedOn",
+            "csharp_name": "Modifiedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          }
+        ],
+        "foreign_keys": [
+          {
+            "from_column": "CompanyTypeID",
+            "to_table": "CompanyTypes",
+            "to_column": "CompanyTypeID"
+          },
+          {
+            "from_column": "StateAbbrev",
+            "to_table": "States",
+            "to_column": "StateAbbrev"
+          },
+          {
+            "from_column": "StandardTaxStatusID",
+            "to_table": "TaxStatus",
+            "to_column": "TaxStatusID"
+          }
+        ],
+        "primary_keys": [
+          "CompanyID"
+        ]
+      },
+      "CompanyTypes": {
+        "table_name": "CompanyTypes",
+        "entity_name": "Companytypes",
+        "scope": "v1_support",
+        "row_count": 4,
+        "fields": [
+          {
+            "name": "CompanyTypeID",
+            "csharp_name": "Companytypeid",
+            "access_type": "LONG",
+            "csharp_type": "int",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": false,
+            "max_length": 10
+          },
+          {
+            "name": "CompanyType",
+            "csharp_name": "Companytype",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 50
+          },
+          {
+            "name": "AddedBy",
+            "csharp_name": "Addedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "AddedOn",
+            "csharp_name": "Addedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ModifiedBy",
+            "csharp_name": "Modifiedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "ModifiedOn",
+            "csharp_name": "Modifiedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          }
+        ],
+        "foreign_keys": [],
+        "primary_keys": [
+          "CompanyTypeID"
+        ]
+      },
+      "Contacts": {
+        "table_name": "Contacts",
+        "entity_name": "Contacts",
+        "scope": "v1_core",
+        "row_count": 6,
+        "fields": [
+          {
+            "name": "ContactID",
+            "csharp_name": "Contactid",
+            "access_type": "LONG",
+            "csharp_type": "int",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": false,
+            "max_length": 10
+          },
+          {
+            "name": "CompanyID",
+            "csharp_name": "Companyid",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 10
+          },
+          {
+            "name": "LastName",
+            "csharp_name": "Lastname",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 30
+          },
+          {
+            "name": "FirstName",
+            "csharp_name": "Firstname",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 20
+          },
+          {
+            "name": "EmailAddress",
+            "csharp_name": "Emailaddress",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "JobTitle",
+            "csharp_name": "Jobtitle",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 50
+          },
+          {
+            "name": "PrimaryPhone",
+            "csharp_name": "Primaryphone",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 20
+          },
+          {
+            "name": "SecondaryPhone",
+            "csharp_name": "Secondaryphone",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 20
+          },
+          {
+            "name": "Notes",
+            "csharp_name": "Notes",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 1073741823
+          },
+          {
+            "name": "AddedBy",
+            "csharp_name": "Addedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "AddedOn",
+            "csharp_name": "Addedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ModifiedBy",
+            "csharp_name": "Modifiedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "ModifiedOn",
+            "csharp_name": "Modifiedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          }
+        ],
+        "foreign_keys": [
+          {
+            "from_column": "CompanyID",
+            "to_table": "Companies",
+            "to_column": "CompanyID"
+          }
+        ],
+        "primary_keys": [
+          "ContactID"
+        ]
+      },
+      "EmployeePrivileges": {
+        "table_name": "EmployeePrivileges",
+        "entity_name": "Employeeprivileges",
+        "scope": "v1_support",
+        "row_count": 3,
+        "fields": [
+          {
+            "name": "EmployeePrivilegeID",
+            "csharp_name": "Employeeprivilegeid",
+            "access_type": "LONG",
+            "csharp_type": "int",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": false,
+            "max_length": 10
+          },
+          {
+            "name": "EmployeeID",
+            "csharp_name": "Employeeid",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 10
+          },
+          {
+            "name": "PrivilegeID",
+            "csharp_name": "Privilegeid",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 10
+          },
+          {
+            "name": "AddedBy",
+            "csharp_name": "Addedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "AddedOn",
+            "csharp_name": "Addedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ModifiedBy",
+            "csharp_name": "Modifiedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "ModifiedOn",
+            "csharp_name": "Modifiedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          }
+        ],
+        "foreign_keys": [
+          {
+            "from_column": "EmployeeID",
+            "to_table": "Employees",
+            "to_column": "EmployeeID"
+          },
+          {
+            "from_column": "PrivilegeID",
+            "to_table": "Privileges",
+            "to_column": "PrivilegeID"
+          }
+        ],
+        "primary_keys": [
+          "EmployeePrivilegeID"
+        ]
+      },
+      "Employees": {
+        "table_name": "Employees",
+        "entity_name": "Employees",
+        "scope": "v1_support",
+        "row_count": 10,
+        "fields": [
+          {
+            "name": "EmployeeID",
+            "csharp_name": "Employeeid",
+            "access_type": "LONG",
+            "csharp_type": "int",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": false,
+            "max_length": 10
+          },
+          {
+            "name": "FirstName",
+            "csharp_name": "Firstname",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 20
+          },
+          {
+            "name": "LastName",
+            "csharp_name": "Lastname",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 30
+          },
+          {
+            "name": "EmailAddress",
+            "csharp_name": "Emailaddress",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "JobTitle",
+            "csharp_name": "Jobtitle",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 50
+          },
+          {
+            "name": "PrimaryPhone",
+            "csharp_name": "Primaryphone",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 20
+          },
+          {
+            "name": "SecondaryPhone",
+            "csharp_name": "Secondaryphone",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 20
+          },
+          {
+            "name": "Title",
+            "csharp_name": "Title",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 20
+          },
+          {
+            "name": "Notes",
+            "csharp_name": "Notes",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 1073741823
+          },
+          {
+            "name": "Attachments",
+            "csharp_name": "Attachments",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 1073741823
+          },
+          {
+            "name": "SupervisorID",
+            "csharp_name": "Supervisorid",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 10
+          },
+          {
+            "name": "WindowsUserName",
+            "csharp_name": "Windowsusername",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 50
+          },
+          {
+            "name": "AddedBy",
+            "csharp_name": "Addedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "AddedOn",
+            "csharp_name": "Addedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ModifiedBy",
+            "csharp_name": "Modifiedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "ModifiedOn",
+            "csharp_name": "Modifiedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          }
+        ],
+        "foreign_keys": [
+          {
+            "from_column": "SupervisorID",
+            "to_table": "Employees",
+            "to_column": "EmployeeID"
+          },
+          {
+            "from_column": "Title",
+            "to_table": "Titles",
+            "to_column": "Title"
+          }
+        ],
+        "primary_keys": [
+          "EmployeeID"
+        ]
+      },
+      "Learn": {
+        "table_name": "Learn",
+        "entity_name": "Learn",
+        "scope": "later",
+        "row_count": 15,
+        "fields": [
+          {
+            "name": "ID",
+            "csharp_name": "Id",
+            "access_type": "LONG",
+            "csharp_type": "int",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": false,
+            "max_length": 10
+          },
+          {
+            "name": "SectionNo",
+            "csharp_name": "Sectionno",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 5
+          },
+          {
+            "name": "SectionText",
+            "csharp_name": "Sectiontext",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 1073741823
+          }
+        ],
+        "foreign_keys": [],
+        "primary_keys": [
+          "ID"
+        ]
+      },
+      "MRU": {
+        "table_name": "MRU",
+        "entity_name": "Mru",
+        "scope": "later",
+        "row_count": 0,
+        "fields": [
+          {
+            "name": "MRU_ID",
+            "csharp_name": "MruId",
+            "access_type": "LONG",
+            "csharp_type": "int",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": false,
+            "max_length": 10
+          },
+          {
+            "name": "EmployeeID",
+            "csharp_name": "Employeeid",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 10
+          },
+          {
+            "name": "TableName",
+            "csharp_name": "Tablename",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 50
+          },
+          {
+            "name": "PKValue",
+            "csharp_name": "Pkvalue",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 10
+          },
+          {
+            "name": "DateAdded",
+            "csharp_name": "Dateadded",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          }
+        ],
+        "foreign_keys": [
+          {
+            "from_column": "EmployeeID",
+            "to_table": "Employees",
+            "to_column": "EmployeeID"
+          }
+        ],
+        "primary_keys": [
+          "MRU_ID"
+        ]
+      },
+      "NorthwindFeatures": {
+        "table_name": "NorthwindFeatures",
+        "entity_name": "Northwindfeatures",
+        "scope": "later",
+        "row_count": 39,
+        "fields": [
+          {
+            "name": "NorthwindFeaturesID",
+            "csharp_name": "Northwindfeaturesid",
+            "access_type": "LONG",
+            "csharp_type": "int",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": false,
+            "max_length": 10
+          },
+          {
+            "name": "ItemName",
+            "csharp_name": "Itemname",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "Description",
+            "csharp_name": "Description",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "Navigation",
+            "csharp_name": "Navigation",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "LearnMore",
+            "csharp_name": "Learnmore",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 1073741823
+          },
+          {
+            "name": "HelpKeywords",
+            "csharp_name": "Helpkeywords",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "OpenMethod",
+            "csharp_name": "Openmethod",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 10
+          }
+        ],
+        "foreign_keys": [],
+        "primary_keys": [
+          "NorthwindFeaturesID"
+        ]
+      },
+      "OrderDetails": {
+        "table_name": "OrderDetails",
+        "entity_name": "Orderdetails",
+        "scope": "v1_core",
+        "row_count": 130,
+        "fields": [
+          {
+            "name": "OrderDetailID",
+            "csharp_name": "Orderdetailid",
+            "access_type": "LONG",
+            "csharp_type": "int",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": false,
+            "max_length": 10
+          },
+          {
+            "name": "OrderID",
+            "csharp_name": "Orderid",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 10
+          },
+          {
+            "name": "ProductID",
+            "csharp_name": "Productid",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 10
+          },
+          {
+            "name": "Quantity",
+            "csharp_name": "Quantity",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 5
+          },
+          {
+            "name": "UnitPrice",
+            "csharp_name": "Unitprice",
+            "access_type": "DECIMAL",
+            "csharp_type": "decimal?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "Discount",
+            "csharp_name": "Discount",
+            "access_type": "DOUBLE",
+            "csharp_type": "double?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 24
+          },
+          {
+            "name": "OrderDetailStatusID",
+            "csharp_name": "Orderdetailstatusid",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 10
+          },
+          {
+            "name": "AddedBy",
+            "csharp_name": "Addedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "AddedOn",
+            "csharp_name": "Addedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ModifiedBy",
+            "csharp_name": "Modifiedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "ModifiedOn",
+            "csharp_name": "Modifiedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          }
+        ],
+        "foreign_keys": [
+          {
+            "from_column": "OrderDetailStatusID",
+            "to_table": "OrderDetailStatus",
+            "to_column": "OrderDetailStatusID"
+          },
+          {
+            "from_column": "OrderID",
+            "to_table": "Orders",
+            "to_column": "OrderID"
+          },
+          {
+            "from_column": "ProductID",
+            "to_table": "Products",
+            "to_column": "ProductID"
+          }
+        ],
+        "primary_keys": [
+          "OrderDetailID"
+        ]
+      },
+      "OrderDetailStatus": {
+        "table_name": "OrderDetailStatus",
+        "entity_name": "Orderdetailstatus",
+        "scope": "v1_support",
+        "row_count": 6,
+        "fields": [
+          {
+            "name": "OrderDetailStatusID",
+            "csharp_name": "Orderdetailstatusid",
+            "access_type": "LONG",
+            "csharp_type": "int",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": false,
+            "max_length": 10
+          },
+          {
+            "name": "OrderDetailStatusName",
+            "csharp_name": "Orderdetailstatusname",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 50
+          },
+          {
+            "name": "SortOrder",
+            "csharp_name": "Sortorder",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 3
+          },
+          {
+            "name": "AddedBy",
+            "csharp_name": "Addedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "AddedOn",
+            "csharp_name": "Addedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ModifiedBy",
+            "csharp_name": "Modifiedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "ModifiedOn",
+            "csharp_name": "Modifiedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          }
+        ],
+        "foreign_keys": [],
+        "primary_keys": [
+          "OrderDetailStatusID"
+        ]
+      },
+      "Orders": {
+        "table_name": "Orders",
+        "entity_name": "Orders",
+        "scope": "v1_core",
+        "row_count": 52,
+        "fields": [
+          {
+            "name": "OrderID",
+            "csharp_name": "Orderid",
+            "access_type": "LONG",
+            "csharp_type": "int",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": false,
+            "max_length": 10
+          },
+          {
+            "name": "EmployeeID",
+            "csharp_name": "Employeeid",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 10
+          },
+          {
+            "name": "CustomerID",
+            "csharp_name": "Customerid",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 10
+          },
+          {
+            "name": "OrderDate",
+            "csharp_name": "Orderdate",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "InvoiceDate",
+            "csharp_name": "Invoicedate",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ShippedDate",
+            "csharp_name": "Shippeddate",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ShipperID",
+            "csharp_name": "Shipperid",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 10
+          },
+          {
+            "name": "ShippingFee",
+            "csharp_name": "Shippingfee",
+            "access_type": "DECIMAL",
+            "csharp_type": "decimal?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "TaxRate",
+            "csharp_name": "Taxrate",
+            "access_type": "DOUBLE",
+            "csharp_type": "double?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 24
+          },
+          {
+            "name": "TaxStatusID",
+            "csharp_name": "Taxstatusid",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 3
+          },
+          {
+            "name": "PaymentMethod",
+            "csharp_name": "Paymentmethod",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 50
+          },
+          {
+            "name": "PaidDate",
+            "csharp_name": "Paiddate",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "Notes",
+            "csharp_name": "Notes",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 1073741823
+          },
+          {
+            "name": "OrderStatusID",
+            "csharp_name": "Orderstatusid",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 10
+          },
+          {
+            "name": "AddedBy",
+            "csharp_name": "Addedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "AddedOn",
+            "csharp_name": "Addedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ModifiedBy",
+            "csharp_name": "Modifiedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "ModifiedOn",
+            "csharp_name": "Modifiedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          }
+        ],
+        "foreign_keys": [
+          {
+            "from_column": "CustomerID",
+            "to_table": "Companies",
+            "to_column": "CompanyID"
+          },
+          {
+            "from_column": "ShipperID",
+            "to_table": "Companies",
+            "to_column": "CompanyID"
+          },
+          {
+            "from_column": "EmployeeID",
+            "to_table": "Employees",
+            "to_column": "EmployeeID"
+          },
+          {
+            "from_column": "OrderStatusID",
+            "to_table": "OrderStatus",
+            "to_column": "OrderStatusID"
+          },
+          {
+            "from_column": "TaxStatusID",
+            "to_table": "TaxStatus",
+            "to_column": "TaxStatusID"
+          }
+        ],
+        "primary_keys": [
+          "OrderID"
+        ]
+      },
+      "OrderStatus": {
+        "table_name": "OrderStatus",
+        "entity_name": "Orderstatus",
+        "scope": "v1_support",
+        "row_count": 5,
+        "fields": [
+          {
+            "name": "OrderStatusID",
+            "csharp_name": "Orderstatusid",
+            "access_type": "LONG",
+            "csharp_type": "int",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": false,
+            "max_length": 10
+          },
+          {
+            "name": "OrderStatusCode",
+            "csharp_name": "Orderstatuscode",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 5
+          },
+          {
+            "name": "OrderStatusName",
+            "csharp_name": "Orderstatusname",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 50
+          },
+          {
+            "name": "SortOrder",
+            "csharp_name": "Sortorder",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 3
+          },
+          {
+            "name": "AddedBy",
+            "csharp_name": "Addedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "AddedOn",
+            "csharp_name": "Addedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ModifiedBy",
+            "csharp_name": "Modifiedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "ModifiedOn",
+            "csharp_name": "Modifiedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          }
+        ],
+        "foreign_keys": [],
+        "primary_keys": [
+          "OrderStatusID"
+        ]
+      },
+      "Privileges": {
+        "table_name": "Privileges",
+        "entity_name": "Privileges",
+        "scope": "v1_support",
+        "row_count": 1,
+        "fields": [
+          {
+            "name": "PrivilegeID",
+            "csharp_name": "Privilegeid",
+            "access_type": "LONG",
+            "csharp_type": "int",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": false,
+            "max_length": 10
+          },
+          {
+            "name": "PrivilegeName",
+            "csharp_name": "Privilegename",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 50
+          },
+          {
+            "name": "AddedBy",
+            "csharp_name": "Addedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "AddedOn",
+            "csharp_name": "Addedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ModifiedBy",
+            "csharp_name": "Modifiedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "ModifiedOn",
+            "csharp_name": "Modifiedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          }
+        ],
+        "foreign_keys": [],
+        "primary_keys": [
+          "PrivilegeID"
+        ]
+      },
+      "ProductCategories": {
+        "table_name": "ProductCategories",
+        "entity_name": "Productcategories",
+        "scope": "v1_support",
+        "row_count": 16,
+        "fields": [
+          {
+            "name": "ProductCategoryID",
+            "csharp_name": "Productcategoryid",
+            "access_type": "LONG",
+            "csharp_type": "int",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": false,
+            "max_length": 10
+          },
+          {
+            "name": "ProductCategoryName",
+            "csharp_name": "Productcategoryname",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "ProductCategoryCode",
+            "csharp_name": "Productcategorycode",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 3
+          },
+          {
+            "name": "ProductCategoryDesc",
+            "csharp_name": "Productcategorydesc",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "ProductCategoryImage",
+            "csharp_name": "Productcategoryimage",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 1073741823
+          },
+          {
+            "name": "AddedBy",
+            "csharp_name": "Addedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "AddedOn",
+            "csharp_name": "Addedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ModifiedBy",
+            "csharp_name": "Modifiedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "ModifiedOn",
+            "csharp_name": "Modifiedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          }
+        ],
+        "foreign_keys": [],
+        "primary_keys": [
+          "ProductCategoryID"
+        ]
+      },
+      "Products": {
+        "table_name": "Products",
+        "entity_name": "Products",
+        "scope": "v1_core",
+        "row_count": 43,
+        "fields": [
+          {
+            "name": "ProductID",
+            "csharp_name": "Productid",
+            "access_type": "LONG",
+            "csharp_type": "int",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": false,
+            "max_length": 10
+          },
+          {
+            "name": "ProductCode",
+            "csharp_name": "Productcode",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 20
+          },
+          {
+            "name": "ProductName",
+            "csharp_name": "Productname",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 50
+          },
+          {
+            "name": "ProductDescription",
+            "csharp_name": "Productdescription",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 1073741823
+          },
+          {
+            "name": "StandardUnitCost",
+            "csharp_name": "Standardunitcost",
+            "access_type": "DECIMAL",
+            "csharp_type": "decimal?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "UnitPrice",
+            "csharp_name": "Unitprice",
+            "access_type": "DECIMAL",
+            "csharp_type": "decimal?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ReorderLevel",
+            "csharp_name": "Reorderlevel",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 5
+          },
+          {
+            "name": "TargetLevel",
+            "csharp_name": "Targetlevel",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 5
+          },
+          {
+            "name": "QuantityPerUnit",
+            "csharp_name": "Quantityperunit",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 50
+          },
+          {
+            "name": "Discontinued",
+            "csharp_name": "Discontinued",
+            "access_type": "BIT",
+            "csharp_type": "bool",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": false,
+            "max_length": 1
+          },
+          {
+            "name": "MinimumReorderQuantity",
+            "csharp_name": "Minimumreorderquantity",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 5
+          },
+          {
+            "name": "ProductCategoryID",
+            "csharp_name": "Productcategoryid",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 10
+          },
+          {
+            "name": "AddedBy",
+            "csharp_name": "Addedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "AddedOn",
+            "csharp_name": "Addedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ModifiedBy",
+            "csharp_name": "Modifiedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "ModifiedOn",
+            "csharp_name": "Modifiedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          }
+        ],
+        "foreign_keys": [
+          {
+            "from_column": "ProductCategoryID",
+            "to_table": "ProductCategories",
+            "to_column": "ProductCategoryID"
+          }
+        ],
+        "primary_keys": [
+          "ProductID"
+        ]
+      },
+      "ProductVendors": {
+        "table_name": "ProductVendors",
+        "entity_name": "Productvendors",
+        "scope": "later",
+        "row_count": 47,
+        "fields": [
+          {
+            "name": "ProductVendorID",
+            "csharp_name": "Productvendorid",
+            "access_type": "LONG",
+            "csharp_type": "int",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": false,
+            "max_length": 10
+          },
+          {
+            "name": "ProductID",
+            "csharp_name": "Productid",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 10
+          },
+          {
+            "name": "VendorID",
+            "csharp_name": "Vendorid",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 10
+          },
+          {
+            "name": "AddedBy",
+            "csharp_name": "Addedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "AddedOn",
+            "csharp_name": "Addedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ModifiedBy",
+            "csharp_name": "Modifiedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "ModifiedOn",
+            "csharp_name": "Modifiedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          }
+        ],
+        "foreign_keys": [
+          {
+            "from_column": "VendorID",
+            "to_table": "Companies",
+            "to_column": "CompanyID"
+          },
+          {
+            "from_column": "ProductID",
+            "to_table": "Products",
+            "to_column": "ProductID"
+          }
+        ],
+        "primary_keys": [
+          "ProductVendorID"
+        ]
+      },
+      "PurchaseOrderDetails": {
+        "table_name": "PurchaseOrderDetails",
+        "entity_name": "Purchaseorderdetails",
+        "scope": "later",
+        "row_count": 43,
+        "fields": [
+          {
+            "name": "PurchaseOrderDetailID",
+            "csharp_name": "Purchaseorderdetailid",
+            "access_type": "LONG",
+            "csharp_type": "int",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": false,
+            "max_length": 10
+          },
+          {
+            "name": "PurchaseOrderID",
+            "csharp_name": "Purchaseorderid",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 10
+          },
+          {
+            "name": "ProductID",
+            "csharp_name": "Productid",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 10
+          },
+          {
+            "name": "Quantity",
+            "csharp_name": "Quantity",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 5
+          },
+          {
+            "name": "UnitCost",
+            "csharp_name": "Unitcost",
+            "access_type": "DECIMAL",
+            "csharp_type": "decimal?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ReceivedDate",
+            "csharp_name": "Receiveddate",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "AddedBy",
+            "csharp_name": "Addedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "AddedOn",
+            "csharp_name": "Addedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ModifiedBy",
+            "csharp_name": "Modifiedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "ModifiedOn",
+            "csharp_name": "Modifiedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          }
+        ],
+        "foreign_keys": [
+          {
+            "from_column": "ProductID",
+            "to_table": "Products",
+            "to_column": "ProductID"
+          },
+          {
+            "from_column": "PurchaseOrderID",
+            "to_table": "PurchaseOrders",
+            "to_column": "PurchaseOrderID"
+          }
+        ],
+        "primary_keys": [
+          "PurchaseOrderDetailID"
+        ]
+      },
+      "PurchaseOrders": {
+        "table_name": "PurchaseOrders",
+        "entity_name": "Purchaseorders",
+        "scope": "later",
+        "row_count": 2,
+        "fields": [
+          {
+            "name": "PurchaseOrderID",
+            "csharp_name": "Purchaseorderid",
+            "access_type": "LONG",
+            "csharp_type": "int",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": false,
+            "max_length": 10
+          },
+          {
+            "name": "VendorID",
+            "csharp_name": "Vendorid",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 10
+          },
+          {
+            "name": "SubmittedByID",
+            "csharp_name": "Submittedbyid",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 10
+          },
+          {
+            "name": "SubmittedDate",
+            "csharp_name": "Submitteddate",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ApprovedByID",
+            "csharp_name": "Approvedbyid",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 10
+          },
+          {
+            "name": "ApprovedDate",
+            "csharp_name": "Approveddate",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "StatusID",
+            "csharp_name": "Statusid",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 10
+          },
+          {
+            "name": "ReceivedDate",
+            "csharp_name": "Receiveddate",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ShippingFee",
+            "csharp_name": "Shippingfee",
+            "access_type": "DECIMAL",
+            "csharp_type": "decimal?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "TaxAmount",
+            "csharp_name": "Taxamount",
+            "access_type": "DECIMAL",
+            "csharp_type": "decimal?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "PaymentDate",
+            "csharp_name": "Paymentdate",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "PaymentAmount",
+            "csharp_name": "Paymentamount",
+            "access_type": "DECIMAL",
+            "csharp_type": "decimal?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "PaymentMethod",
+            "csharp_name": "Paymentmethod",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 50
+          },
+          {
+            "name": "Notes",
+            "csharp_name": "Notes",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 1073741823
+          },
+          {
+            "name": "AddedBy",
+            "csharp_name": "Addedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "AddedOn",
+            "csharp_name": "Addedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ModifiedBy",
+            "csharp_name": "Modifiedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "ModifiedOn",
+            "csharp_name": "Modifiedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          }
+        ],
+        "foreign_keys": [
+          {
+            "from_column": "VendorID",
+            "to_table": "Companies",
+            "to_column": "CompanyID"
+          },
+          {
+            "from_column": "ApprovedByID",
+            "to_table": "Employees",
+            "to_column": "EmployeeID"
+          },
+          {
+            "from_column": "SubmittedByID",
+            "to_table": "Employees",
+            "to_column": "EmployeeID"
+          },
+          {
+            "from_column": "StatusID",
+            "to_table": "PurchaseOrderStatus",
+            "to_column": "StatusID"
+          }
+        ],
+        "primary_keys": [
+          "PurchaseOrderID"
+        ]
+      },
+      "PurchaseOrderStatus": {
+        "table_name": "PurchaseOrderStatus",
+        "entity_name": "Purchaseorderstatus",
+        "scope": "later",
+        "row_count": 5,
+        "fields": [
+          {
+            "name": "StatusID",
+            "csharp_name": "Statusid",
+            "access_type": "LONG",
+            "csharp_type": "int",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": false,
+            "max_length": 10
+          },
+          {
+            "name": "StatusName",
+            "csharp_name": "Statusname",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 50
+          },
+          {
+            "name": "SortOrder",
+            "csharp_name": "Sortorder",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 3
+          },
+          {
+            "name": "AddedBy",
+            "csharp_name": "Addedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "AddedOn",
+            "csharp_name": "Addedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ModifiedBy",
+            "csharp_name": "Modifiedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "ModifiedOn",
+            "csharp_name": "Modifiedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          }
+        ],
+        "foreign_keys": [],
+        "primary_keys": [
+          "StatusID"
+        ]
+      },
+      "States": {
+        "table_name": "States",
+        "entity_name": "States",
+        "scope": "v1_support",
+        "row_count": 51,
+        "fields": [
+          {
+            "name": "StateAbbrev",
+            "csharp_name": "Stateabbrev",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 2
+          },
+          {
+            "name": "StateName",
+            "csharp_name": "Statename",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 50
+          }
+        ],
+        "foreign_keys": [],
+        "primary_keys": [
+          "StateAbbrev"
+        ]
+      },
+      "StockTake": {
+        "table_name": "StockTake",
+        "entity_name": "Stocktake",
+        "scope": "later",
+        "row_count": 43,
+        "fields": [
+          {
+            "name": "StockTakeID",
+            "csharp_name": "Stocktakeid",
+            "access_type": "LONG",
+            "csharp_type": "int",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": false,
+            "max_length": 10
+          },
+          {
+            "name": "StockTakeDate",
+            "csharp_name": "Stocktakedate",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ProductID",
+            "csharp_name": "Productid",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": true,
+            "nullable": true,
+            "max_length": 10
+          },
+          {
+            "name": "QuantityOnHand",
+            "csharp_name": "Quantityonhand",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 5
+          },
+          {
+            "name": "ExpectedQuantity",
+            "csharp_name": "Expectedquantity",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 10
+          },
+          {
+            "name": "AddedBy",
+            "csharp_name": "Addedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "AddedOn",
+            "csharp_name": "Addedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ModifiedBy",
+            "csharp_name": "Modifiedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "ModifiedOn",
+            "csharp_name": "Modifiedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          }
+        ],
+        "foreign_keys": [
+          {
+            "from_column": "ProductID",
+            "to_table": "Products",
+            "to_column": "ProductID"
+          }
+        ],
+        "primary_keys": [
+          "StockTakeID"
+        ]
+      },
+      "Strings": {
+        "table_name": "Strings",
+        "entity_name": "Strings",
+        "scope": "later",
+        "row_count": 49,
+        "fields": [
+          {
+            "name": "StringID",
+            "csharp_name": "Stringid",
+            "access_type": "LONG",
+            "csharp_type": "int",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": false,
+            "max_length": 10
+          },
+          {
+            "name": "StringData",
+            "csharp_name": "Stringdata",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 1073741823
+          },
+          {
+            "name": "AddedBy",
+            "csharp_name": "Addedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "AddedOn",
+            "csharp_name": "Addedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ModifiedBy",
+            "csharp_name": "Modifiedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "ModifiedOn",
+            "csharp_name": "Modifiedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          }
+        ],
+        "foreign_keys": [],
+        "primary_keys": [
+          "StringID"
+        ]
+      },
+      "SystemSettings": {
+        "table_name": "SystemSettings",
+        "entity_name": "Systemsettings",
+        "scope": "later",
+        "row_count": 5,
+        "fields": [
+          {
+            "name": "SettingID",
+            "csharp_name": "Settingid",
+            "access_type": "LONG",
+            "csharp_type": "int",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": false,
+            "max_length": 10
+          },
+          {
+            "name": "SettingName",
+            "csharp_name": "Settingname",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 50
+          },
+          {
+            "name": "SettingValue",
+            "csharp_name": "Settingvalue",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "Notes",
+            "csharp_name": "Notes",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          }
+        ],
+        "foreign_keys": [],
+        "primary_keys": [
+          "SettingID"
+        ]
+      },
+      "TaxStatus": {
+        "table_name": "TaxStatus",
+        "entity_name": "Taxstatus",
+        "scope": "v1_support",
+        "row_count": 2,
+        "fields": [
+          {
+            "name": "TaxStatusID",
+            "csharp_name": "Taxstatusid",
+            "access_type": "LONG",
+            "csharp_type": "int?",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 3
+          },
+          {
+            "name": "TaxStatus",
+            "csharp_name": "Taxstatus",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 50
+          },
+          {
+            "name": "AddedBy",
+            "csharp_name": "Addedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "AddedOn",
+            "csharp_name": "Addedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ModifiedBy",
+            "csharp_name": "Modifiedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "ModifiedOn",
+            "csharp_name": "Modifiedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          }
+        ],
+        "foreign_keys": [],
+        "primary_keys": [
+          "TaxStatusID"
+        ]
+      },
+      "Titles": {
+        "table_name": "Titles",
+        "entity_name": "Titles",
+        "scope": "v1_support",
+        "row_count": 3,
+        "fields": [
+          {
+            "name": "Title",
+            "csharp_name": "Title",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 20
+          },
+          {
+            "name": "AddedBy",
+            "csharp_name": "Addedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "AddedOn",
+            "csharp_name": "Addedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          },
+          {
+            "name": "ModifiedBy",
+            "csharp_name": "Modifiedby",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "ModifiedOn",
+            "csharp_name": "Modifiedon",
+            "access_type": "DATETIME",
+            "csharp_type": "DateTime?",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 19
+          }
+        ],
+        "foreign_keys": [],
+        "primary_keys": [
+          "Title"
+        ]
+      },
+      "UserSettings": {
+        "table_name": "UserSettings",
+        "entity_name": "Usersettings",
+        "scope": "later",
+        "row_count": 1,
+        "fields": [
+          {
+            "name": "SettingID",
+            "csharp_name": "Settingid",
+            "access_type": "LONG",
+            "csharp_type": "int",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": false,
+            "max_length": 10
+          },
+          {
+            "name": "SettingName",
+            "csharp_name": "Settingname",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 50
+          },
+          {
+            "name": "SettingValue",
+            "csharp_name": "Settingvalue",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "Notes",
+            "csharp_name": "Notes",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          }
+        ],
+        "foreign_keys": [],
+        "primary_keys": [
+          "SettingID"
+        ]
+      },
+      "USysRibbons": {
+        "table_name": "USysRibbons",
+        "entity_name": "Usysribbons",
+        "scope": "later",
+        "row_count": 1,
+        "fields": [
+          {
+            "name": "ID",
+            "csharp_name": "Id",
+            "access_type": "LONG",
+            "csharp_type": "int",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": false,
+            "max_length": 10
+          },
+          {
+            "name": "RibbonName",
+            "csharp_name": "Ribbonname",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 255
+          },
+          {
+            "name": "RibbonXML",
+            "csharp_name": "Ribbonxml",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 1073741823
+          }
+        ],
+        "foreign_keys": [],
+        "primary_keys": [
+          "ID"
+        ]
+      },
+      "Welcome": {
+        "table_name": "Welcome",
+        "entity_name": "Welcome",
+        "scope": "later",
+        "row_count": 1,
+        "fields": [
+          {
+            "name": "ID",
+            "csharp_name": "Id",
+            "access_type": "LONG",
+            "csharp_type": "int",
+            "is_pk": true,
+            "is_fk": false,
+            "nullable": false,
+            "max_length": 10
+          },
+          {
+            "name": "Welcome",
+            "csharp_name": "Welcome",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 1073741823
+          },
+          {
+            "name": "Learn",
+            "csharp_name": "Learn",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 1073741823
+          },
+          {
+            "name": "DataMacro",
+            "csharp_name": "Datamacro",
+            "access_type": "NVARCHAR",
+            "csharp_type": "string",
+            "is_pk": false,
+            "is_fk": false,
+            "nullable": true,
+            "max_length": 1073741823
+          }
+        ],
+        "foreign_keys": [],
+        "primary_keys": [
+          "ID"
+        ]
+      }
+    },
+    "fk_graph": {
+      "Catalog_TableOfContents": [],
+      "Companies": [
+        {
+          "from_column": "CompanyTypeID",
+          "to_table": "CompanyTypes",
+          "to_column": "CompanyTypeID"
+        },
+        {
+          "from_column": "StateAbbrev",
+          "to_table": "States",
+          "to_column": "StateAbbrev"
+        },
+        {
+          "from_column": "StandardTaxStatusID",
+          "to_table": "TaxStatus",
+          "to_column": "TaxStatusID"
+        }
+      ],
+      "CompanyTypes": [],
+      "Contacts": [
+        {
+          "from_column": "CompanyID",
+          "to_table": "Companies",
+          "to_column": "CompanyID"
+        }
+      ],
+      "EmployeePrivileges": [
+        {
+          "from_column": "EmployeeID",
+          "to_table": "Employees",
+          "to_column": "EmployeeID"
+        },
+        {
+          "from_column": "PrivilegeID",
+          "to_table": "Privileges",
+          "to_column": "PrivilegeID"
+        }
+      ],
+      "Employees": [
+        {
+          "from_column": "SupervisorID",
+          "to_table": "Employees",
+          "to_column": "EmployeeID"
+        },
+        {
+          "from_column": "Title",
+          "to_table": "Titles",
+          "to_column": "Title"
+        }
+      ],
+      "Learn": [],
+      "MRU": [
+        {
+          "from_column": "EmployeeID",
+          "to_table": "Employees",
+          "to_column": "EmployeeID"
+        }
+      ],
+      "NorthwindFeatures": [],
+      "OrderDetails": [
+        {
+          "from_column": "OrderDetailStatusID",
+          "to_table": "OrderDetailStatus",
+          "to_column": "OrderDetailStatusID"
+        },
+        {
+          "from_column": "OrderID",
+          "to_table": "Orders",
+          "to_column": "OrderID"
+        },
+        {
+          "from_column": "ProductID",
+          "to_table": "Products",
+          "to_column": "ProductID"
+        }
+      ],
+      "OrderDetailStatus": [],
+      "Orders": [
+        {
+          "from_column": "CustomerID",
+          "to_table": "Companies",
+          "to_column": "CompanyID"
+        },
+        {
+          "from_column": "ShipperID",
+          "to_table": "Companies",
+          "to_column": "CompanyID"
+        },
+        {
+          "from_column": "EmployeeID",
+          "to_table": "Employees",
+          "to_column": "EmployeeID"
+        },
+        {
+          "from_column": "OrderStatusID",
+          "to_table": "OrderStatus",
+          "to_column": "OrderStatusID"
+        },
+        {
+          "from_column": "TaxStatusID",
+          "to_table": "TaxStatus",
+          "to_column": "TaxStatusID"
+        }
+      ],
+      "OrderStatus": [],
+      "Privileges": [],
+      "ProductCategories": [],
+      "Products": [
+        {
+          "from_column": "ProductCategoryID",
+          "to_table": "ProductCategories",
+          "to_column": "ProductCategoryID"
+        }
+      ],
+      "ProductVendors": [
+        {
+          "from_column": "VendorID",
+          "to_table": "Companies",
+          "to_column": "CompanyID"
+        },
+        {
+          "from_column": "ProductID",
+          "to_table": "Products",
+          "to_column": "ProductID"
+        }
+      ],
+      "PurchaseOrderDetails": [
+        {
+          "from_column": "ProductID",
+          "to_table": "Products",
+          "to_column": "ProductID"
+        },
+        {
+          "from_column": "PurchaseOrderID",
+          "to_table": "PurchaseOrders",
+          "to_column": "PurchaseOrderID"
+        }
+      ],
+      "PurchaseOrders": [
+        {
+          "from_column": "VendorID",
+          "to_table": "Companies",
+          "to_column": "CompanyID"
+        },
+        {
+          "from_column": "ApprovedByID",
+          "to_table": "Employees",
+          "to_column": "EmployeeID"
+        },
+        {
+          "from_column": "SubmittedByID",
+          "to_table": "Employees",
+          "to_column": "EmployeeID"
+        },
+        {
+          "from_column": "StatusID",
+          "to_table": "PurchaseOrderStatus",
+          "to_column": "StatusID"
+        }
+      ],
+      "PurchaseOrderStatus": [],
+      "States": [],
+      "StockTake": [
+        {
+          "from_column": "ProductID",
+          "to_table": "Products",
+          "to_column": "ProductID"
+        }
+      ],
+      "Strings": [],
+      "SystemSettings": [],
+      "TaxStatus": [],
+      "Titles": [],
+      "UserSettings": [],
+      "USysRibbons": [],
+      "Welcome": []
+    }
+  },
+  "forms": [
+    {
+      "name": "frmReports",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": false,
+      "is_dialog": false,
+      "suggested_route": null
+    },
+    {
+      "name": "frmNorthwindFeatures",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": false,
+      "is_dialog": false,
+      "suggested_route": null
+    },
+    {
+      "name": "frmAbout",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": false,
+      "is_dialog": false,
+      "suggested_route": null
+    },
+    {
+      "name": "sfrmProductDetail_Orders",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": true,
+      "is_dialog": false,
+      "suggested_route": null
+    },
+    {
+      "name": "frmSelectVendorDialog",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": false,
+      "is_dialog": true,
+      "suggested_route": null
+    },
+    {
+      "name": "frmPurchaseOrderList",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": false,
+      "is_dialog": false,
+      "suggested_route": "/purchase-orders"
+    },
+    {
+      "name": "frmOrderList",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": false,
+      "is_dialog": false,
+      "suggested_route": "/orders"
+    },
+    {
+      "name": "frmCompanyList",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": false,
+      "is_dialog": false,
+      "suggested_route": "/companies"
+    },
+    {
+      "name": "sfrmProductCategories",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": true,
+      "is_dialog": false,
+      "suggested_route": null
+    },
+    {
+      "name": "frmStartup",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": false,
+      "is_dialog": false,
+      "suggested_route": null
+    },
+    {
+      "name": "frmEmployeeList",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": false,
+      "is_dialog": false,
+      "suggested_route": "/employees"
+    },
+    {
+      "name": "frmEmployeeTitles",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": false,
+      "is_dialog": false,
+      "suggested_route": null
+    },
+    {
+      "name": "frmProductList",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": false,
+      "is_dialog": false,
+      "suggested_route": "/products"
+    },
+    {
+      "name": "sfrmOrderLineItems",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": true,
+      "is_dialog": false,
+      "suggested_route": null
+    },
+    {
+      "name": "sfrmPurchaseOrderLineItems",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": true,
+      "is_dialog": false,
+      "suggested_route": null
+    },
+    {
+      "name": "sfrmCompanyDetail_VendorPurchaseOrders",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": true,
+      "is_dialog": false,
+      "suggested_route": null
+    },
+    {
+      "name": "sfrmProductDetail_StockTake",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": true,
+      "is_dialog": false,
+      "suggested_route": null
+    },
+    {
+      "name": "frmPurchaseOrderDetails",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": false,
+      "is_dialog": false,
+      "suggested_route": "/purchase-orders/:id"
+    },
+    {
+      "name": "frmOrderDetails",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": false,
+      "is_dialog": false,
+      "suggested_route": "/orders/:id"
+    },
+    {
+      "name": "sfrmProductDetail_Vendors",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": true,
+      "is_dialog": false,
+      "suggested_route": null
+    },
+    {
+      "name": "sfrmAdmin_Strings",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": true,
+      "is_dialog": false,
+      "suggested_route": null
+    },
+    {
+      "name": "frmCredentials",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": false,
+      "is_dialog": true,
+      "suggested_route": null
+    },
+    {
+      "name": "sfrmAdmin_DeleteTestData",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": true,
+      "is_dialog": false,
+      "suggested_route": null
+    },
+    {
+      "name": "frmProductDetail",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": false,
+      "is_dialog": false,
+      "suggested_route": "/products/:id"
+    },
+    {
+      "name": "sfrmAdmin_ResetDates",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": true,
+      "is_dialog": false,
+      "suggested_route": null
+    },
+    {
+      "name": "sfrmProductDetail_PurchaseOrders",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": true,
+      "is_dialog": false,
+      "suggested_route": null
+    },
+    {
+      "name": "sfrmCompanyDetail_CustomerOrders",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": true,
+      "is_dialog": false,
+      "suggested_route": null
+    },
+    {
+      "name": "frmLearn",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": false,
+      "is_dialog": false,
+      "suggested_route": null
+    },
+    {
+      "name": "_Design",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": false,
+      "is_dialog": false,
+      "suggested_route": null
+    },
+    {
+      "name": "sfrmCompanyDetail_ShipperOrders",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": true,
+      "is_dialog": false,
+      "suggested_route": null
+    },
+    {
+      "name": "sfrmCompanyDetail_Contacts",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": true,
+      "is_dialog": false,
+      "suggested_route": null
+    },
+    {
+      "name": "sfrmAdmin_InternetOrders",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": true,
+      "is_dialog": false,
+      "suggested_route": null
+    },
+    {
+      "name": "frmLogin",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": false,
+      "is_dialog": true,
+      "suggested_route": "/login"
+    },
+    {
+      "name": "sfrmEmployee_Privileges",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": true,
+      "is_dialog": false,
+      "suggested_route": null
+    },
+    {
+      "name": "sfrmOrders_MostRecent_ByEmployee",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": true,
+      "is_dialog": false,
+      "suggested_route": null
+    },
+    {
+      "name": "frmGenericDialog",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": false,
+      "is_dialog": true,
+      "suggested_route": null
+    },
+    {
+      "name": "frmAdmin",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": false,
+      "is_dialog": false,
+      "suggested_route": "/admin"
+    },
+    {
+      "name": "frmCompanyDetail",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": false,
+      "is_dialog": false,
+      "suggested_route": "/companies/:id"
+    },
+    {
+      "name": "sfrmAdmin_SystemSettings",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": true,
+      "is_dialog": false,
+      "suggested_route": null
+    },
+    {
+      "name": "frmWelcome",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "event_count": 0,
+      "is_subform": false,
+      "is_dialog": false,
+      "suggested_route": null
+    }
+  ],
+  "reports": [
+    {
+      "name": "rptLearn",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "suggested_component": "Learn"
+    },
+    {
+      "name": "rptProductCatalog",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "suggested_component": "ProductCatalogReport"
+    },
+    {
+      "name": "rptInvoice",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "suggested_component": "InvoiceReport"
+    },
+    {
+      "name": "srptGastronomic",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "suggested_component": "Srptgastronomic"
+    },
+    {
+      "name": "rptEmployeeEmailList",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "suggested_component": "EmployeeEmailListReport"
+    },
+    {
+      "name": "rptSalesByProductQuarterly",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "suggested_component": "SalesByProductQuarterlyReport"
+    },
+    {
+      "name": "srptOrderForm",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "suggested_component": "Srptorderform"
+    },
+    {
+      "name": "rptSalesByEmployee",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "suggested_component": "SalesByEmployeeReport"
+    },
+    {
+      "name": "srptCatalog_TableOfContents",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "suggested_component": "SrptcatalogTableofcontents"
+    },
+    {
+      "name": "rptSalesByProduct",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "suggested_component": "SalesByProductReport"
+    },
+    {
+      "name": "rptEmployeePhoneList",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "suggested_component": "EmployeePhoneListReport"
+    },
+    {
+      "name": "rptRelationshipsWindow",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "suggested_component": "Relationshipswindow"
+    },
+    {
+      "name": "_Design",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "suggested_component": "Design"
+    },
+    {
+      "name": "srptQuality",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "suggested_component": "Srptquality"
+    },
+    {
+      "name": "srptShipVia",
+      "record_source": null,
+      "mapped_entity": null,
+      "control_count": 0,
+      "suggested_component": "Srptshipvia"
+    }
+  ],
+  "vba_modules": [
+    {
+      "name": "clsErrorHandler",
+      "type": "ClassModule",
+      "line_count": 141,
+      "classification": "domain",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": "ErrorHandler"
+    },
+    {
+      "name": "modCompanies",
+      "type": "StandardModule",
+      "line_count": 28,
+      "classification": "domain",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": "CompanyService"
+    },
+    {
+      "name": "modInventory",
+      "type": "StandardModule",
+      "line_count": 391,
+      "classification": "domain",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": "InventoryService"
+    },
+    {
+      "name": "modMath",
+      "type": "StandardModule",
+      "line_count": 51,
+      "classification": "domain",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": "MathHelper"
+    },
+    {
+      "name": "modOrders",
+      "type": "StandardModule",
+      "line_count": 227,
+      "classification": "domain",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": "OrderService"
+    },
+    {
+      "name": "modPurchaseOrders",
+      "type": "StandardModule",
+      "line_count": 190,
+      "classification": "domain",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": "PurchaseOrderService"
+    },
+    {
+      "name": "modReportParameters",
+      "type": "StandardModule",
+      "line_count": 47,
+      "classification": "domain",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": "ReportParameterService"
+    },
+    {
+      "name": "modSecurity",
+      "type": "StandardModule",
+      "line_count": 21,
+      "classification": "domain",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": "SecurityService"
+    },
+    {
+      "name": "modStrings",
+      "type": "StandardModule",
+      "line_count": 221,
+      "classification": "domain",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": "StringHelper"
+    },
+    {
+      "name": "modTableDataMacros",
+      "type": "StandardModule",
+      "line_count": 69,
+      "classification": "domain",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": "TableDataService"
+    },
+    {
+      "name": "modValidation",
+      "type": "StandardModule",
+      "line_count": 171,
+      "classification": "domain",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": "ValidationService"
+    },
+    {
+      "name": "Form__Design",
+      "type": "Document",
+      "line_count": 2,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_frmAbout",
+      "type": "Document",
+      "line_count": 15,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_frmAdmin",
+      "type": "Document",
+      "line_count": 201,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_frmCompanyDetail",
+      "type": "Document",
+      "line_count": 713,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_frmCompanyList",
+      "type": "Document",
+      "line_count": 233,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_frmCredentials",
+      "type": "Document",
+      "line_count": 88,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_frmEmployeeList",
+      "type": "Document",
+      "line_count": 283,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_frmEmployeeTitles",
+      "type": "Document",
+      "line_count": 20,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_frmGenericDialog",
+      "type": "Document",
+      "line_count": 119,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_frmLogin",
+      "type": "Document",
+      "line_count": 114,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_frmNorthwindFeatures",
+      "type": "Document",
+      "line_count": 36,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_frmOrderDetails",
+      "type": "Document",
+      "line_count": 732,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_frmOrderList",
+      "type": "Document",
+      "line_count": 107,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_frmProductDetail",
+      "type": "Document",
+      "line_count": 636,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_frmProductList",
+      "type": "Document",
+      "line_count": 72,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_frmPurchaseOrderDetails",
+      "type": "Document",
+      "line_count": 631,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_frmPurchaseOrderList",
+      "type": "Document",
+      "line_count": 44,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_frmReports",
+      "type": "Document",
+      "line_count": 182,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_frmSelectVendorDialog",
+      "type": "Document",
+      "line_count": 77,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_frmWelcome",
+      "type": "Document",
+      "line_count": 42,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_sfrmAdmin_DeleteTestData",
+      "type": "Document",
+      "line_count": 85,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_sfrmAdmin_InternetOrders",
+      "type": "Document",
+      "line_count": 45,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_sfrmAdmin_ResetDates",
+      "type": "Document",
+      "line_count": 17,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_sfrmAdmin_Strings",
+      "type": "Document",
+      "line_count": 28,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_sfrmAdmin_SystemSettings",
+      "type": "Document",
+      "line_count": 28,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_sfrmCompanyDetail_Contacts",
+      "type": "Document",
+      "line_count": 66,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_sfrmCompanyDetail_CustomerOrders",
+      "type": "Document",
+      "line_count": 28,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_sfrmCompanyDetail_ShipperOrders",
+      "type": "Document",
+      "line_count": 28,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_sfrmCompanyDetail_VendorPurchaseOrders",
+      "type": "Document",
+      "line_count": 28,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_sfrmEmployee_Privileges",
+      "type": "Document",
+      "line_count": 66,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_sfrmOrderLineItems",
+      "type": "Document",
+      "line_count": 294,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_sfrmOrders_MostRecent_ByEmployee",
+      "type": "Document",
+      "line_count": 15,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_sfrmProductCategories",
+      "type": "Document",
+      "line_count": 158,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_sfrmProductDetail_Orders",
+      "type": "Document",
+      "line_count": 15,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_sfrmProductDetail_PurchaseOrders",
+      "type": "Document",
+      "line_count": 17,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_sfrmProductDetail_StockTake",
+      "type": "Document",
+      "line_count": 132,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_sfrmProductDetail_Vendors",
+      "type": "Document",
+      "line_count": 37,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Form_sfrmPurchaseOrderLineItems",
+      "type": "Document",
+      "line_count": 121,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Report__Design",
+      "type": "Document",
+      "line_count": 41,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Report_rptEmployeeEmailList",
+      "type": "Document",
+      "line_count": 42,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Report_rptEmployeePhoneList",
+      "type": "Document",
+      "line_count": 42,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Report_rptInvoice",
+      "type": "Document",
+      "line_count": 41,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Report_rptLearn",
+      "type": "Document",
+      "line_count": 41,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Report_rptProductCatalog",
+      "type": "Document",
+      "line_count": 110,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Report_rptRelationshipsWindow",
+      "type": "Document",
+      "line_count": 41,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Report_rptSalesByEmployee",
+      "type": "Document",
+      "line_count": 79,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Report_rptSalesByProduct",
+      "type": "Document",
+      "line_count": 55,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "Report_rptSalesByProductQuarterly",
+      "type": "Document",
+      "line_count": 55,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "modForms",
+      "type": "StandardModule",
+      "line_count": 100,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "modGlobal",
+      "type": "StandardModule",
+      "line_count": 483,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "modRibbonCallback",
+      "type": "StandardModule",
+      "line_count": 454,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "modStartup",
+      "type": "StandardModule",
+      "line_count": 195,
+      "classification": "ui_glue",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "modDAO",
+      "type": "StandardModule",
+      "line_count": 88,
+      "classification": "infrastructure",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "modDebug",
+      "type": "StandardModule",
+      "line_count": 34,
+      "classification": "infrastructure",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    },
+    {
+      "name": "modFiles",
+      "type": "StandardModule",
+      "line_count": 46,
+      "classification": "infrastructure",
+      "has_api_declarations": false,
+      "external_references": [],
+      "suggested_csharp_class": null
+    }
+  ],
+  "metrics": {
+    "vba_total_lines": 9059,
+    "vba_module_count": 66,
+    "has_api_declarations": false,
+    "has_external_objects": false,
+    "form_count": 40,
+    "report_count": 15,
+    "macro_count": 1,
+    "subform_count": 0,
+    "event_procedure_count": 0,
+    "combo_box_count": 0,
+    "complexity_score": 7,
+    "complexity_tier": "complex"
+  }
+}

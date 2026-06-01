@@ -1,0 +1,7 @@
+ContactID,CompanyID,LastName,FirstName,EmailAddress,JobTitle,PrimaryPhone,SecondaryPhone,Notes,AddedBy,AddedOn,ModifiedBy,ModifiedOn
+9,1,Chauvin,Alexandre,test@test.com,Senior Buyer,1234567890x1234,,,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+11,3,Eden,Bouchard,,Dry Goods Rep,,,,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+13,5,Fuster,Adriana,,Sales Manager,,,,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+14,6,Gagnon,Alex,,Senior Buyer,,,,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+15,7,Albert,Sasha,,Vendor Relations,,,,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+16,8,Monte,Ariana,,Senior Buyer,,,,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31

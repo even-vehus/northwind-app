@@ -1,0 +1,4546 @@
+{
+  "Catalog_TableOfContents": {
+    "columns": [
+      {
+        "name": "TocTitle",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "TocPage",
+        "type_name": "LONG",
+        "column_size": 5,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "int",
+        "_precision": 5
+      }
+    ],
+    "primary_keys": [
+      "TocTitle"
+    ],
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "TocTitle"
+        ]
+      },
+      {
+        "name": "TocPage",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "TocPage"
+        ]
+      }
+    ],
+    "row_count": 16
+  },
+  "Companies": {
+    "columns": [
+      {
+        "name": "CompanyID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": false,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "CompanyName",
+        "type_name": "NVARCHAR",
+        "column_size": 50,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "str",
+        "_precision": 50
+      },
+      {
+        "name": "CompanyTypeID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "BusinessPhone",
+        "type_name": "NVARCHAR",
+        "column_size": 20,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 4,
+        "_type_code": "str",
+        "_precision": 20
+      },
+      {
+        "name": "Address",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 5,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "City",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 6,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "StateAbbrev",
+        "type_name": "NVARCHAR",
+        "column_size": 2,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 7,
+        "_type_code": "str",
+        "_precision": 2
+      },
+      {
+        "name": "Zip",
+        "type_name": "NVARCHAR",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 8,
+        "_type_code": "str",
+        "_precision": 10
+      },
+      {
+        "name": "Website",
+        "type_name": "NVARCHAR",
+        "column_size": 1073741823,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 9,
+        "_type_code": "str",
+        "_precision": 1073741823
+      },
+      {
+        "name": "Notes",
+        "type_name": "NVARCHAR",
+        "column_size": 1073741823,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 10,
+        "_type_code": "str",
+        "_precision": 1073741823
+      },
+      {
+        "name": "StandardTaxStatusID",
+        "type_name": "LONG",
+        "column_size": 3,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 11,
+        "_type_code": "int",
+        "_precision": 3
+      },
+      {
+        "name": "AddedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 12,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "AddedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 13,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "ModifiedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 14,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "ModifiedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 15,
+        "_type_code": "datetime",
+        "_precision": 19
+      }
+    ],
+    "primary_keys": [
+      "CompanyID"
+    ],
+    "foreign_keys": [
+      {
+        "fk_name": "New_New_CompanyTypesCompanies",
+        "fk_column": "CompanyTypeID",
+        "pk_table": "CompanyTypes",
+        "pk_column": "CompanyTypeID"
+      },
+      {
+        "fk_name": "New_New_StatesCompanies",
+        "fk_column": "StateAbbrev",
+        "pk_table": "States",
+        "pk_column": "StateAbbrev"
+      },
+      {
+        "fk_name": "New_New_TaxStatusCompanies",
+        "fk_column": "StandardTaxStatusID",
+        "pk_table": "TaxStatus",
+        "pk_column": "TaxStatusID"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "CustomerName",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "CompanyName",
+          "CompanyTypeID"
+        ]
+      },
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "CompanyID"
+        ]
+      },
+      {
+        "name": "CompanyTypesCompanies",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "CompanyTypeID"
+        ]
+      },
+      {
+        "name": "New_CompanyTypesCompanies",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "CompanyTypeID"
+        ]
+      },
+      {
+        "name": "New_New_CompanyTypesCompanies",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "CompanyTypeID"
+        ]
+      },
+      {
+        "name": "New_New_StatesCompanies",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "StateAbbrev"
+        ]
+      },
+      {
+        "name": "New_New_TaxStatusCompanies",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "StandardTaxStatusID"
+        ]
+      },
+      {
+        "name": "New_StatesCompanies",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "StateAbbrev"
+        ]
+      },
+      {
+        "name": "New_TaxStatusCompanies",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "StandardTaxStatusID"
+        ]
+      },
+      {
+        "name": "StatesCompanies",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "StateAbbrev"
+        ]
+      },
+      {
+        "name": "TaxStatusCompanies",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "StandardTaxStatusID"
+        ]
+      }
+    ],
+    "row_count": 13
+  },
+  "CompanyTypes": {
+    "columns": [
+      {
+        "name": "CompanyTypeID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": false,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "CompanyType",
+        "type_name": "NVARCHAR",
+        "column_size": 50,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "str",
+        "_precision": 50
+      },
+      {
+        "name": "AddedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "AddedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 4,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "ModifiedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 5,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "ModifiedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 6,
+        "_type_code": "datetime",
+        "_precision": 19
+      }
+    ],
+    "primary_keys": [
+      "CompanyTypeID"
+    ],
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "CompanyType",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "CompanyType"
+        ]
+      },
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "CompanyTypeID"
+        ]
+      }
+    ],
+    "row_count": 4
+  },
+  "Contacts": {
+    "columns": [
+      {
+        "name": "ContactID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": false,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "CompanyID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "LastName",
+        "type_name": "NVARCHAR",
+        "column_size": 30,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "str",
+        "_precision": 30
+      },
+      {
+        "name": "FirstName",
+        "type_name": "NVARCHAR",
+        "column_size": 20,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 4,
+        "_type_code": "str",
+        "_precision": 20
+      },
+      {
+        "name": "EmailAddress",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 5,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "JobTitle",
+        "type_name": "NVARCHAR",
+        "column_size": 50,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 6,
+        "_type_code": "str",
+        "_precision": 50
+      },
+      {
+        "name": "PrimaryPhone",
+        "type_name": "NVARCHAR",
+        "column_size": 20,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 7,
+        "_type_code": "str",
+        "_precision": 20
+      },
+      {
+        "name": "SecondaryPhone",
+        "type_name": "NVARCHAR",
+        "column_size": 20,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 8,
+        "_type_code": "str",
+        "_precision": 20
+      },
+      {
+        "name": "Notes",
+        "type_name": "NVARCHAR",
+        "column_size": 1073741823,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 9,
+        "_type_code": "str",
+        "_precision": 1073741823
+      },
+      {
+        "name": "AddedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 10,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "AddedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 11,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "ModifiedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 12,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "ModifiedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 13,
+        "_type_code": "datetime",
+        "_precision": 19
+      }
+    ],
+    "primary_keys": [
+      "ContactID"
+    ],
+    "foreign_keys": [
+      {
+        "fk_name": "New_New_CompaniesContacts",
+        "fk_column": "CompanyID",
+        "pk_table": "Companies",
+        "pk_column": "CompanyID"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "ContactID"
+        ]
+      },
+      {
+        "name": "uidxCompanyFNLN",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "CompanyID",
+          "FirstName",
+          "LastName"
+        ]
+      },
+      {
+        "name": "uidxCompanyLNFN",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "CompanyID",
+          "LastName",
+          "FirstName"
+        ]
+      },
+      {
+        "name": "CompaniesContacts",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "CompanyID"
+        ]
+      },
+      {
+        "name": "New_CompaniesContacts",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "CompanyID"
+        ]
+      },
+      {
+        "name": "New_New_CompaniesContacts",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "CompanyID"
+        ]
+      }
+    ],
+    "row_count": 6
+  },
+  "EmployeePrivileges": {
+    "columns": [
+      {
+        "name": "EmployeePrivilegeID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": false,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "EmployeeID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "PrivilegeID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "AddedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 4,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "AddedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 5,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "ModifiedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 6,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "ModifiedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 7,
+        "_type_code": "datetime",
+        "_precision": 19
+      }
+    ],
+    "primary_keys": [
+      "EmployeePrivilegeID"
+    ],
+    "foreign_keys": [
+      {
+        "fk_name": "New_New_EmployeesEmployeePrivileges",
+        "fk_column": "EmployeeID",
+        "pk_table": "Employees",
+        "pk_column": "EmployeeID"
+      },
+      {
+        "fk_name": "New_New_PrivilegesEmployeePrivileges",
+        "fk_column": "PrivilegeID",
+        "pk_table": "Privileges",
+        "pk_column": "PrivilegeID"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "EmployeePrivilegeID"
+        ]
+      },
+      {
+        "name": "UniqueIdx",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "EmployeePrivilegeID",
+          "PrivilegeID"
+        ]
+      },
+      {
+        "name": "EmployeesEmployeePrivileges",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "EmployeeID"
+        ]
+      },
+      {
+        "name": "New_EmployeesEmployeePrivileges",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "EmployeeID"
+        ]
+      },
+      {
+        "name": "New_New_EmployeesEmployeePrivileges",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "EmployeeID"
+        ]
+      },
+      {
+        "name": "New_New_PrivilegesEmployeePrivileges",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "PrivilegeID"
+        ]
+      },
+      {
+        "name": "New_PrivilegesEmployeePrivileges",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "PrivilegeID"
+        ]
+      },
+      {
+        "name": "PrivilegeID",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "PrivilegeID"
+        ]
+      },
+      {
+        "name": "PrivilegesEmployeePrivileges",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "PrivilegeID"
+        ]
+      }
+    ],
+    "row_count": 3
+  },
+  "Employees": {
+    "columns": [
+      {
+        "name": "EmployeeID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": false,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "FirstName",
+        "type_name": "NVARCHAR",
+        "column_size": 20,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "str",
+        "_precision": 20
+      },
+      {
+        "name": "LastName",
+        "type_name": "NVARCHAR",
+        "column_size": 30,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "str",
+        "_precision": 30
+      },
+      {
+        "name": "EmailAddress",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 4,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "JobTitle",
+        "type_name": "NVARCHAR",
+        "column_size": 50,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 5,
+        "_type_code": "str",
+        "_precision": 50
+      },
+      {
+        "name": "PrimaryPhone",
+        "type_name": "NVARCHAR",
+        "column_size": 20,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 6,
+        "_type_code": "str",
+        "_precision": 20
+      },
+      {
+        "name": "SecondaryPhone",
+        "type_name": "NVARCHAR",
+        "column_size": 20,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 7,
+        "_type_code": "str",
+        "_precision": 20
+      },
+      {
+        "name": "Title",
+        "type_name": "NVARCHAR",
+        "column_size": 20,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 8,
+        "_type_code": "str",
+        "_precision": 20
+      },
+      {
+        "name": "Notes",
+        "type_name": "NVARCHAR",
+        "column_size": 1073741823,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 9,
+        "_type_code": "str",
+        "_precision": 1073741823
+      },
+      {
+        "name": "Attachments",
+        "type_name": "NVARCHAR",
+        "column_size": 1073741823,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 10,
+        "_type_code": "str",
+        "_precision": 1073741823
+      },
+      {
+        "name": "SupervisorID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 11,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "WindowsUserName",
+        "type_name": "NVARCHAR",
+        "column_size": 50,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 12,
+        "_type_code": "str",
+        "_precision": 50
+      },
+      {
+        "name": "AddedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 13,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "AddedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 14,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "ModifiedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 15,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "ModifiedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 16,
+        "_type_code": "datetime",
+        "_precision": 19
+      }
+    ],
+    "primary_keys": [
+      "EmployeeID"
+    ],
+    "foreign_keys": [
+      {
+        "fk_name": "New_New_EmployeesEmployees",
+        "fk_column": "SupervisorID",
+        "pk_table": "Employees",
+        "pk_column": "EmployeeID"
+      },
+      {
+        "fk_name": "New_New_SalutationsEmployees",
+        "fk_column": "Title",
+        "pk_table": "Titles",
+        "pk_column": "Title"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "Attachments_5A5F6AB72C76468882E4A1BDF472D06A",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "Attachments"
+        ]
+      },
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "EmployeeID"
+        ]
+      },
+      {
+        "name": "uidxFNLN",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "FirstName",
+          "LastName"
+        ]
+      },
+      {
+        "name": "uidxLNFN",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "LastName",
+          "FirstName"
+        ]
+      },
+      {
+        "name": "WindowsUserName",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "WindowsUserName"
+        ]
+      },
+      {
+        "name": "EmployeesEmployees",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "SupervisorID"
+        ]
+      },
+      {
+        "name": "New_EmployeesEmployees",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "SupervisorID"
+        ]
+      },
+      {
+        "name": "New_New_EmployeesEmployees",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "SupervisorID"
+        ]
+      },
+      {
+        "name": "New_New_SalutationsEmployees",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "Title"
+        ]
+      },
+      {
+        "name": "New_SalutationsEmployees",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "Title"
+        ]
+      },
+      {
+        "name": "SalutationsEmployees",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "Title"
+        ]
+      }
+    ],
+    "row_count": 10
+  },
+  "Learn": {
+    "columns": [
+      {
+        "name": "ID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": false,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "SectionNo",
+        "type_name": "LONG",
+        "column_size": 5,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "int",
+        "_precision": 5
+      },
+      {
+        "name": "SectionText",
+        "type_name": "NVARCHAR",
+        "column_size": 1073741823,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "str",
+        "_precision": 1073741823
+      }
+    ],
+    "primary_keys": [
+      "ID"
+    ],
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "ID"
+        ]
+      },
+      {
+        "name": "SectionNo",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "SectionNo"
+        ]
+      }
+    ],
+    "row_count": 15
+  },
+  "MRU": {
+    "columns": [
+      {
+        "name": "MRU_ID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": false,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "EmployeeID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "TableName",
+        "type_name": "NVARCHAR",
+        "column_size": 50,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "str",
+        "_precision": 50
+      },
+      {
+        "name": "PKValue",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 4,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "DateAdded",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 5,
+        "_type_code": "datetime",
+        "_precision": 19
+      }
+    ],
+    "primary_keys": [
+      "MRU_ID"
+    ],
+    "foreign_keys": [
+      {
+        "fk_name": "New_New_EmployeesMRU",
+        "fk_column": "EmployeeID",
+        "pk_table": "Employees",
+        "pk_column": "EmployeeID"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "MRU_ID"
+        ]
+      },
+      {
+        "name": "SortIdx",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "EmployeeID",
+          "DateAdded"
+        ]
+      },
+      {
+        "name": "UniqueIdx",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "EmployeeID",
+          "TableName",
+          "PKValue"
+        ]
+      },
+      {
+        "name": "EmployeesMRU",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "EmployeeID"
+        ]
+      },
+      {
+        "name": "New_EmployeesMRU",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "EmployeeID"
+        ]
+      },
+      {
+        "name": "New_New_EmployeesMRU",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "EmployeeID"
+        ]
+      }
+    ],
+    "row_count": 0
+  },
+  "NorthwindFeatures": {
+    "columns": [
+      {
+        "name": "NorthwindFeaturesID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": false,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "ItemName",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "Description",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "Navigation",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 4,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "LearnMore",
+        "type_name": "NVARCHAR",
+        "column_size": 1073741823,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 5,
+        "_type_code": "str",
+        "_precision": 1073741823
+      },
+      {
+        "name": "HelpKeywords",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 6,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "OpenMethod",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 7,
+        "_type_code": "int",
+        "_precision": 10
+      }
+    ],
+    "primary_keys": [
+      "NorthwindFeaturesID"
+    ],
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "NorthwindFeaturesID"
+        ]
+      }
+    ],
+    "row_count": 39
+  },
+  "OrderDetails": {
+    "columns": [
+      {
+        "name": "OrderDetailID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": false,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "OrderID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "ProductID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "Quantity",
+        "type_name": "LONG",
+        "column_size": 5,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 4,
+        "_type_code": "int",
+        "_precision": 5
+      },
+      {
+        "name": "UnitPrice",
+        "type_name": "DECIMAL",
+        "column_size": 19,
+        "decimal_digits": 4,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 5,
+        "_type_code": "Decimal",
+        "_precision": 19
+      },
+      {
+        "name": "Discount",
+        "type_name": "DOUBLE",
+        "column_size": 24,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 6,
+        "_type_code": "float",
+        "_precision": 24
+      },
+      {
+        "name": "OrderDetailStatusID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 7,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "AddedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 8,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "AddedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 9,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "ModifiedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 10,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "ModifiedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 11,
+        "_type_code": "datetime",
+        "_precision": 19
+      }
+    ],
+    "primary_keys": [
+      "OrderDetailID"
+    ],
+    "foreign_keys": [
+      {
+        "fk_name": "New_New_OrderDetailsStatusOrderDetails",
+        "fk_column": "OrderDetailStatusID",
+        "pk_table": "OrderDetailStatus",
+        "pk_column": "OrderDetailStatusID"
+      },
+      {
+        "fk_name": "New_New_OrdersOrderDetails",
+        "fk_column": "OrderID",
+        "pk_table": "Orders",
+        "pk_column": "OrderID"
+      },
+      {
+        "fk_name": "New_New_ProductsOrderDetails",
+        "fk_column": "ProductID",
+        "pk_table": "Products",
+        "pk_column": "ProductID"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "OrderDetailID"
+        ]
+      },
+      {
+        "name": "uidxOrderID_ProductID",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "OrderID",
+          "ProductID"
+        ]
+      },
+      {
+        "name": "New_New_OrderDetailsStatusOrderDetails",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "OrderDetailStatusID"
+        ]
+      },
+      {
+        "name": "New_New_OrdersOrderDetails",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "OrderID"
+        ]
+      },
+      {
+        "name": "New_New_ProductsOrderDetails",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "ProductID"
+        ]
+      },
+      {
+        "name": "New_OrderDetailsStatusOrderDetails",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "OrderDetailStatusID"
+        ]
+      },
+      {
+        "name": "New_OrdersOrderDetails",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "OrderID"
+        ]
+      },
+      {
+        "name": "New_ProductsOrderDetails",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "ProductID"
+        ]
+      },
+      {
+        "name": "OrderDetailsStatusOrderDetails",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "OrderDetailStatusID"
+        ]
+      },
+      {
+        "name": "OrdersOrderDetails",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "OrderID"
+        ]
+      },
+      {
+        "name": "ProductID",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "ProductID"
+        ]
+      },
+      {
+        "name": "ProductsOrderDetails",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "ProductID"
+        ]
+      },
+      {
+        "name": "StatusID",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "OrderDetailStatusID"
+        ]
+      }
+    ],
+    "row_count": 130
+  },
+  "OrderDetailStatus": {
+    "columns": [
+      {
+        "name": "OrderDetailStatusID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": false,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "OrderDetailStatusName",
+        "type_name": "NVARCHAR",
+        "column_size": 50,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "str",
+        "_precision": 50
+      },
+      {
+        "name": "SortOrder",
+        "type_name": "LONG",
+        "column_size": 3,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "int",
+        "_precision": 3
+      },
+      {
+        "name": "AddedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 4,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "AddedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 5,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "ModifiedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 6,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "ModifiedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 7,
+        "_type_code": "datetime",
+        "_precision": 19
+      }
+    ],
+    "primary_keys": [
+      "OrderDetailStatusID"
+    ],
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "OrderDetailStatusID"
+        ]
+      },
+      {
+        "name": "SortOrder",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "SortOrder"
+        ]
+      },
+      {
+        "name": "StatusName",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "OrderDetailStatusName"
+        ]
+      }
+    ],
+    "row_count": 6
+  },
+  "Orders": {
+    "columns": [
+      {
+        "name": "OrderID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": false,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "EmployeeID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "CustomerID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "OrderDate",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 4,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "InvoiceDate",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 5,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "ShippedDate",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 6,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "ShipperID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 7,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "ShippingFee",
+        "type_name": "DECIMAL",
+        "column_size": 19,
+        "decimal_digits": 4,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 8,
+        "_type_code": "Decimal",
+        "_precision": 19
+      },
+      {
+        "name": "TaxRate",
+        "type_name": "DOUBLE",
+        "column_size": 24,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 9,
+        "_type_code": "float",
+        "_precision": 24
+      },
+      {
+        "name": "TaxStatusID",
+        "type_name": "LONG",
+        "column_size": 3,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 10,
+        "_type_code": "int",
+        "_precision": 3
+      },
+      {
+        "name": "PaymentMethod",
+        "type_name": "NVARCHAR",
+        "column_size": 50,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 11,
+        "_type_code": "str",
+        "_precision": 50
+      },
+      {
+        "name": "PaidDate",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 12,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "Notes",
+        "type_name": "NVARCHAR",
+        "column_size": 1073741823,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 13,
+        "_type_code": "str",
+        "_precision": 1073741823
+      },
+      {
+        "name": "OrderStatusID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 14,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "AddedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 15,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "AddedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 16,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "ModifiedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 17,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "ModifiedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 18,
+        "_type_code": "datetime",
+        "_precision": 19
+      }
+    ],
+    "primary_keys": [
+      "OrderID"
+    ],
+    "foreign_keys": [
+      {
+        "fk_name": "New_New_CompaniesOrders",
+        "fk_column": "CustomerID",
+        "pk_table": "Companies",
+        "pk_column": "CompanyID"
+      },
+      {
+        "fk_name": "New_New_CompaniesOrders1",
+        "fk_column": "ShipperID",
+        "pk_table": "Companies",
+        "pk_column": "CompanyID"
+      },
+      {
+        "fk_name": "New_New_EmployeesOrders",
+        "fk_column": "EmployeeID",
+        "pk_table": "Employees",
+        "pk_column": "EmployeeID"
+      },
+      {
+        "fk_name": "New_New_OrdersStatusOrders",
+        "fk_column": "OrderStatusID",
+        "pk_table": "OrderStatus",
+        "pk_column": "OrderStatusID"
+      },
+      {
+        "fk_name": "New_New_TaxStatusOrders",
+        "fk_column": "TaxStatusID",
+        "pk_table": "TaxStatus",
+        "pk_column": "TaxStatusID"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "OrderID"
+        ]
+      },
+      {
+        "name": "CompaniesOrders",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "CustomerID"
+        ]
+      },
+      {
+        "name": "CompaniesOrders1",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "ShipperID"
+        ]
+      },
+      {
+        "name": "EmployeesOrders",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "EmployeeID"
+        ]
+      },
+      {
+        "name": "New_CompaniesOrders",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "CustomerID"
+        ]
+      },
+      {
+        "name": "New_CompaniesOrders1",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "ShipperID"
+        ]
+      },
+      {
+        "name": "New_EmployeesOrders",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "EmployeeID"
+        ]
+      },
+      {
+        "name": "New_New_CompaniesOrders",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "CustomerID"
+        ]
+      },
+      {
+        "name": "New_New_CompaniesOrders1",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "ShipperID"
+        ]
+      },
+      {
+        "name": "New_New_EmployeesOrders",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "EmployeeID"
+        ]
+      },
+      {
+        "name": "New_New_OrdersStatusOrders",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "OrderStatusID"
+        ]
+      },
+      {
+        "name": "New_New_TaxStatusOrders",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "TaxStatusID"
+        ]
+      },
+      {
+        "name": "New_OrdersStatusOrders",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "OrderStatusID"
+        ]
+      },
+      {
+        "name": "New_TaxStatusOrders",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "TaxStatusID"
+        ]
+      },
+      {
+        "name": "OrderDate",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "OrderDate"
+        ]
+      },
+      {
+        "name": "OrdersStatusOrders",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "OrderStatusID"
+        ]
+      },
+      {
+        "name": "TaxStatusOrders",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "TaxStatusID"
+        ]
+      }
+    ],
+    "row_count": 52
+  },
+  "OrderStatus": {
+    "columns": [
+      {
+        "name": "OrderStatusID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": false,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "OrderStatusCode",
+        "type_name": "NVARCHAR",
+        "column_size": 5,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "str",
+        "_precision": 5
+      },
+      {
+        "name": "OrderStatusName",
+        "type_name": "NVARCHAR",
+        "column_size": 50,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "str",
+        "_precision": 50
+      },
+      {
+        "name": "SortOrder",
+        "type_name": "LONG",
+        "column_size": 3,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 4,
+        "_type_code": "int",
+        "_precision": 3
+      },
+      {
+        "name": "AddedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 5,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "AddedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 6,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "ModifiedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 7,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "ModifiedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 8,
+        "_type_code": "datetime",
+        "_precision": 19
+      }
+    ],
+    "primary_keys": [
+      "OrderStatusID"
+    ],
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "OrderStatusID"
+        ]
+      },
+      {
+        "name": "SortOrder",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "SortOrder"
+        ]
+      },
+      {
+        "name": "StatusCode",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "OrderStatusCode"
+        ]
+      },
+      {
+        "name": "StatusName",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "OrderStatusName"
+        ]
+      }
+    ],
+    "row_count": 5
+  },
+  "Privileges": {
+    "columns": [
+      {
+        "name": "PrivilegeID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": false,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "PrivilegeName",
+        "type_name": "NVARCHAR",
+        "column_size": 50,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "str",
+        "_precision": 50
+      },
+      {
+        "name": "AddedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "AddedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 4,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "ModifiedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 5,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "ModifiedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 6,
+        "_type_code": "datetime",
+        "_precision": 19
+      }
+    ],
+    "primary_keys": [
+      "PrivilegeID"
+    ],
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "PrivilegeID"
+        ]
+      },
+      {
+        "name": "PrivilegeName",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "PrivilegeName"
+        ]
+      }
+    ],
+    "row_count": 1
+  },
+  "ProductCategories": {
+    "columns": [
+      {
+        "name": "ProductCategoryID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": false,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "ProductCategoryName",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "ProductCategoryCode",
+        "type_name": "NVARCHAR",
+        "column_size": 3,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "str",
+        "_precision": 3
+      },
+      {
+        "name": "ProductCategoryDesc",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 4,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "ProductCategoryImage",
+        "type_name": "NVARCHAR",
+        "column_size": 1073741823,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 5,
+        "_type_code": "str",
+        "_precision": 1073741823
+      },
+      {
+        "name": "AddedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 6,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "AddedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 7,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "ModifiedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 8,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "ModifiedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 9,
+        "_type_code": "datetime",
+        "_precision": 19
+      }
+    ],
+    "primary_keys": [
+      "ProductCategoryID"
+    ],
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "ProductCategoryID"
+        ]
+      },
+      {
+        "name": "ProductCategory",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "ProductCategoryName"
+        ]
+      },
+      {
+        "name": "ProductCategoryCode",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "ProductCategoryCode"
+        ]
+      },
+      {
+        "name": "ProductCategoryImage_F6818764AA5B4B19AB7CBDCA5E637AA4",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "ProductCategoryImage"
+        ]
+      }
+    ],
+    "row_count": 16
+  },
+  "Products": {
+    "columns": [
+      {
+        "name": "ProductID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": false,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "ProductCode",
+        "type_name": "NVARCHAR",
+        "column_size": 20,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "str",
+        "_precision": 20
+      },
+      {
+        "name": "ProductName",
+        "type_name": "NVARCHAR",
+        "column_size": 50,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "str",
+        "_precision": 50
+      },
+      {
+        "name": "ProductDescription",
+        "type_name": "NVARCHAR",
+        "column_size": 1073741823,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 4,
+        "_type_code": "str",
+        "_precision": 1073741823
+      },
+      {
+        "name": "StandardUnitCost",
+        "type_name": "DECIMAL",
+        "column_size": 19,
+        "decimal_digits": 4,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 5,
+        "_type_code": "Decimal",
+        "_precision": 19
+      },
+      {
+        "name": "UnitPrice",
+        "type_name": "DECIMAL",
+        "column_size": 19,
+        "decimal_digits": 4,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 6,
+        "_type_code": "Decimal",
+        "_precision": 19
+      },
+      {
+        "name": "ReorderLevel",
+        "type_name": "LONG",
+        "column_size": 5,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 7,
+        "_type_code": "int",
+        "_precision": 5
+      },
+      {
+        "name": "TargetLevel",
+        "type_name": "LONG",
+        "column_size": 5,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 8,
+        "_type_code": "int",
+        "_precision": 5
+      },
+      {
+        "name": "QuantityPerUnit",
+        "type_name": "NVARCHAR",
+        "column_size": 50,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 9,
+        "_type_code": "str",
+        "_precision": 50
+      },
+      {
+        "name": "Discontinued",
+        "type_name": "BIT",
+        "column_size": 1,
+        "decimal_digits": 0,
+        "nullable": false,
+        "column_def": null,
+        "ordinal_position": 10,
+        "_type_code": "bool",
+        "_precision": 1
+      },
+      {
+        "name": "MinimumReorderQuantity",
+        "type_name": "LONG",
+        "column_size": 5,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 11,
+        "_type_code": "int",
+        "_precision": 5
+      },
+      {
+        "name": "ProductCategoryID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 12,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "AddedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 13,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "AddedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 14,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "ModifiedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 15,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "ModifiedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 16,
+        "_type_code": "datetime",
+        "_precision": 19
+      }
+    ],
+    "primary_keys": [
+      "ProductID"
+    ],
+    "foreign_keys": [
+      {
+        "fk_name": "New_New_ProductCategories_NEWProducts",
+        "fk_column": "ProductCategoryID",
+        "pk_table": "ProductCategories",
+        "pk_column": "ProductCategoryID"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "ProductID"
+        ]
+      },
+      {
+        "name": "ProductCode",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "ProductCode"
+        ]
+      },
+      {
+        "name": "ProductName",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "ProductName"
+        ]
+      },
+      {
+        "name": "New_New_ProductCategories_NEWProducts",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "ProductCategoryID"
+        ]
+      },
+      {
+        "name": "New_ProductCategories_NEWProducts",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "ProductCategoryID"
+        ]
+      },
+      {
+        "name": "ProductCategories_NEWProducts",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "ProductCategoryID"
+        ]
+      }
+    ],
+    "row_count": 43
+  },
+  "ProductVendors": {
+    "columns": [
+      {
+        "name": "ProductVendorID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": false,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "ProductID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "VendorID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "AddedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 4,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "AddedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 5,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "ModifiedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 6,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "ModifiedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 7,
+        "_type_code": "datetime",
+        "_precision": 19
+      }
+    ],
+    "primary_keys": [
+      "ProductVendorID"
+    ],
+    "foreign_keys": [
+      {
+        "fk_name": "New_New_CompaniesProductVendors",
+        "fk_column": "VendorID",
+        "pk_table": "Companies",
+        "pk_column": "CompanyID"
+      },
+      {
+        "fk_name": "New_New_ProductsProductVendors",
+        "fk_column": "ProductID",
+        "pk_table": "Products",
+        "pk_column": "ProductID"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "ProductVendorID"
+        ]
+      },
+      {
+        "name": "UniqueIdx",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "ProductID",
+          "VendorID"
+        ]
+      },
+      {
+        "name": "CompaniesProductVendors",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "VendorID"
+        ]
+      },
+      {
+        "name": "New_CompaniesProductVendors",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "VendorID"
+        ]
+      },
+      {
+        "name": "New_New_CompaniesProductVendors",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "VendorID"
+        ]
+      },
+      {
+        "name": "New_New_ProductsProductVendors",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "ProductID"
+        ]
+      },
+      {
+        "name": "New_ProductsProductVendors",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "ProductID"
+        ]
+      },
+      {
+        "name": "ProductsProductVendors",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "ProductID"
+        ]
+      },
+      {
+        "name": "VendorID",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "VendorID"
+        ]
+      }
+    ],
+    "row_count": 47
+  },
+  "PurchaseOrderDetails": {
+    "columns": [
+      {
+        "name": "PurchaseOrderDetailID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": false,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "PurchaseOrderID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "ProductID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "Quantity",
+        "type_name": "LONG",
+        "column_size": 5,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 4,
+        "_type_code": "int",
+        "_precision": 5
+      },
+      {
+        "name": "UnitCost",
+        "type_name": "DECIMAL",
+        "column_size": 19,
+        "decimal_digits": 4,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 5,
+        "_type_code": "Decimal",
+        "_precision": 19
+      },
+      {
+        "name": "ReceivedDate",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 6,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "AddedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 7,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "AddedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 8,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "ModifiedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 9,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "ModifiedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 10,
+        "_type_code": "datetime",
+        "_precision": 19
+      }
+    ],
+    "primary_keys": [
+      "PurchaseOrderDetailID"
+    ],
+    "foreign_keys": [
+      {
+        "fk_name": "New_New_ProductsPurchaseOrderDetails",
+        "fk_column": "ProductID",
+        "pk_table": "Products",
+        "pk_column": "ProductID"
+      },
+      {
+        "fk_name": "New_New_PurchaseOrdersPurchaseOrderDetails",
+        "fk_column": "PurchaseOrderID",
+        "pk_table": "PurchaseOrders",
+        "pk_column": "PurchaseOrderID"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "PurchaseOrderDetailID"
+        ]
+      },
+      {
+        "name": "uidxPurchaseOrderID_ProductID",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "PurchaseOrderID",
+          "ProductID"
+        ]
+      },
+      {
+        "name": "New_New_ProductsPurchaseOrderDetails",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "ProductID"
+        ]
+      },
+      {
+        "name": "New_New_PurchaseOrdersPurchaseOrderDetails",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "PurchaseOrderID"
+        ]
+      },
+      {
+        "name": "New_ProductsPurchaseOrderDetails",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "ProductID"
+        ]
+      },
+      {
+        "name": "New_PurchaseOrdersPurchaseOrderDetails",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "PurchaseOrderID"
+        ]
+      },
+      {
+        "name": "ProductsPurchaseOrderDetails",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "ProductID"
+        ]
+      },
+      {
+        "name": "PurchaseOrdersPurchaseOrderDetails",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "PurchaseOrderID"
+        ]
+      }
+    ],
+    "row_count": 43
+  },
+  "PurchaseOrders": {
+    "columns": [
+      {
+        "name": "PurchaseOrderID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": false,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "VendorID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "SubmittedByID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "SubmittedDate",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 4,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "ApprovedByID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 5,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "ApprovedDate",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 6,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "StatusID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 7,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "ReceivedDate",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 8,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "ShippingFee",
+        "type_name": "DECIMAL",
+        "column_size": 19,
+        "decimal_digits": 4,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 9,
+        "_type_code": "Decimal",
+        "_precision": 19
+      },
+      {
+        "name": "TaxAmount",
+        "type_name": "DECIMAL",
+        "column_size": 19,
+        "decimal_digits": 4,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 10,
+        "_type_code": "Decimal",
+        "_precision": 19
+      },
+      {
+        "name": "PaymentDate",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 11,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "PaymentAmount",
+        "type_name": "DECIMAL",
+        "column_size": 19,
+        "decimal_digits": 4,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 12,
+        "_type_code": "Decimal",
+        "_precision": 19
+      },
+      {
+        "name": "PaymentMethod",
+        "type_name": "NVARCHAR",
+        "column_size": 50,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 13,
+        "_type_code": "str",
+        "_precision": 50
+      },
+      {
+        "name": "Notes",
+        "type_name": "NVARCHAR",
+        "column_size": 1073741823,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 14,
+        "_type_code": "str",
+        "_precision": 1073741823
+      },
+      {
+        "name": "AddedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 15,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "AddedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 16,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "ModifiedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 17,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "ModifiedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 18,
+        "_type_code": "datetime",
+        "_precision": 19
+      }
+    ],
+    "primary_keys": [
+      "PurchaseOrderID"
+    ],
+    "foreign_keys": [
+      {
+        "fk_name": "New_New_CompaniesPurchaseOrders",
+        "fk_column": "VendorID",
+        "pk_table": "Companies",
+        "pk_column": "CompanyID"
+      },
+      {
+        "fk_name": "New_New_EmployeesPurchaseOrders1",
+        "fk_column": "ApprovedByID",
+        "pk_table": "Employees",
+        "pk_column": "EmployeeID"
+      },
+      {
+        "fk_name": "New_New_EmployeesPurchaseOrders2",
+        "fk_column": "SubmittedByID",
+        "pk_table": "Employees",
+        "pk_column": "EmployeeID"
+      },
+      {
+        "fk_name": "New_New_PurchaseOrdersStatusPurchaseOrders",
+        "fk_column": "StatusID",
+        "pk_table": "PurchaseOrderStatus",
+        "pk_column": "StatusID"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "PurchaseOrderID"
+        ]
+      },
+      {
+        "name": "CompaniesPurchaseOrders",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "VendorID"
+        ]
+      },
+      {
+        "name": "EmployeesPurchaseOrders1",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "ApprovedByID"
+        ]
+      },
+      {
+        "name": "EmployeesPurchaseOrders2",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "SubmittedByID"
+        ]
+      },
+      {
+        "name": "New_CompaniesPurchaseOrders",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "VendorID"
+        ]
+      },
+      {
+        "name": "New_EmployeesPurchaseOrders1",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "ApprovedByID"
+        ]
+      },
+      {
+        "name": "New_EmployeesPurchaseOrders2",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "SubmittedByID"
+        ]
+      },
+      {
+        "name": "New_New_CompaniesPurchaseOrders",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "VendorID"
+        ]
+      },
+      {
+        "name": "New_New_EmployeesPurchaseOrders1",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "ApprovedByID"
+        ]
+      },
+      {
+        "name": "New_New_EmployeesPurchaseOrders2",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "SubmittedByID"
+        ]
+      },
+      {
+        "name": "New_New_PurchaseOrdersStatusPurchaseOrders",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "StatusID"
+        ]
+      },
+      {
+        "name": "New_PurchaseOrdersStatusPurchaseOrders",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "StatusID"
+        ]
+      },
+      {
+        "name": "PurchaseOrdersStatusPurchaseOrders",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "StatusID"
+        ]
+      },
+      {
+        "name": "StatusCode",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "StatusID"
+        ]
+      },
+      {
+        "name": "SubmittedDate",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "SubmittedDate"
+        ]
+      }
+    ],
+    "row_count": 2
+  },
+  "PurchaseOrderStatus": {
+    "columns": [
+      {
+        "name": "StatusID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": false,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "StatusName",
+        "type_name": "NVARCHAR",
+        "column_size": 50,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "str",
+        "_precision": 50
+      },
+      {
+        "name": "SortOrder",
+        "type_name": "LONG",
+        "column_size": 3,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "int",
+        "_precision": 3
+      },
+      {
+        "name": "AddedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 4,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "AddedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 5,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "ModifiedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 6,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "ModifiedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 7,
+        "_type_code": "datetime",
+        "_precision": 19
+      }
+    ],
+    "primary_keys": [
+      "StatusID"
+    ],
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "StatusID"
+        ]
+      },
+      {
+        "name": "SortOrder",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "SortOrder"
+        ]
+      },
+      {
+        "name": "StatusName",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "StatusName"
+        ]
+      }
+    ],
+    "row_count": 5
+  },
+  "States": {
+    "columns": [
+      {
+        "name": "StateAbbrev",
+        "type_name": "NVARCHAR",
+        "column_size": 2,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "str",
+        "_precision": 2
+      },
+      {
+        "name": "StateName",
+        "type_name": "NVARCHAR",
+        "column_size": 50,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "str",
+        "_precision": 50
+      }
+    ],
+    "primary_keys": [
+      "StateAbbrev"
+    ],
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "StateAbbrev"
+        ]
+      },
+      {
+        "name": "StateName",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "StateName"
+        ]
+      }
+    ],
+    "row_count": 51
+  },
+  "StockTake": {
+    "columns": [
+      {
+        "name": "StockTakeID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": false,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "StockTakeDate",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "ProductID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "QuantityOnHand",
+        "type_name": "LONG",
+        "column_size": 5,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 4,
+        "_type_code": "int",
+        "_precision": 5
+      },
+      {
+        "name": "ExpectedQuantity",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 5,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "AddedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 6,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "AddedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 7,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "ModifiedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 8,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "ModifiedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 9,
+        "_type_code": "datetime",
+        "_precision": 19
+      }
+    ],
+    "primary_keys": [
+      "StockTakeID"
+    ],
+    "foreign_keys": [
+      {
+        "fk_name": "New_New_ProductsStockTake",
+        "fk_column": "ProductID",
+        "pk_table": "Products",
+        "pk_column": "ProductID"
+      }
+    ],
+    "indexes": [
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "StockTakeID"
+        ]
+      },
+      {
+        "name": "New_New_ProductsStockTake",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "ProductID"
+        ]
+      },
+      {
+        "name": "New_ProductsStockTake",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "ProductID"
+        ]
+      },
+      {
+        "name": "ProductsStockTake",
+        "unique": false,
+        "primary": false,
+        "columns": [
+          "ProductID"
+        ]
+      }
+    ],
+    "row_count": 43
+  },
+  "Strings": {
+    "columns": [
+      {
+        "name": "StringID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": false,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "StringData",
+        "type_name": "NVARCHAR",
+        "column_size": 1073741823,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "str",
+        "_precision": 1073741823
+      },
+      {
+        "name": "AddedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "AddedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 4,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "ModifiedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 5,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "ModifiedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 6,
+        "_type_code": "datetime",
+        "_precision": 19
+      }
+    ],
+    "primary_keys": [
+      "StringID"
+    ],
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "StringID"
+        ]
+      }
+    ],
+    "row_count": 49
+  },
+  "SystemSettings": {
+    "columns": [
+      {
+        "name": "SettingID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": false,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "SettingName",
+        "type_name": "NVARCHAR",
+        "column_size": 50,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "str",
+        "_precision": 50
+      },
+      {
+        "name": "SettingValue",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "Notes",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 4,
+        "_type_code": "str",
+        "_precision": 255
+      }
+    ],
+    "primary_keys": [
+      "SettingID"
+    ],
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "SettingID"
+        ]
+      },
+      {
+        "name": "SettingName",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "SettingName"
+        ]
+      }
+    ],
+    "row_count": 5
+  },
+  "TaxStatus": {
+    "columns": [
+      {
+        "name": "TaxStatusID",
+        "type_name": "LONG",
+        "column_size": 3,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "int",
+        "_precision": 3
+      },
+      {
+        "name": "TaxStatus",
+        "type_name": "NVARCHAR",
+        "column_size": 50,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "str",
+        "_precision": 50
+      },
+      {
+        "name": "AddedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "AddedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 4,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "ModifiedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 5,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "ModifiedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 6,
+        "_type_code": "datetime",
+        "_precision": 19
+      }
+    ],
+    "primary_keys": [
+      "TaxStatusID"
+    ],
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "TaxStatusID"
+        ]
+      },
+      {
+        "name": "TaxStatus",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "TaxStatus"
+        ]
+      }
+    ],
+    "row_count": 2
+  },
+  "Titles": {
+    "columns": [
+      {
+        "name": "Title",
+        "type_name": "NVARCHAR",
+        "column_size": 20,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "str",
+        "_precision": 20
+      },
+      {
+        "name": "AddedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "AddedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "datetime",
+        "_precision": 19
+      },
+      {
+        "name": "ModifiedBy",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 4,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "ModifiedOn",
+        "type_name": "DATETIME",
+        "column_size": 19,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 5,
+        "_type_code": "datetime",
+        "_precision": 19
+      }
+    ],
+    "primary_keys": [
+      "Title"
+    ],
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "Title"
+        ]
+      }
+    ],
+    "row_count": 3
+  },
+  "UserSettings": {
+    "columns": [
+      {
+        "name": "SettingID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": false,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "SettingName",
+        "type_name": "NVARCHAR",
+        "column_size": 50,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "str",
+        "_precision": 50
+      },
+      {
+        "name": "SettingValue",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "Notes",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 4,
+        "_type_code": "str",
+        "_precision": 255
+      }
+    ],
+    "primary_keys": [
+      "SettingID"
+    ],
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "SettingID"
+        ]
+      },
+      {
+        "name": "SettingName",
+        "unique": true,
+        "primary": false,
+        "columns": [
+          "SettingName"
+        ]
+      }
+    ],
+    "row_count": 1
+  },
+  "USysRibbons": {
+    "columns": [
+      {
+        "name": "ID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": false,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "RibbonName",
+        "type_name": "NVARCHAR",
+        "column_size": 255,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "str",
+        "_precision": 255
+      },
+      {
+        "name": "RibbonXML",
+        "type_name": "NVARCHAR",
+        "column_size": 1073741823,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "str",
+        "_precision": 1073741823
+      }
+    ],
+    "primary_keys": [
+      "ID"
+    ],
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "ID"
+        ]
+      }
+    ],
+    "row_count": 1
+  },
+  "Welcome": {
+    "columns": [
+      {
+        "name": "ID",
+        "type_name": "LONG",
+        "column_size": 10,
+        "decimal_digits": 0,
+        "nullable": false,
+        "column_def": null,
+        "ordinal_position": 1,
+        "_type_code": "int",
+        "_precision": 10
+      },
+      {
+        "name": "Welcome",
+        "type_name": "NVARCHAR",
+        "column_size": 1073741823,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 2,
+        "_type_code": "str",
+        "_precision": 1073741823
+      },
+      {
+        "name": "Learn",
+        "type_name": "NVARCHAR",
+        "column_size": 1073741823,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 3,
+        "_type_code": "str",
+        "_precision": 1073741823
+      },
+      {
+        "name": "DataMacro",
+        "type_name": "NVARCHAR",
+        "column_size": 1073741823,
+        "decimal_digits": 0,
+        "nullable": true,
+        "column_def": null,
+        "ordinal_position": 4,
+        "_type_code": "str",
+        "_precision": 1073741823
+      }
+    ],
+    "primary_keys": [
+      "ID"
+    ],
+    "foreign_keys": [],
+    "indexes": [
+      {
+        "name": "PrimaryKey",
+        "unique": true,
+        "primary": true,
+        "columns": [
+          "ID"
+        ]
+      }
+    ],
+    "row_count": 1
+  },
+  "_queries": [
+    {
+      "name": "qrycboCompanyType",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qrycboCustomers",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qrycboEmployees",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qrycboOrderDetailStatus",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qrycboOrderStatus",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qrycboProductCategories",
+      "type_name": "PASS-THROUGH"
+    },
+    {
+      "name": "qrycboProductCategory",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qrycboProducts",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qrycboProducts_All",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qrycboProducts_PO",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qrycboShippers",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qrycboStates",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qrycboTaxStatus",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qrycboVendors",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryCompanies",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryCompanyList",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryContacts",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryCustomerOrderList",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryCustomers",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryEmployeeLogin",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryEmployeePrivileges",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryEmployees",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryEmployeeSupervisor",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryInvoice",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryMaxStockTakeDate",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryMRU",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryOrder",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryOrderLineItems",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryOrderList",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryOrderList_DetailStatus",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryOrderList_DetailStatus_Lowest",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryOrders_MostRecent",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryOrders_MostRecent_Customer",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryOrders_MostRecent_Employee",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryOrders_MostRecent_ModifiedOn",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryOrderTotal",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryPOProducts_ByStatus",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryPrivileges",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryProductCategories",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryProductDetail",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryProductList",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryProductList_Export",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryProductOrders",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryProductPurchaseOrder",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryProductVendors",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryPurchaseOrder",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryPurchaseOrderCost",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryPurchaseOrderLineItems",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryPurchaseOrderList",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryrptEmployeeEmailList",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryrptEmployeePhoneList",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryrptProductCatalog",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryrptSalesByEmployee",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryrptSalesByProduct_ByMonth",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryrptSalesByProduct_ByQuarter",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qrySales_SalesRep",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryShipperOrderList",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryShippers",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryStockTake",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryStrings",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qrySystemSettings",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryTitle",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryTotalSalesByProduct",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryVendorPurchaseOrderList",
+      "type_name": "SELECT"
+    },
+    {
+      "name": "qryVendors",
+      "type_name": "SELECT"
+    }
+  ],
+  "_linked_tables": []
+}

@@ -1,0 +1,206 @@
+ID,SectionNo,SectionText
+1,10,"<div><font size=5>Welcome!</font></div>
+
+<div>The Northwind 2.0 Developer Edition Template expands on the concepts of the Northwind 2.0 Starter edition, with a more complete data model and more sophisticated features. To learn more, select any of the following topics.</div>"
+2,20,"<div><font size=5>About the Template</font></div>
+
+<div>The Northwind 2.0 Developer Edition template showcases major features of Access; it is not designed to run a company nor show you how to build such an application. </div>
+
+<div>&nbsp;</div>
+
+<div><strong><em>Northwind </em></strong>is a fictitious trading company whose customers are independent grocery stores.</div>
+
+<div>&nbsp;</div>
+
+<ul>
+ <li>Customers call in orders or place them over the internet. In this template, Internet orders are a mockup.</li>
+ <li>Northwind invoices, ships, collects payments, and closes orders. Purchase orders and inventory management are also included in this edition.</li>
+</ul>
+
+<div>&nbsp;</div>
+
+<div>Sample data in the template will help you started quickly. </div>"
+3,30,"<div><font size=5>How to Navigate</font></div>
+
+<div><font size=4>Home Ribbon</font></div>
+
+<div>This template implements navigation using a custom Home ribbon.</div>"
+4,40,"<div>The left side of the custom Home ribbon contains Northwind application menu navigation.</div>
+
+<div>&nbsp;</div>
+
+<ul>
+ <li><font size=4>MRU</font> </li>
+</ul>
+
+<div>&nbsp;</div>
+
+<blockquote>
+
+<div>MRU = Most Recently Used. This ribbon menu item contains a combo box that is refreshed when an order or a purchase order is added or deleted. This enables the current user to quickly revisit their most recently added orders and purchase orders.</div>
+
+</blockquote>"
+5,50,"<div>Visit <strong>Home &gt; Help Topics &gt; Northwind Features</strong> to learn how Northwind 2.0 Developer Edition implements this concept.</div>
+
+<div>&nbsp;</div>
+
+<ul>
+ <li>Orders</li>
+ <li>Maintenance</li>
+ <li>Reports</li>
+</ul>
+
+<div>&nbsp;</div>
+
+<div>The right side contains a group of <strong>Help Topics</strong>:</div>
+
+<div>&nbsp;</div>
+
+<ul>
+ <li><strong>Learn </strong>displays this “Welcome” panel.</li>
+ <li><strong>Northwind Features</strong> displays a list of features implemented in this template, with navigation tips to view the features’ implementation in the application, and links to Online and in-application Help topics for further exploration.</li>
+ <li><strong>About Northwind</strong> displays a very brief history of this template’s conception and development.</li>
+</ul>
+
+<div>&nbsp;</div>
+
+<ul>
+ <li>In addition to these ribbon buttons, many forms have a Help button</li>
+</ul>"
+6,60,"<div>which opens a form-specific help page.</div>
+
+<div>&nbsp;</div>
+
+<div><font size=4>“Develop” Ribbon</font></div>
+
+<div>&nbsp;</div>
+
+<div>Common development tools are grouped here. For a production environment, you might want to make this invisible.</div>"
+7,70,"<div><font size=5>Northwind Features</font></div>
+
+<div>Northwind 2.0 Developer edition includes a feature matrix accessible from the custom Home ribbon Northwind Features button. It contains a list of notable concepts implemented in this version. Each concept topic outlines how you can view an example of it within the Northwind 2.0 Developer template, as well as handy links to learn more about the topic:</div>
+
+<div>&nbsp;</div>
+
+<ul>
+ <li><strong>Click for On-Line Help</strong> opens a Web page addressing the topic.</li>
+ <li><strong>Click for in-App Help</strong> opens the access application’s internal Help library to the topic.</li>
+</ul>
+
+<div>&nbsp;</div>
+
+<div><font size=5>Multiple Form Instances</font></div>
+
+<div>By default, Access forms can be instantiated only once. In this template, Northwind Orders and Purchase Orders forms (frmOrderDetails and frmPurchaseOrderDetails) can be instantiated multiple times concurrently. In these forms, follow the</div>"
+8,80,"<div>for a deeper dive into how this is accomplished.</div>
+
+<div>&nbsp;</div>
+
+<div><font size=5>Cascading Combo Boxes</font></div>
+
+<div>Refer to the Orders form for a method of implementing cascading combo boxes where a Product Categories combobox leads to a Products combobox with only the products for the selected category.</div>
+
+<div>&nbsp;</div>
+
+<div><font size=5>Validating Required Fields</font></div>
+
+<div>This edition features the VBA function ValidateForm() to highlight required form fields that are empty. For an example, try creating an Order without completing fields Customer and Tax Status. You can further investigate how this was accomplished using the</div>"
+9,90,"<div>on the Order screen.</div>
+
+<div>&nbsp;</div>
+
+<div><font size=5>“Lazy Loading” Subforms</font></div>
+
+<div>Sometimes referred to as “late binding,” lazy loading in a tab control delays loading a tab’s subform contents until the tab is selected. By default, Access loads subforms before loading the form itself. Late binding can improve form performance (loading speed).</div>
+
+<div>&nbsp;</div>
+
+<div>See the Product Detail form.</div>
+
+<div>&nbsp;</div>
+
+<div><font size=5>Street Address Map Link</font></div>
+
+<div>The Company Detail form (frmCompanyDetail) features a <strong>Map </strong>button that opens the default Web browser to a map of the company’s address. Northwind 2.0 Developer implements this using Microsoft Bing maps, but could use any Web-based map site, such as Google Maps or MapQuest.</div>
+
+<div>&nbsp;</div>
+
+<div><font size=5>Show Filter</font></div>
+
+<div>Company List and Company Detail forms also demonstrate a means to allow users to view a form’s current filters.</div>"
+10,100,"<div><font size=5>Workflows</font></div>
+
+<div>Both <strong>Orders </strong>and <strong>Purchase Orders</strong> implement very simple workflows. These demonstrate a means for controlling the sequence of data updates required to enforce business rules for moving an order from one status to the next.</div>
+
+<div>&nbsp;</div>
+
+<div><font size=5>Reports</font></div>
+
+<div><strong>Report Fall Catalog</strong> - demonstrates a number of more advanced report development topics</div>
+
+<div>&nbsp;</div>
+
+<ul>
+ <li>Multiple sections (Introduction, TOC, Categories, Order form)</li>
+ <li>TOC and pagination</li>
+ <li>Resulting report is a publisher-quality catalog</li>
+</ul>
+
+<div>&nbsp;</div>
+
+<div><strong>Monthly Sales By Employee</strong> – The report can be filtered at runtime in Report View.</div>
+
+<div>&nbsp;</div>
+
+<div><font size=5>Database Design</font></div>
+
+<div>Northwind has a simple but correct Relational Database Design.</div>
+
+<div>&nbsp;</div>
+
+<div>Tables hold specific information about Northwind's business.</div>
+
+<div>&nbsp;</div>
+
+<div>Fields in the tables have specific properties set to make them required or to enforce a certain data type (for example, numeric, date, and yes/no).</div>
+
+<div>&nbsp;</div>
+
+<div>Relations between tables enforce business rules and ensure data consistency (for example, an order must be for an existing customer).</div>
+
+<div>&nbsp;</div>
+
+<div>To explore Northwind's database design, press F11 to open the Navigation Pane which displays tables and other objects, or choose Develop &gt; Relationships in the ribbon.</div>"
+11,110,"<div><font size=5>Programming and Visual Basic for Applications (VBA)</font></div>
+
+<div>This edition features more extensive implementation using VBA instead of macros.</div>
+
+<div>&nbsp;</div>
+
+<div>Examining the VBA modules, you may find examples of alternate or <em>Equivalent Syntax</em>. This is included to help you recognize different syntax that accomplishes exactly or approximately the same result.</div>
+
+<div>&nbsp;</div>
+
+<div>Programming facilitates application flow (for example, Opening the next form) or enforces business rules (for example, you cannot update an Order status to “Closed” without first receiving payment for it).</div>
+
+<div>&nbsp;</div>
+
+<div>Northwind Developer uses different examples of Programming to show Access capabilities:</div>
+
+<div>&nbsp;</div>
+
+<ul>
+ <li>Expressions in the Employees table create the <em>FullNameFNLN </em>and <em>FullNameLNFN </em>fields. An expression field in a table can be used elsewhere, for example, to show the employee's full name in the Access main window title.</li>
+</ul>"
+12,120,"<ul>
+ <li>In Northwind 2.0 Developer Edition, macros are replaced with VBA procedures. To view the VBA editor, press Alt+F11.</li>
+</ul>
+
+<div>&nbsp;</div>
+
+<div>By default, Access creates macros when you use Wizards, such as when dropping a button on a form in design view. Access can convert macros to VBA for you: In form Design view, <strong>Design &gt; Tools &gt; Convert Form’s Macros to Visual Basic.</strong></div>"
+13,130,"<div>To explore form programming, open the form in Design view, then select <strong>Form Design &gt; Property Sheet</strong> to inspect the properties of the selected object. Most of the code is accessed from the <strong>Events </strong>tab of the property sheet, as shown below.</div>"
+14,140,"<div><font size=5>Additional Documentation</font></div>
+
+<div>Most Northwind forms contain a special help link denoted with the symbol:</div>"
+15,150,"<div>This symbol will link contextually to Microsoft web pages devoted to all things Northwind, featuring detailed discussions on the Northwind application form objects, their showcased functionality, and how it was accomplished.</div>"

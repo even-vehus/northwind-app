@@ -1,0 +1,6 @@
+SettingID,SettingName,SettingValue,Notes
+1,TaxRate,85,[percent] Rate charged to taxable customers by Northwind Traders. Divide by 1000 to get Single value.
+4,LastResetDate,2023-03-30,[date]
+5,ShowWelcome,-1,[boolean] Show the Welcome Screen
+6,TaxRate_Vendors,90,[percent] Rate paid by Northwind Traders to its vendors. Divide by 1000 to get Single value.
+7,FirstTimeProcessingSuccess,0,[boolean] Did we successfully complete first-time run functionality?

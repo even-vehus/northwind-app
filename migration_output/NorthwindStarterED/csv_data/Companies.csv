@@ -1,0 +1,15 @@
+CompanyID,CompanyName,CompanyTypeID,BusinessPhone,Address,City,StateAbbrev,Zip,Website,Notes,StandardTaxStatusID,AddedBy,AddedOn,ModifiedBy,ModifiedOn
+1,Adatum Corporation,1,123-555-1212,123 Oak Street,Redmond,WA,90001,#http://www.adatum.com/#,"<div><font size=4 color=""#70AD47""><strong>This </strong></font><font size=4>is an <strong>RTF </strong></font><font
+size=4 color=""#2E75B5""><strong>test</strong></font></div>",0,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+2,Adventure Works Cycles,1,234-555-1212 x123,234 Elm Street,Tacoma,WA,90002-2222,#http://www.adventure-works.com/#,,1,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+3,Best For You Organics Company,1,,345 Mesquite Lane,Mesa,AZ,90003,http://www.bestforyouorganics.com,,0,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+4,"Contoso, Inc.",1,,456 Queen Palm Avenue,Ft Lauderdale,FL,90004,http://www.contoso.com/,,0,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+5,Woodgrove Bank,1,505-555-1212 (cell),567 Green Avenue,St. Louis,MO,90005,,,0,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+6,Wide World Importers,1,600-555-1212,6001 Purple Street,Atlanta,GA,90006,,,0,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+7,Tailwind Traders,1,711-555-1212,70 N Blue Water Lane,Richmond,VA,90007,,,0,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+8,"Proseware, Inc.",1,8012221212ext22022,801 Ironwood Rd,Manchester,NH,90008,,,1,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+9,Green Shipping Co,2,800-555-1212,9000 Green Street,Green Bay,WI,90009,,,0,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+10,Blue Shipping Co,2,800-555-1313,100 Blue Street,Columbus,OH,90010,,,0,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+11,Yellow Vendor Co,3,,111 Yellow Brick Road,New York,NY,90011,,,1,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+12,Brown Vendor Co,3,,222 Brown Street,Brownsville,TX,78520,,,1,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+13,Northwind Traders,4,,One Portals Way,Twin Points,WA,12345,www.northwindtraders.com#http://www.northwindtraders.com/#,,0,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31

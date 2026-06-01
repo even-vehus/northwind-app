@@ -1,0 +1,68 @@
+StringID,StringData,AddedBy,AddedOn,ModifiedBy,ModifiedOn
+1,Hello {0}. This is {1}.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+2,Please enter a number between {0} and {1}.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+4,Only orders with status of Paid can be closed.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+5,OK to close this order?,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+6,An order can only be deleted before it is Shipped or Closed.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+7,Are you sure you want to permanently delete this {0}?,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+8,Record cannot be saved because not all required fields have been filled out. They are highlighted for your review.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+9,The order cannot be shipped until all Shipping related fields are filled out.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+10,Only orders with status of Invoiced can be shipped.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+11,There is no data for this report. Please try different criteria.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+12,"{0} is not in the list of employees. If you want to add {0} as a supervisor, you must first add them as an employee.",Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+13,"{0} {1} <br />
+     {2}.<br /><br />",Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+14,Confirm deletion of {0}.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+15,"{0} is not a valid US phone number. Phone numbers must be formatted as either ""(222) 333-444"" or ""555-6666""",Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+16,"The example companies, organizations, products, domain names, e-mail addresses, logos, people, places, and events depicted herein are fictitious.  No association with any real company, organization, product, domain name, email address, logo, person, places, or events is intended or should be inferred.",Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+17,The order cannot be invoiced until all line items have a status of Allocated. Allocation happens automatically when a PO is received with sufficient quantity.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+18,You are already on a new record.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+19,"You don't have the {0} privilege so you cannot perform this action. If you feel this is an error, discuss it with your supervisor. (TIP: login as Andrew Cencini, or give yourself rights in System Admin > Privileges)",Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+20,The purchase order can only be submitted if it is in the New status.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+21,The purchase order can only be approved if it is in the Submitted status.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+22,Changing vendor will remove all purchase line items. OK to continue?,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+23,"Has the entire purchase order been received, and are you ready to post to inventory? Orders waiting for these products will be updated.",Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+24,The purchase order can only be received if it is in the Approved status.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+25,The purchase order can only be closed if it is in the Received status.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+26,Shipping Fee and Payment Method are required before closing the purchase order.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+27,A purchase order can only be deleted when its Status is New or Submitted.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+28,This quantity is less than the Minimum Re-Order Quantity of {0}. That is not allowed.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+29,This quantity will result in an inventory level less than the Target Level of {0}. That is allowed but undesirable. Consider ordering at least {1} more.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+30,The new status has been set.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+32,Was the order paid today?,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+33,{0} '{1}' cannot be deleted because it has a related {2} record.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+34,An order must have at least one line item.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+35,You cannot change the Company Type if the Company has Orders/Purchase Orders.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+36,The order cannot be paid until all Payment related fields are filled out.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+37,You can't {0} if the Company has<br />     Customer Orders ({1}) <br />     Shipper Orders ({2}) <br />     Vendor Purchase Orders ({3}) <br />     {4}  <br />,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+38,If you delete the Company any <br />     Contacts ({0}) <br />     and/or Vendor Products ({1}) will be deleted.<br /><br />    Is this OK?,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+39,This option is not available on a new order.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+40,"If there are no recent orders, you may want to use Recent Dates on the System Admin form to move the dates of existing records forward.",Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+41,"This Northwind Dev Edition template is brought to you by the ""Northwind Working Group"", a community team of volunteers who spent a year designing, implementing, documenting, and testing this application, and its companion Northwind Starter Edition.
+
+The core working group members are Dawn Taylor, George Hepworth, George Young, Kim Young, and Tom van Stiphout. Michael Aldridge led the effort at Microsoft.
+
+Many people contributed to the success of this project, including focus group members, alpha testers, former and current Access MVPs, videographers, help text editors, accessibility testers, intellectual property lawyers, and many others. It really takes a whole community.
+
+Please share your feedback with the team. We will be watching the Access Tech Community forum, as well as other forums where Access developers hang out.",Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+42,The form {0} is already open. Please close the form before opening a new {0}.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+43,Tour the Gastronomic World with Northwind Traders!,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+44,"When Northwind Traders buyers set out to search for the Wonders of the Gastronomic World they found a lot more than seven of them. And here they are--tastefully presented in our Fall Catalog.
+
+The beverages and confections we're featuring this fall are sure to please even the most discerning palates.
+
+For thirst quenchers, try exotic chai, a hearty beer, or revitalizing coffee.
+
+And for a taste of something sweet, try our brownie and cake mixes, or our rich, dark chocolate.
+
+Our sales representatives are ready to take your orders now. For your convenience, we've included details on ordering on the last page of this catalog.",Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+45,Commitment to Quality,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+46,"Northwind Traders is committed to bringing you products of the highest quality from all over the world. If at any time you are not completely satisfied with any of our products, you may return them to us for a full refund.",Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+47,"How to order:
+To place your order, fill out this order form and return it to us. For fast personal service,
+call us at 1-206-555-1417. If you prefer to order by fax, prepare your order as you would
+for a mail-in, and then fax us at 1-206-555-5938.",Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+48,You have changed the data and not saved it.  Do you want to save it now? Selecting No will undo your changes.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+49,Only orders with status of Shipped can be paid.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+50,Only orders with status of New can be invoiced.,Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
+51,"Please first complete the Order at the top of this form, before entering Order Line Items.",Admin,2024-09-21T00:00:00,tvans,2025-09-16T15:47:31
