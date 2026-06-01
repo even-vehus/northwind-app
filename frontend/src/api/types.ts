@@ -117,6 +117,11 @@ export interface CompanyLookup {
   companyName: string | null;
 }
 
+export interface StateLookup {
+  stateAbbrev: string;
+  stateName: string | null;
+}
+
 export const ORDER_STATUSES = [
   { id: 1, name: "Closed" },
   { id: 2, name: "Invoiced" },

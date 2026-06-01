@@ -25,6 +25,7 @@ public class NorthwindDbContext(DbContextOptions<NorthwindDbContext> options) : 
     public DbSet<TaxStatus> TaxStatuses => Set<TaxStatus>();
     public DbSet<SystemSetting> SystemSettings => Set<SystemSetting>();
     public DbSet<Title> Titles => Set<Title>();
+    public DbSet<State> States => Set<State>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

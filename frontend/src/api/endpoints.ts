@@ -1,6 +1,6 @@
 import { apiClient } from "./client";
 import type {
-  Company, CompanyLookup, CompanyTypeLookup,
+  Company, CompanyLookup, CompanyTypeLookup, StateLookup,
   Contact, CustomerListRow, Employee, EmployeeDirectoryRow, EmployeeLookup, EmployeePrivilege,
   Invoice, Order, OrderDetailStatusLookup, OrderStatusLookup,
   PagedResult, PrivilegeLookup, Product, ProductCategory, ProductCatalogRow, ProductCategoryLookup,
@@ -128,6 +128,8 @@ export const lookupsApi = {
     apiClient.get<CompanyTypeLookup[]>("/api/companies/types").then((r) => r.data),
   companiesLookup: (companyTypeId?: number) =>
     apiClient.get<CompanyLookup[]>("/api/companies/lookup", { params: { companyTypeId } }).then((r) => r.data),
+  states: () =>
+    apiClient.get<StateLookup[]>("/api/companies/states").then((r) => r.data),
   productCategories: () =>
     apiClient.get<ProductCategoryLookup[]>("/api/products/categories").then((r) => r.data),
   employeesLookup: () =>
@@ -161,6 +163,12 @@ export const purchaseOrdersApi = {
     apiClient.post(`/api/purchase-orders/${purchaseOrderId}/details`, data).then((r) => r.data),
   deleteDetail: (purchaseOrderId: number, detailId: number) =>
     apiClient.delete(`/api/purchase-orders/${purchaseOrderId}/details/${detailId}`),
+  // Workflow transitions (ported from frmPurchaseOrderDetails)
+  submit: (id: number) => apiClient.post(`/api/purchase-orders/${id}/submit`),
+  approve: (id: number) => apiClient.post(`/api/purchase-orders/${id}/approve`),
+  receive: (id: number) => apiClient.post(`/api/purchase-orders/${id}/receive`),
+  close: (id: number, data: { shippingFee?: number | null; paymentMethod?: string | null }) =>
+    apiClient.post(`/api/purchase-orders/${id}/close`, data),
 };
 
 // ── Product Vendors / StockTake ───────────────────────────────────────────────

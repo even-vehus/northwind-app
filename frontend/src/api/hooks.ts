@@ -229,6 +229,9 @@ export const useDeleteEmployee = () => {
 export const useCompanyTypes = () =>
   useQuery({ queryKey: ["companyTypes"], queryFn: lookupsApi.companyTypes, staleTime: 5 * 60 * 1000 });
 
+export const useStates = () =>
+  useQuery({ queryKey: ["states"], queryFn: lookupsApi.states, staleTime: 60 * 60 * 1000 });
+
 export const useProductCategories = () =>
   useQuery({ queryKey: ["productCategories"], queryFn: lookupsApi.productCategories, staleTime: 5 * 60 * 1000 });
 
@@ -305,6 +308,37 @@ export const useDeletePurchaseOrderDetail = () => {
     mutationFn: ({ purchaseOrderId, detailId }: { purchaseOrderId: number; detailId: number }) =>
       purchaseOrdersApi.deleteDetail(purchaseOrderId, detailId),
     onSuccess: (_d, { purchaseOrderId }) => qc.invalidateQueries({ queryKey: ["purchase-orders", purchaseOrderId] }),
+  });
+};
+
+// ── Purchase order workflow transitions ──────────────────────────────────────
+
+const invalidateAfterPoTransition = (qc: ReturnType<typeof useQueryClient>) => {
+  qc.invalidateQueries({ queryKey: ["purchase-orders"] });
+  qc.invalidateQueries({ queryKey: ["orders"] });            // receive can re-allocate order lines
+  qc.invalidateQueries({ queryKey: ["product-inventory"] });
+};
+
+export const useSubmitPurchaseOrder = () => {
+  const qc = useQueryClient();
+  return useMutation({ mutationFn: (id: number) => purchaseOrdersApi.submit(id), onSuccess: () => invalidateAfterPoTransition(qc) });
+};
+
+export const useApprovePurchaseOrder = () => {
+  const qc = useQueryClient();
+  return useMutation({ mutationFn: (id: number) => purchaseOrdersApi.approve(id), onSuccess: () => invalidateAfterPoTransition(qc) });
+};
+
+export const useReceivePurchaseOrder = () => {
+  const qc = useQueryClient();
+  return useMutation({ mutationFn: (id: number) => purchaseOrdersApi.receive(id), onSuccess: () => invalidateAfterPoTransition(qc) });
+};
+
+export const useClosePurchaseOrder = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, data }: { id: number; data: Parameters<typeof purchaseOrdersApi.close>[1] }) => purchaseOrdersApi.close(id, data),
+    onSuccess: () => invalidateAfterPoTransition(qc),
   });
 };
 

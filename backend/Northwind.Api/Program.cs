@@ -60,6 +60,8 @@ else
 // ── Business logic services (ported from Access VBA) ─────────────────────────
 builder.Services.AddScoped<IInventoryService, InventoryService>();
 builder.Services.AddScoped<IOrderWorkflowService, OrderWorkflowService>();
+builder.Services.AddScoped<IPurchaseOrderWorkflowService, PurchaseOrderWorkflowService>();
+builder.Services.AddScoped<ICompanyGuardService, CompanyGuardService>();
 
 // ── Controllers + OpenAPI ────────────────────────────────────────────────────
 builder.Services.AddControllers(options =>

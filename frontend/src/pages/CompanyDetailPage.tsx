@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import {
-  Box, Button, CircularProgress, Dialog, DialogActions, DialogContent,
+  Alert, Box, Button, CircularProgress, Dialog, DialogActions, DialogContent,
   DialogTitle, Divider, FormControl, Grid, InputLabel, MenuItem, Paper,
   Select, Tab, Table, TableBody, TableCell, TableContainer, TableHead,
   TableRow, Tabs, TextField, Typography,
@@ -17,10 +17,16 @@ import SaveIcon from "@mui/icons-material/Save";
 import {
   useCompany, useCreateCompany, useUpdateCompany, useDeleteCompany,
   useCompanyTypes, useCreateContact, useUpdateContact, useDeleteContact,
-  useCompanyShipperOrders, useCompanyVendorPurchaseOrders,
+  useCompanyShipperOrders, useCompanyVendorPurchaseOrders, useStates,
 } from "../api/hooks";
 import { contactsApi, ordersApi } from "../api/endpoints";
 import type { Contact } from "../api/types";
+
+/** Pull the ProblemDetails message out of a 409/4xx axios error. */
+function actionErrorMessage(e: unknown): string {
+  const detail = (e as { response?: { data?: { detail?: string } } })?.response?.data?.detail;
+  return typeof detail === "string" ? detail : "The action could not be completed.";
+}
 
 type CompanyForm = {
   companyName: string;
@@ -134,6 +140,7 @@ export default function CompanyDetailPage() {
 
   const [editing, setEditing] = useState(isNew);
   const [tab, setTab] = useState(0);
+  const [actionError, setActionError] = useState<string | null>(null);
   const [contactDialog, setContactDialog] = useState<{ open: boolean; contact: Contact | null }>({
     open: false, contact: null,
   });
@@ -153,6 +160,7 @@ export default function CompanyDetailPage() {
   const { data: shipperOrders } = useCompanyShipperOrders(companyId);
   const { data: vendorPOs } = useCompanyVendorPurchaseOrders(companyId);
 
+  const { data: states } = useStates();
   const createCompany = useCreateCompany();
   const updateCompany = useUpdateCompany();
   const deleteCompany = useDeleteCompany();
@@ -187,19 +195,25 @@ export default function CompanyDetailPage() {
       website: values.website || null,
       notes: values.notes || null,
     };
-    if (isNew) {
-      const created = await createCompany.mutateAsync(payload);
-      navigate(`/companies/${created.companyId}`, { replace: true });
-    } else {
-      await updateCompany.mutateAsync({ id: companyId, data: payload });
-      setEditing(false);
-    }
+    setActionError(null);
+    try {
+      if (isNew) {
+        const created = await createCompany.mutateAsync(payload);
+        navigate(`/companies/${created.companyId}`, { replace: true });
+      } else {
+        await updateCompany.mutateAsync({ id: companyId, data: payload });
+        setEditing(false);
+      }
+    } catch (e) { setActionError(actionErrorMessage(e)); }
   };
 
   const handleDelete = async () => {
     if (!window.confirm("Delete this company?")) return;
-    await deleteCompany.mutateAsync(companyId);
-    navigate("/companies");
+    setActionError(null);
+    try {
+      await deleteCompany.mutateAsync(companyId);
+      navigate("/companies");
+    } catch (e) { setActionError(actionErrorMessage(e)); }
   };
 
   if (!isNew && isLoading) return <CircularProgress />;
@@ -238,6 +252,10 @@ export default function CompanyDetailPage() {
           </>
         )}
       </Box>
+
+      {actionError && (
+        <Alert severity="error" onClose={() => setActionError(null)} sx={{ mb: 2 }}>{actionError}</Alert>
+      )}
 
       {/* View mode */}
       {!editing && data && (
@@ -296,8 +314,23 @@ export default function CompanyDetailPage() {
             <TextField label="City" {...register("city")} fullWidth size="small" />
           </Grid>
           <Grid size={{ xs: 3, sm: 2 }}>
-            <TextField label="State" {...register("stateAbbrev")} fullWidth size="small"
-              slotProps={{ htmlInput: { maxLength: 2 } }} />
+            <Controller
+              name="stateAbbrev"
+              control={control}
+              render={({ field }) => (
+                <FormControl fullWidth size="small">
+                  <InputLabel>State</InputLabel>
+                  <Select {...field} value={field.value ?? ""} label="State">
+                    <MenuItem value=""><em>—</em></MenuItem>
+                    {states?.map((s) => (
+                      <MenuItem key={s.stateAbbrev} value={s.stateAbbrev}>
+                        {s.stateAbbrev} — {s.stateName}
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
+            />
           </Grid>
           <Grid size={{ xs: 3, sm: 2 }}>
             <TextField label="Zip" {...register("zip")} fullWidth size="small" />

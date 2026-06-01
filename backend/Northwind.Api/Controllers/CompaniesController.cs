@@ -4,13 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using Northwind.Api.Dtos;
 using Northwind.Domain.Entities;
 using Northwind.Infrastructure.Data;
+using Northwind.Infrastructure.Services;
 
 namespace Northwind.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
 [Authorize]
-public class CompaniesController(NorthwindDbContext db) : ControllerBase
+public class CompaniesController(NorthwindDbContext db, ICompanyGuardService guard) : ControllerBase
 {
     [HttpGet]
     public async Task<ActionResult<PagedResult<CompanyDto>>> GetAll(
@@ -79,6 +80,10 @@ public class CompaniesController(NorthwindDbContext db) : ControllerBase
         var company = await db.Companies.FindAsync([id], ct);
         if (company is null) return NotFound();
 
+        // Guard: cannot change type while the company is active or is a vendor with products.
+        if (company.CompanyTypeId != req.CompanyTypeId)
+            await guard.EnsureCanChangeTypeAsync(id, ct);
+
         company.CompanyName = req.CompanyName;
         company.CompanyTypeId = req.CompanyTypeId;
         company.BusinessPhone = req.BusinessPhone;
@@ -98,10 +103,8 @@ public class CompaniesController(NorthwindDbContext db) : ControllerBase
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id, CancellationToken ct)
     {
-        var company = await db.Companies.FindAsync([id], ct);
-        if (company is null) return NotFound();
-        db.Companies.Remove(company);
-        await db.SaveChangesAsync(ct);
+        // Guard (block if active) + cascade of Contacts/ProductVendors handled by the service.
+        await guard.DeleteAsync(id, ct);
         return NoContent();
     }
 
@@ -114,6 +117,18 @@ public class CompaniesController(NorthwindDbContext db) : ControllerBase
             .Select(t => new CompanyTypeLookupDto(t.CompanyTypeId, t.CompanyType1))
             .ToListAsync(ct);
         return Ok(types);
+    }
+
+    [HttpGet("states")]
+    public async Task<ActionResult<IReadOnlyList<StateLookupDto>>> GetStates(CancellationToken ct)
+    {
+        // Companies.StateAbbrev is a FK to the States lookup — only these values are valid.
+        var states = await db.States
+            .AsNoTracking()
+            .OrderBy(s => s.StateName)
+            .Select(s => new StateLookupDto(s.StateAbbrev, s.StateName))
+            .ToListAsync(ct);
+        return Ok(states);
     }
 
     [HttpGet("lookup")]

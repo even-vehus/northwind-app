@@ -153,9 +153,14 @@ public record UpdateOrderRequest(
 public record ShipOrderRequest(DateTime? ShippedDate, int? ShipperId, decimal? ShippingFee);
 public record PayOrderRequest(string? PaymentMethod, DateTime? PaidDate);
 
+// ── Purchase order workflow transitions ──────────────────────────────────────
+
+public record ClosePurchaseOrderRequest(decimal? ShippingFee, string? PaymentMethod);
+
 // ── Lookups ──────────────────────────────────────────────────────────────────
 
 public record CompanyTypeLookupDto(int CompanyTypeId, string? CompanyType);
+public record StateLookupDto(string StateAbbrev, string? StateName);
 public record ProductCategoryLookupDto(int CategoryId, string? CategoryName, string? CategoryCode);
 public record EmployeeLookupDto(int EmployeeId, string? FullName);
 public record CompanyLookupDto(int CompanyId, string? CompanyName);

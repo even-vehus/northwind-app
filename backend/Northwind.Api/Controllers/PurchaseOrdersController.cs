@@ -3,12 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using Northwind.Api.Dtos;
 using Northwind.Domain.Entities;
 using Northwind.Infrastructure.Data;
+using Northwind.Infrastructure.Services;
 
 namespace Northwind.Api.Controllers;
 
 [ApiController]
 [Route("api/purchase-orders")]
-public class PurchaseOrdersController(NorthwindDbContext db) : ControllerBase
+public class PurchaseOrdersController(NorthwindDbContext db, IPurchaseOrderWorkflowService workflow) : ControllerBase
 {
     [HttpGet]
     public async Task<ActionResult<PagedResult<PurchaseOrderDto>>> GetAll(
@@ -125,15 +126,38 @@ public class PurchaseOrdersController(NorthwindDbContext db) : ControllerBase
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id, CancellationToken ct)
     {
-        var po = await db.PurchaseOrders
-            .Include(po => po.PurchaseOrderDetails)
-            .FirstOrDefaultAsync(po => po.PurchaseOrderId == id, ct);
+        // Guard (New/Submitted only) handled by the workflow service.
+        await workflow.DeleteAsync(id, ct);
+        return NoContent();
+    }
 
-        if (po is null) return NotFound();
+    // ── Workflow transitions (ported from frmPurchaseOrderDetails) ───────────
 
-        db.PurchaseOrderDetails.RemoveRange(po.PurchaseOrderDetails);
-        db.PurchaseOrders.Remove(po);
-        await db.SaveChangesAsync(ct);
+    [HttpPost("{id:int}/submit")]
+    public async Task<IActionResult> Submit(int id, CancellationToken ct)
+    {
+        await workflow.SubmitAsync(id, ct);
+        return NoContent();
+    }
+
+    [HttpPost("{id:int}/approve")]
+    public async Task<IActionResult> Approve(int id, CancellationToken ct)
+    {
+        await workflow.ApproveAsync(id, ct);
+        return NoContent();
+    }
+
+    [HttpPost("{id:int}/receive")]
+    public async Task<IActionResult> Receive(int id, CancellationToken ct)
+    {
+        await workflow.ReceiveAsync(id, ct);
+        return NoContent();
+    }
+
+    [HttpPost("{id:int}/close")]
+    public async Task<IActionResult> Close(int id, [FromBody] ClosePurchaseOrderRequest? req, CancellationToken ct)
+    {
+        await workflow.CloseAsync(id, new ClosePurchaseOrderArgs(req?.ShippingFee, req?.PaymentMethod), ct);
         return NoContent();
     }
 

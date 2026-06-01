@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Controller, useForm } from "react-hook-form";
 import {
-  Box, Button, Chip, Dialog, DialogActions, DialogContent, DialogTitle,
-  Divider, Grid, IconButton, MenuItem, Table, TableBody, TableCell,
-  TableHead, TableRow, TextField, Typography,
+  Alert, Box, Button, Chip, Dialog, DialogActions, DialogContent, DialogTitle,
+  Divider, FormControl, Grid, IconButton, InputLabel, MenuItem, Select, Table,
+  TableBody, TableCell, TableHead, TableRow, TextField, Typography,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -13,8 +13,15 @@ import {
   useAddPurchaseOrderDetail, useCompaniesLookup, useCreatePurchaseOrder,
   useDeletePurchaseOrder, useDeletePurchaseOrderDetail, useEmployeesLookup,
   usePurchaseOrder, usePurchaseOrderStatuses, useUpdatePurchaseOrder,
-  useProducts,
+  useProducts, useSubmitPurchaseOrder, useApprovePurchaseOrder,
+  useReceivePurchaseOrder, useClosePurchaseOrder,
 } from "../api/hooks";
+
+/** Pull the ProblemDetails message out of a 409/4xx axios error. */
+function actionErrorMessage(e: unknown): string {
+  const detail = (e as { response?: { data?: { detail?: string } } })?.response?.data?.detail;
+  return typeof detail === "string" ? detail : "The action could not be completed.";
+}
 
 const STATUS_COLORS: Record<string, "default" | "warning" | "info" | "success" | "error"> = {
   New: "info", Submitted: "warning", Approved: "success", Received: "success", Closed: "default",
@@ -109,9 +116,40 @@ export default function PurchaseOrderDetailPage() {
   const updatePO = useUpdatePurchaseOrder();
   const deletePO = useDeletePurchaseOrder();
   const deleteDetail = useDeletePurchaseOrderDetail();
+  const submitPO = useSubmitPurchaseOrder();
+  const approvePO = useApprovePurchaseOrder();
+  const receivePO = useReceivePurchaseOrder();
+  const closePO = useClosePurchaseOrder();
 
   const [editing, setEditing] = useState(isNew);
   const [showAddLine, setShowAddLine] = useState(false);
+  const [closeOpen, setCloseOpen] = useState(false);
+  const [closeFee, setCloseFee] = useState("");
+  const [closeMethod, setCloseMethod] = useState("");
+  const [actionError, setActionError] = useState<string | null>(null);
+
+  const runAction = async (fn: () => Promise<unknown>) => {
+    setActionError(null);
+    try { await fn(); } catch (e) { setActionError(actionErrorMessage(e)); }
+  };
+
+  const onCloseConfirm = async () => {
+    setActionError(null);
+    try {
+      await closePO.mutateAsync({
+        id: numId,
+        data: { shippingFee: closeFee ? Number(closeFee) : null, paymentMethod: closeMethod || null },
+      });
+      setCloseOpen(false);
+    } catch (e) { setActionError(actionErrorMessage(e)); }
+  };
+
+  const openCloseDialog = () => {
+    setActionError(null);
+    setCloseFee(po?.shippingFee != null ? String(po.shippingFee) : "");
+    setCloseMethod(po?.paymentMethod ?? "");
+    setCloseOpen(true);
+  };
 
   const { control, register, handleSubmit, reset } = useForm<HeaderForm>({
     values: po ? {
@@ -206,6 +244,36 @@ export default function PurchaseOrderDetailPage() {
           )}
         </Box>
       </Box>
+
+      {/* Workflow actions (ported from frmPurchaseOrderDetails) */}
+      {!isNew && !editing && po && (
+        <Box sx={{ mb: 3 }}>
+          {actionError && !closeOpen && (
+            <Alert severity="error" onClose={() => setActionError(null)} sx={{ mb: 1 }}>{actionError}</Alert>
+          )}
+          <Box sx={{ display: "flex", gap: 1, alignItems: "center", flexWrap: "wrap" }}>
+            <Typography variant="body2" color="text.secondary">Workflow:</Typography>
+            {po.statusId === 3 && (
+              <Button variant="contained" disabled={submitPO.isPending}
+                onClick={() => runAction(() => submitPO.mutateAsync(numId))}>Submit</Button>
+            )}
+            {po.statusId === 4 && (
+              <Button variant="contained" disabled={approvePO.isPending}
+                onClick={() => runAction(() => approvePO.mutateAsync(numId))}>Approve</Button>
+            )}
+            {po.statusId === 1 && (
+              <Button variant="contained" disabled={receivePO.isPending}
+                onClick={() => runAction(() => receivePO.mutateAsync(numId))}>Receive (post to inventory)</Button>
+            )}
+            {po.statusId === 5 && (
+              <Button variant="contained" onClick={openCloseDialog}>Close PO</Button>
+            )}
+            {po.statusId === 2 && (
+              <Typography variant="body2" color="text.secondary">This purchase order is closed.</Typography>
+            )}
+          </Box>
+        </Box>
+      )}
 
       {/* Header fields */}
       <Grid container spacing={2} sx={{ mb: 3 }}>
@@ -363,6 +431,27 @@ export default function PurchaseOrderDetailPage() {
       {showAddLine && (
         <AddLineDialog purchaseOrderId={numId} onClose={() => setShowAddLine(false)} />
       )}
+
+      {/* Close PO dialog (requires Shipping Fee + Payment Method) */}
+      <Dialog open={closeOpen} onClose={() => setCloseOpen(false)} maxWidth="xs" fullWidth>
+        <DialogTitle>Close Purchase Order</DialogTitle>
+        <DialogContent sx={{ display: "flex", flexDirection: "column", gap: 2, pt: 1 }}>
+          {actionError && <Alert severity="error">{actionError}</Alert>}
+          <TextField label="Shipping Fee" type="number" size="small" value={closeFee}
+            onChange={(e) => setCloseFee(e.target.value)} />
+          <FormControl size="small" fullWidth>
+            <InputLabel>Payment Method</InputLabel>
+            <Select value={closeMethod} label="Payment Method" onChange={(e) => setCloseMethod(e.target.value)}>
+              <MenuItem value=""><em>—</em></MenuItem>
+              {["Cash", "Check", "Credit Card"].map((m) => <MenuItem key={m} value={m}>{m}</MenuItem>)}
+            </Select>
+          </FormControl>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setCloseOpen(false)}>Cancel</Button>
+          <Button variant="contained" onClick={onCloseConfirm} disabled={closePO.isPending}>Close PO</Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }

@@ -89,29 +89,35 @@ Changed entity + DTOs to `int` and dropped the `decimal(18,4)` mapping. (Resolve
 ⬜ Remaining for later: trigger `AllocateInventory` when an order **line item is added/changed**
 (`POST/DELETE api/orders/{id}/details`) — currently only delete re-allocates. Frontend buttons = Phase 5.
 
-## Phase 3 — Purchase Order workflow (`frmPurchaseOrderDetails`, `modPurchaseOrders`)  ⬜ todo
-`PurchaseOrderWorkflowService`:
+## Phase 3 — Purchase Order workflow (`frmPurchaseOrderDetails`, `modPurchaseOrders`)  ✅ DONE
+`PurchaseOrderWorkflowService` (`Northwind.Infrastructure/Services/PurchaseOrderWorkflowService.cs`):
 - **Submit**: only if New → Submitted.
-- **Approve**: only if Submitted → Approved (requires "Approve PO" privilege — stub while auth bypassed).
-- **Receive**: only if Approved → Received; set `ReceivedDate = now` on PO **and all line items** (critical for inventory); then `AllocateInventory` for each product on the PO.
-- **Close**: only if Received → Closed; requires ShippingFee + PaymentMethod.
+- **Approve**: only if Submitted → Approved. (Access "Approve PO" privilege check **stubbed** — auth is bypassed; see code comment.)
+- **Receive**: only if Approved → Received; sets `ReceivedDate = now` on PO **and all line items**; then `AllocateInventory` per product — closes the loop with Phase 1.
+- **Close**: only if Received → Closed; applies supplied ShippingFee + PaymentMethod then requires both.
 - **Delete guard**: only if New or Submitted.
-- `AddPurchaseOrderDetail`: if a line for the product exists, **add to its quantity**; else insert.
-- `ReorderProduct(product, vendor, qty, cost)`: create PO (New) + add line.
-- Endpoints: `POST api/purchase-orders/{id}/{submit|approve|receive|close}`.
+- Endpoints: `POST api/purchase-orders/{id}/{submit|approve|receive|close}`, guard on `DELETE`.
+- 11 unit tests in `PurchaseOrderWorkflowServiceTests.cs` (incl. receive→allocation integration). Verified live: guard returns 409 with the Strings message.
 
-## Phase 4 — Delete guards / referential rules  ⬜ todo
-- **Company**: cannot delete or change type if it has Customer Orders, Shipper Orders, or Vendor POs (count > 0), or is an active vendor with products. If only Contacts / Product-Vendor links exist, allow with cascade + confirmation.
-- Order delete guard (New/Invoiced) and PO delete guard (New/Submitted) — enforce server-side in Phase 2/3.
+⬜ Deferred to "Create PO from reorder" UI: `modPurchaseOrders.ReorderProduct` (create PO New + line)
+and `AddPurchaseOrderDetail`'s merge-quantity-if-line-exists rule.
+
+## Phase 4 — Delete guards / referential rules  ✅ DONE
+- **Company** (`CompanyGuardService`): a company is "active" if it has Customer Orders, Shipper Orders, or Vendor POs.
+  - **Delete** blocked (409) if active; otherwise cascades Contacts + ProductVendors then removes the company.
+  - **Type change** blocked (409) if active **or** is a vendor with products (`CompaniesController.Update` calls the guard only when the type actually changes).
+  - 8 unit tests in `CompanyGuardServiceTests.cs`; verified live (delete of an active customer → 409 with counts). Frontend: errors surface in an Alert on the Company page.
+- ✅ Order delete guard (New/Invoiced) and PO delete guard (New/Submitted) — done in Phases 2/3.
 
 ## Phase 5 — Frontend wiring  🟡 partial
 - ✅ Product detail: inventory figures (Available, Allocated, On Order, To Sell, No Stock) + reorder suggestion (Phase 1).
 - ✅ Order detail: status-driven workflow buttons (Create Invoice / Ship / Record Payment / Close) with Ship & Pay dialogs and 409-error surfacing in an Alert. Transitions invalidate orders + product-inventory queries.
-- ⬜ PO detail: Submit/Approve/Receive/Close buttons (after Phase 3).
-- ⬜ Product detail: "Create PO" from the reorder suggestion (after Phase 3).
+- ✅ PO detail: status-driven Submit / Approve / Receive / Close buttons + Close dialog (fee + method) with 409-error surfacing.
+- ⬜ Product detail: "Create PO" from the reorder suggestion (needs `ReorderProduct`).
 
 ## Non-port bug fixes (found while porting)
-- **Employee create 500**: `Employees.Title` is a FK to the `Titles` lookup (valid: blank, `Mr.`, `Ms.`), but the form was free text. Added a `Title` entity + `GET api/employees/titles` lookup + a dropdown on the Employee form. ⚠️ `Companies.StateAbbrev` → `States` is the same latent pattern (not yet fixed).
+- **Employee create 500**: `Employees.Title` is a FK to the `Titles` lookup (valid: blank, `Mr.`, `Ms.`), but the form was free text. Added a `Title` entity + `GET api/employees/titles` lookup + a dropdown on the Employee form.
+- **Company state**: same lookup-FK-as-free-text pattern — `Companies.StateAbbrev` → `States`. Added a `State` entity + `GET api/companies/states` lookup + a dropdown on the Company form. ✅ fixed.
 
 ---
 

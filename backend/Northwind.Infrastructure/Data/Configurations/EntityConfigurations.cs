@@ -352,3 +352,14 @@ public class TitleConfiguration : IEntityTypeConfiguration<Title>
         b.Property(e => e.Name).HasColumnName("Title").HasMaxLength(20);
     }
 }
+
+public class StateConfiguration : IEntityTypeConfiguration<State>
+{
+    public void Configure(EntityTypeBuilder<State> b)
+    {
+        b.ToTable("States");
+        b.HasKey(e => e.StateAbbrev);
+        b.Property(e => e.StateAbbrev).HasMaxLength(2);
+        b.Property(e => e.StateName).HasMaxLength(50);
+    }
+}
