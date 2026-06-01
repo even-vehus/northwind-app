@@ -159,6 +159,22 @@ public record ClosePurchaseOrderRequest(decimal? ShippingFee, string? PaymentMet
 public record ReorderProductRequest(int ProductId, int VendorId, int Quantity, decimal UnitCost);
 public record ReorderResultDto(int PurchaseOrderId);
 
+// ── Dashboard ────────────────────────────────────────────────────────────────
+
+public record DashboardSummaryDto(
+    int TotalOrders,
+    int TotalCompanies,
+    int TotalProducts,
+    int OpenPurchaseOrders,
+    int ProductsAwaitingStock,
+    decimal InvoicedSales,
+    IReadOnlyList<StatusCountDto> OrdersByStatus,
+    IReadOnlyList<RecentOrderDto> RecentOrders
+);
+
+public record StatusCountDto(string Status, int Count);
+public record RecentOrderDto(int OrderId, string? CustomerName, DateTime? OrderDate, string? Status);
+
 // ── Lookups ──────────────────────────────────────────────────────────────────
 
 public record CompanyTypeLookupDto(int CompanyTypeId, string? CompanyType);

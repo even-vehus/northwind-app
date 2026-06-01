@@ -5,6 +5,7 @@ import { loginRequest, isAuthConfigured } from "./auth/msalConfig";
 import { setAuthTokenProvider } from "./api/client";
 import { useAuthToken } from "./auth/useAuthToken";
 import Layout from "./components/Layout";
+import DashboardPage from "./pages/DashboardPage";
 import CompaniesPage from "./pages/CompaniesPage";
 import CompanyDetailPage from "./pages/CompanyDetailPage";
 import ContactsPage from "./pages/ContactsPage";
@@ -67,7 +68,7 @@ export default function App() {
             </AuthGuard>
           }
         >
-          <Route index element={<Navigate to="/companies" replace />} />
+          <Route index element={<DashboardPage />} />
           <Route path="companies" element={<CompaniesPage />} />
           <Route path="companies/:id" element={<CompanyDetailPage />} />
           <Route path="contacts" element={<ContactsPage />} />

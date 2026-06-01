@@ -1,13 +1,20 @@
 import { apiClient } from "./client";
 import type {
   Company, CompanyLookup, CompanyTypeLookup, StateLookup,
-  Contact, CustomerListRow, Employee, EmployeeDirectoryRow, EmployeeLookup, EmployeePrivilege,
+  Contact, CustomerListRow, DashboardSummary, Employee, EmployeeDirectoryRow, EmployeeLookup, EmployeePrivilege,
   Invoice, Order, OrderDetailStatusLookup, OrderStatusLookup,
   PagedResult, PrivilegeLookup, Product, ProductCategory, ProductCatalogRow, ProductCategoryLookup,
   ProductInventory, ProductVendor, PurchaseOrder, PurchaseOrderForm, PurchaseOrderStatusLookup,
   SalesByEmployeeRow, SalesByProductQuarterlyRow, SalesByProductRow,
   StockTake, SystemSetting, TaxStatusLookup,
 } from "./types";
+
+// ── Dashboard ────────────────────────────────────────────────────────────────
+
+export const dashboardApi = {
+  summary: () =>
+    apiClient.get<DashboardSummary>("/api/dashboard/summary").then((r) => r.data),
+};
 
 // ── Companies ────────────────────────────────────────────────────────────────
 

@@ -1,9 +1,14 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
-  adminApi, companiesApi, companyOrdersApi, contactsApi, employeesApi,
+  adminApi, companiesApi, companyOrdersApi, contactsApi, dashboardApi, employeesApi,
   employeePrivilegesApi, lookupsApi, ordersApi, productsApi, productCategoriesApi,
   productVendorsApi, purchaseOrdersApi, reportsApi, stockTakesApi,
 } from "./endpoints";
+
+// ── Dashboard ────────────────────────────────────────────────────────────────
+
+export const useDashboardSummary = () =>
+  useQuery({ queryKey: ["dashboard-summary"], queryFn: dashboardApi.summary, staleTime: 60_000 });
 
 // ── Companies ────────────────────────────────────────────────────────────────
 

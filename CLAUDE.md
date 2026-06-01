@@ -137,6 +137,7 @@ All 19 meaningful tables are mapped. The 10 skipped tables are Access UI artefac
 ### Frontend Pages & Routes
 | Route | Page | Notes |
 |---|---|---|
+| `/` | DashboardPage | Landing page — KPIs, order pipeline, recent orders (`GET api/dashboard/summary`) |
 | `/companies` | CompaniesPage | Search + paged list |
 | `/companies/:id` | CompanyDetailPage | Edit/view + Contacts tab + Orders tab + Shipper Orders tab + Vendor POs tab |
 | `/contacts` | ContactsPage | Search + paged list |
@@ -162,11 +163,20 @@ All 19 meaningful tables are mapped. The 10 skipped tables are Access UI artefac
 
 ## What Is Still Missing
 
-### High priority (Access forms not yet implemented)
-1. **Product detail → Orders tab** (`sfrmProductDetail_Orders`) — customer orders containing this product
-2. **Product detail → Purchase Orders tab** (`sfrmProductDetail_PurchaseOrders`) — POs containing this product
-3. **Product Categories page** (`sfrmProductCategories`) — CRUD for category management
-4. **Employee detail → Recent Orders tab** (`sfrmOrders_MostRecent_ByEmployee`)
+### Forms — all high-priority business forms now implemented ✅
+The four previously-missing forms are done: Product detail → Orders tab (`sfrmProductDetail_Orders`),
+Product detail → Purchase Orders tab (`sfrmProductDetail_PurchaseOrders`), Product Categories page
+(`sfrmProductCategories`), and Employee detail → Recent Orders tab (`sfrmOrders_MostRecent_ByEmployee`).
+
+Still missing (low value):
+- **`frmEmployeeTitles`** — CRUD page for the Titles lookup. The read-only lookup + dropdown exists
+  (`GET api/employees/titles`); no management page.
+- **Admin/dev utilities** — `sfrmAdmin_DeleteTestData`, `sfrmAdmin_ResetDates`, `sfrmAdmin_InternetOrders`
+  (`modOrders.CreateRandomOrders`), `sfrmAdmin_Strings`. Deliberately not ported.
+- **Privilege enforcement** — Employee Privileges are viewable/assignable but not *enforced* (auth bypassed
+  in dev; the PO "Approve" privilege check is stubbed). Wire up when real Entra auth is enabled.
+- **Per-field locking by status** — Access `LockControls` greyed fields by status; web relies on workflow
+  guards instead (safe, but the edit form is less restrictive).
 
 ### Reports — all implemented ✅
 - `srptOrderForm` → `PurchaseOrderFormPage` (`/purchase-orders/:id/print`)
@@ -174,12 +184,15 @@ All 19 meaningful tables are mapped. The 10 skipped tables are Access UI artefac
 
 Reports intentionally skipped: `rptLearn`, `rptRelationshipsWindow`, `srptGastronomic`, `srptCatalog_TableOfContents` (Access-specific, no web equivalent — `srptGastronomic` is a static catalog blurb like `srptQuality`)
 
-### VBA business logic (not yet ported to C#)
-All 11 domain modules in `VBA_PORT_LOG.md` are still `⬜ todo`. Key ones:
-- `modInventory` (391 lines) — inventory allocation logic
-- `modOrders` (227 lines) — order processing / status transitions
-- `modPurchaseOrders` (190 lines) — PO approval workflow
-- `modValidation` (171 lines) — field validation rules
+### VBA business logic — ported ✅ (see `VBA_PORT_LOG.md`)
+The meaningful domain logic is now in `Northwind.Infrastructure/Services/` with 42 unit tests:
+- `modInventory` → `InventoryService` (availability, allocation state machine, reorder calc)
+- `modOrders` / `frmOrderDetails` → `OrderWorkflowService` (New→Invoiced→Shipped→Paid→Closed + guards)
+- `modPurchaseOrders` / `frmPurchaseOrderDetails` → `PurchaseOrderWorkflowService` (New→Submitted→Approved→Received→Closed, receive re-allocates, reorder + merge)
+- `frmCompanyDetail` → `CompanyGuardService` (delete / type-change referential guards)
+- `modValidation` was Access control-highlighting — N/A (covered by Zod + DB constraints).
+- Guard violations surface as HTTP 409 (`BusinessRuleException` → `BusinessRuleExceptionFilter`) with the original Strings-table wording.
+- Not ported (dev/demo utilities): `modOrders.CreateRandomOrders`, `modOrders.SetDatesToCurrent`.
 
 ---
 

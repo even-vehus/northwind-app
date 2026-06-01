@@ -341,6 +341,17 @@ export interface PurchaseOrderForm {
   lines: PurchaseOrderFormLine[];
 }
 
+export interface DashboardSummary {
+  totalOrders: number;
+  totalCompanies: number;
+  totalProducts: number;
+  openPurchaseOrders: number;
+  productsAwaitingStock: number;
+  invoicedSales: number;
+  ordersByStatus: { status: string; count: number }[];
+  recentOrders: { orderId: number; customerName: string | null; orderDate: string | null; status: string | null }[];
+}
+
 export interface ProductInventory {
   productId: number;
   lastStockTakeDate: string;

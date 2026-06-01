@@ -5,6 +5,7 @@ import {
   ListItemIcon, ListItemText, Toolbar, Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 import BusinessIcon from "@mui/icons-material/Business";
 import ContactsIcon from "@mui/icons-material/Contacts";
 import InventoryIcon from "@mui/icons-material/Inventory";
@@ -17,6 +18,7 @@ import AssessmentIcon from "@mui/icons-material/Assessment";
 const DRAWER_WIDTH = 220;
 
 const NAV_ITEMS = [
+  { label: "Dashboard", path: "/", icon: <DashboardIcon /> },
   { label: "Companies", path: "/companies", icon: <BusinessIcon /> },
   { label: "Contacts", path: "/contacts", icon: <ContactsIcon /> },
   { label: "Products", path: "/products", icon: <InventoryIcon /> },
@@ -59,7 +61,7 @@ export default function Layout() {
           {NAV_ITEMS.map((item) => (
             <ListItemButton
               key={item.path}
-              selected={pathname.startsWith(item.path)}
+              selected={item.path === "/" ? pathname === "/" : pathname.startsWith(item.path)}
               onClick={() => navigate(item.path)}
             >
               <ListItemIcon>{item.icon}</ListItemIcon>
