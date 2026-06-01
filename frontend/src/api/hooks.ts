@@ -342,6 +342,14 @@ export const useClosePurchaseOrder = () => {
   });
 };
 
+export const useReorderProduct = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (data: Parameters<typeof purchaseOrdersApi.reorder>[0]) => purchaseOrdersApi.reorder(data),
+    onSuccess: () => { qc.invalidateQueries({ queryKey: ["purchase-orders"] }); },
+  });
+};
+
 // ── Product Vendors / StockTake ───────────────────────────────────────────────
 
 export const useProductVendors = (productId: number) =>

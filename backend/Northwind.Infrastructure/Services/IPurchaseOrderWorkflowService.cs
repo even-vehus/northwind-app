@@ -24,4 +24,16 @@ public interface IPurchaseOrderWorkflowService
 
     /// <summary>Delete a PO (allowed only while New or Submitted).</summary>
     Task DeleteAsync(int purchaseOrderId, CancellationToken ct = default);
+
+    /// <summary>
+    /// Add a line to a PO, or — if a line for the product already exists — add to its quantity.
+    /// Port of modPurchaseOrders.AddPurchaseOrderDetail. Returns the line id.
+    /// </summary>
+    Task<int> AddOrMergeDetailAsync(int purchaseOrderId, int productId, int quantity, decimal unitCost, CancellationToken ct = default);
+
+    /// <summary>
+    /// Create a new (New-status) PO for a vendor and add a line for the product.
+    /// Port of modPurchaseOrders.ReorderProduct. Returns the new PO id.
+    /// </summary>
+    Task<int> ReorderProductAsync(int productId, int vendorId, int quantity, decimal unitCost, CancellationToken ct = default);
 }

@@ -97,10 +97,10 @@ Changed entity + DTOs to `int` and dropped the `decimal(18,4)` mapping. (Resolve
 - **Close**: only if Received → Closed; applies supplied ShippingFee + PaymentMethod then requires both.
 - **Delete guard**: only if New or Submitted.
 - Endpoints: `POST api/purchase-orders/{id}/{submit|approve|receive|close}`, guard on `DELETE`.
-- 11 unit tests in `PurchaseOrderWorkflowServiceTests.cs` (incl. receive→allocation integration). Verified live: guard returns 409 with the Strings message.
-
-⬜ Deferred to "Create PO from reorder" UI: `modPurchaseOrders.ReorderProduct` (create PO New + line)
-and `AddPurchaseOrderDetail`'s merge-quantity-if-line-exists rule.
+- ✅ `ReorderProductAsync` (create PO New + line) and `AddOrMergeDetailAsync` (merge quantity if a
+  line for the product exists) — ported. `POST api/purchase-orders/reorder`; the PO `AddDetail`
+  endpoint now also merges. 14 unit tests in `PurchaseOrderWorkflowServiceTests.cs` (incl.
+  receive→allocation integration + reorder/merge). Verified live.
 
 ## Phase 4 — Delete guards / referential rules  ✅ DONE
 - **Company** (`CompanyGuardService`): a company is "active" if it has Customer Orders, Shipper Orders, or Vendor POs.
@@ -109,11 +109,11 @@ and `AddPurchaseOrderDetail`'s merge-quantity-if-line-exists rule.
   - 8 unit tests in `CompanyGuardServiceTests.cs`; verified live (delete of an active customer → 409 with counts). Frontend: errors surface in an Alert on the Company page.
 - ✅ Order delete guard (New/Invoiced) and PO delete guard (New/Submitted) — done in Phases 2/3.
 
-## Phase 5 — Frontend wiring  🟡 partial
+## Phase 5 — Frontend wiring  ✅ DONE
 - ✅ Product detail: inventory figures (Available, Allocated, On Order, To Sell, No Stock) + reorder suggestion (Phase 1).
 - ✅ Order detail: status-driven workflow buttons (Create Invoice / Ship / Record Payment / Close) with Ship & Pay dialogs and 409-error surfacing in an Alert. Transitions invalidate orders + product-inventory queries.
 - ✅ PO detail: status-driven Submit / Approve / Receive / Close buttons + Close dialog (fee + method) with 409-error surfacing.
-- ⬜ Product detail: "Create PO" from the reorder suggestion (needs `ReorderProduct`).
+- ✅ Product detail: "Create Purchase Order" from the reorder suggestion → dialog (vendor / qty / cost) → creates a New PO and navigates to it.
 
 ## Non-port bug fixes (found while porting)
 - **Employee create 500**: `Employees.Title` is a FK to the `Titles` lookup (valid: blank, `Mr.`, `Ms.`), but the form was free text. Added a `Title` entity + `GET api/employees/titles` lookup + a dropdown on the Employee form.

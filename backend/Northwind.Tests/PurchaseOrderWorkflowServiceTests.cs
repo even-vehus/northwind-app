@@ -147,4 +147,45 @@ public class PurchaseOrderWorkflowServiceTests
         await Assert.ThrowsAsync<BusinessRuleException>(() => Workflow(db).DeleteAsync(1));
         Assert.Single(db.PurchaseOrders);
     }
+
+    [Fact]
+    public async Task Reorder_CreatesNewPurchaseOrderWithLine()
+    {
+        using var db = NewContext();
+
+        var poId = await Workflow(db).ReorderProductAsync(productId: 7, vendorId: 9, quantity: 25, unitCost: 3.5m);
+
+        var po = db.PurchaseOrders.Single();
+        Assert.Equal(poId, po.PurchaseOrderId);
+        Assert.Equal((int)PurchaseOrderStatusId.New, po.StatusId);
+        Assert.Equal(9, po.VendorId);
+        var line = db.PurchaseOrderDetails.Single();
+        Assert.Equal(7, line.ProductId);
+        Assert.Equal(25, line.Quantity);
+        Assert.Equal(3.5m, line.UnitCost);
+    }
+
+    [Fact]
+    public async Task AddOrMergeDetail_MergesQuantityForExistingProduct()
+    {
+        using var db = NewContext();
+        SeedPo(db, PurchaseOrderStatusId.New);   // PO 1 has a line: product 1, qty 50
+
+        var lineId = await Workflow(db).AddOrMergeDetailAsync(1, productId: 1, quantity: 20, unitCost: 1m);
+
+        Assert.Single(db.PurchaseOrderDetails);                 // merged, not a second line
+        Assert.Equal(70, db.PurchaseOrderDetails.Single().Quantity);
+        Assert.Equal(1, lineId);
+    }
+
+    [Fact]
+    public async Task AddOrMergeDetail_AddsLineForDifferentProduct()
+    {
+        using var db = NewContext();
+        SeedPo(db, PurchaseOrderStatusId.New);   // line for product 1
+
+        await Workflow(db).AddOrMergeDetailAsync(1, productId: 2, quantity: 10, unitCost: 1m);
+
+        Assert.Equal(2, db.PurchaseOrderDetails.Count());
+    }
 }

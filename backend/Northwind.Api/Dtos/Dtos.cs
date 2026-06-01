@@ -156,6 +156,8 @@ public record PayOrderRequest(string? PaymentMethod, DateTime? PaidDate);
 // ── Purchase order workflow transitions ──────────────────────────────────────
 
 public record ClosePurchaseOrderRequest(decimal? ShippingFee, string? PaymentMethod);
+public record ReorderProductRequest(int ProductId, int VendorId, int Quantity, decimal UnitCost);
+public record ReorderResultDto(int PurchaseOrderId);
 
 // ── Lookups ──────────────────────────────────────────────────────────────────
 

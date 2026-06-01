@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import {
-  Box, Button, Checkbox, Chip, CircularProgress, Divider,
+  Box, Button, Checkbox, Chip, CircularProgress, Dialog, DialogActions,
+  DialogContent, DialogTitle, Divider,
   FormControl, FormControlLabel, Grid, IconButton, InputAdornment, InputLabel,
   MenuItem, Paper, Select, Tab, Table, TableBody, TableCell, TableHead, TableRow,
   Tabs, TextField, Typography,
@@ -17,7 +18,7 @@ import {
   useProduct, useCreateProduct, useUpdateProduct, useDeleteProduct,
   useProductCategories, useProductVendors, useAddProductVendor, useRemoveProductVendor,
   useStockTakes, useAddStockTake, useDeleteStockTake, useCompaniesLookup,
-  useProductOrders, useProductPurchaseOrders, useProductInventory,
+  useProductOrders, useProductPurchaseOrders, useProductInventory, useReorderProduct,
 } from "../api/hooks";
 
 type ProductForm = {
@@ -52,6 +53,31 @@ export default function ProductDetailPage() {
   const { data: productOrders } = useProductOrders(productId);
   const { data: productPOs } = useProductPurchaseOrders(productId);
   const { data: inventory } = useProductInventory(productId);
+  const reorder = useReorderProduct();
+
+  const [reorderOpen, setReorderOpen] = useState(false);
+  const [reorderVendorId, setReorderVendorId] = useState("");
+  const [reorderQty, setReorderQty] = useState("");
+  const [reorderCost, setReorderCost] = useState("");
+
+  const openReorder = () => {
+    setReorderVendorId(vendors && vendors.length > 0 ? String(vendors[0].vendorId ?? "") : "");
+    setReorderQty(String(inventory?.suggestedReorderQuantity ?? ""));
+    setReorderCost(data?.standardCost != null ? String(data.standardCost) : "");
+    setReorderOpen(true);
+  };
+
+  const submitReorder = async () => {
+    if (!reorderVendorId) return;
+    const res = await reorder.mutateAsync({
+      productId,
+      vendorId: Number(reorderVendorId),
+      quantity: Number(reorderQty) || 0,
+      unitCost: Number(reorderCost) || 0,
+    });
+    setReorderOpen(false);
+    navigate(`/purchase-orders/${res.purchaseOrderId}`);
+  };
   const addVendor = useAddProductVendor();
   const removeVendor = useRemoveProductVendor();
   const addStockTake = useAddStockTake();
@@ -269,13 +295,18 @@ export default function ProductDetailPage() {
               );
             })}
           </Grid>
-          <Typography variant="body2" sx={{ mt: 1.5 }} color="text.secondary">
-            Suggested reorder quantity: <b>{inventory.suggestedReorderQuantity}</b>
-            {" · "}Last stock take:{" "}
-            {inventory.lastStockTakeDate
-              ? `${new Date(inventory.lastStockTakeDate).toLocaleDateString()} (${inventory.lastStockTakeQuantity} on hand)`
-              : "none"}
-          </Typography>
+          <Box sx={{ mt: 1.5, display: "flex", alignItems: "center", gap: 2, flexWrap: "wrap" }}>
+            <Typography variant="body2" color="text.secondary">
+              Suggested reorder quantity: <b>{inventory.suggestedReorderQuantity}</b>
+              {" · "}Last stock take:{" "}
+              {inventory.lastStockTakeDate
+                ? `${new Date(inventory.lastStockTakeDate).toLocaleDateString()} (${inventory.lastStockTakeQuantity} on hand)`
+                : "none"}
+            </Typography>
+            <Button size="small" variant="outlined" startIcon={<AddIcon />} onClick={openReorder}>
+              Create Purchase Order
+            </Button>
+          </Box>
         </Box>
       )}
 
@@ -472,6 +503,37 @@ export default function ProductDetailPage() {
           )}
         </Box>
       )}
+
+      {/* Create PO from reorder suggestion (ported from modPurchaseOrders.ReorderProduct) */}
+      <Dialog open={reorderOpen} onClose={() => setReorderOpen(false)} maxWidth="xs" fullWidth>
+        <DialogTitle>Create Purchase Order</DialogTitle>
+        <DialogContent sx={{ display: "flex", flexDirection: "column", gap: 2, pt: 1 }}>
+          <FormControl size="small" fullWidth>
+            <InputLabel>Vendor</InputLabel>
+            <Select value={reorderVendorId} label="Vendor" onChange={(e) => setReorderVendorId(e.target.value)}>
+              {(vendors ?? []).map((v) => (
+                <MenuItem key={v.productVendorId} value={String(v.vendorId ?? "")}>{v.vendorName}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          {(!vendors || vendors.length === 0) && (
+            <Typography variant="caption" color="error">
+              This product has no vendors. Add one on the Vendors tab first.
+            </Typography>
+          )}
+          <TextField label="Quantity" type="number" size="small" value={reorderQty}
+            onChange={(e) => setReorderQty(e.target.value)} />
+          <TextField label="Unit Cost" type="number" size="small" value={reorderCost}
+            onChange={(e) => setReorderCost(e.target.value)}
+            slotProps={{ input: { startAdornment: <InputAdornment position="start">$</InputAdornment> } }} />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setReorderOpen(false)}>Cancel</Button>
+          <Button variant="contained" onClick={submitReorder} disabled={!reorderVendorId || reorder.isPending}>
+            Create PO
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }

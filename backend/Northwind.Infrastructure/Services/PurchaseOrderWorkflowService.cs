@@ -99,6 +99,53 @@ public class PurchaseOrderWorkflowService(NorthwindDbContext db, IInventoryServi
         await db.SaveChangesAsync(ct);
     }
 
+    public async Task<int> AddOrMergeDetailAsync(
+        int purchaseOrderId, int productId, int quantity, decimal unitCost, CancellationToken ct = default)
+    {
+        var line = await db.PurchaseOrderDetails
+            .FirstOrDefaultAsync(d => d.PurchaseOrderId == purchaseOrderId && d.ProductId == productId, ct);
+
+        if (line is null)
+        {
+            line = new PurchaseOrderDetail
+            {
+                PurchaseOrderId = purchaseOrderId,
+                ProductId = productId,
+                Quantity = quantity,
+                UnitCost = unitCost,
+                AddedOn = DateTime.UtcNow,
+            };
+            db.PurchaseOrderDetails.Add(line);
+        }
+        else
+        {
+            // BUSINESS RULE: add to the quantity already there.
+            line.Quantity = (line.Quantity ?? 0) + quantity;
+            line.ModifiedOn = DateTime.UtcNow;
+        }
+
+        await db.SaveChangesAsync(ct);
+        return line.PurchaseOrderDetailId;
+    }
+
+    public async Task<int> ReorderProductAsync(
+        int productId, int vendorId, int quantity, decimal unitCost, CancellationToken ct = default)
+    {
+        var now = DateTime.UtcNow;
+        var po = new PurchaseOrder
+        {
+            VendorId = vendorId,
+            StatusId = (int)PurchaseOrderStatusId.New,
+            AddedOn = now,
+            ModifiedOn = now,
+        };
+        db.PurchaseOrders.Add(po);
+        await db.SaveChangesAsync(ct);   // assigns PurchaseOrderId
+
+        await AddOrMergeDetailAsync(po.PurchaseOrderId, productId, quantity, unitCost, ct);
+        return po.PurchaseOrderId;
+    }
+
     private async Task<PurchaseOrder> LoadAsync(int id, CancellationToken ct) =>
         await db.PurchaseOrders
             .Include(p => p.PurchaseOrderDetails)

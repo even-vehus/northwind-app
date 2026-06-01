@@ -182,21 +182,26 @@ public class PurchaseOrdersController(NorthwindDbContext db, IPurchaseOrderWorkf
         var exists = await db.PurchaseOrders.AnyAsync(po => po.PurchaseOrderId == purchaseOrderId, ct);
         if (!exists) return NotFound();
 
-        var detail = new PurchaseOrderDetail
-        {
-            PurchaseOrderId = purchaseOrderId,
-            ProductId = req.ProductId,
-            Quantity = req.Quantity,
-            UnitCost = req.UnitCost,
-            AddedOn = DateTime.UtcNow
-        };
+        // Merge into an existing line for the product if there is one (AddPurchaseOrderDetail rule).
+        var detailId = await workflow.AddOrMergeDetailAsync(
+            purchaseOrderId, req.ProductId, req.Quantity, req.UnitCost, ct);
 
-        db.PurchaseOrderDetails.Add(detail);
-        await db.SaveChangesAsync(ct);
-        await db.Entry(detail).Reference(d => d.Product).LoadAsync(ct);
+        var detail = await db.PurchaseOrderDetails
+            .Include(d => d.Product)
+            .FirstAsync(d => d.PurchaseOrderDetailId == detailId, ct);
 
         return CreatedAtAction(nameof(GetDetails),
             new { purchaseOrderId }, ToDetailDto(detail));
+    }
+
+    // ── Reorder (create a PO from a product's reorder suggestion) ─────────────
+
+    [HttpPost("reorder")]
+    public async Task<ActionResult<ReorderResultDto>> Reorder(
+        [FromBody] ReorderProductRequest req, CancellationToken ct)
+    {
+        var poId = await workflow.ReorderProductAsync(req.ProductId, req.VendorId, req.Quantity, req.UnitCost, ct);
+        return Ok(new ReorderResultDto(poId));
     }
 
     [HttpDelete("{purchaseOrderId:int}/details/{detailId:int}")]

@@ -169,6 +169,8 @@ export const purchaseOrdersApi = {
   receive: (id: number) => apiClient.post(`/api/purchase-orders/${id}/receive`),
   close: (id: number, data: { shippingFee?: number | null; paymentMethod?: string | null }) =>
     apiClient.post(`/api/purchase-orders/${id}/close`, data),
+  reorder: (data: { productId: number; vendorId: number; quantity: number; unitCost: number }) =>
+    apiClient.post<{ purchaseOrderId: number }>("/api/purchase-orders/reorder", data).then((r) => r.data),
 };
 
 // ── Product Vendors / StockTake ───────────────────────────────────────────────
