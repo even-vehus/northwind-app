@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
 import {
-  Box, Button, Chip, CircularProgress, Dialog, DialogActions,
+  Alert, Box, Button, Chip, CircularProgress, Dialog, DialogActions,
   DialogContent, DialogTitle, Divider, FormControl, Grid,
   IconButton, InputAdornment, InputLabel, MenuItem, Paper, Select,
   Table, TableBody, TableCell, TableHead, TableRow, TextField, Typography,
@@ -17,9 +17,17 @@ import SaveIcon from "@mui/icons-material/Save";
 import {
   useOrder, useCreateOrder, useUpdateOrder, useDeleteOrder,
   useAddOrderDetail, useDeleteOrderDetail,
-  useCompaniesLookup, useEmployeesLookup, useProducts,
+  useCompaniesLookup, useEmployeesLookup, useProducts, useShippers,
+  useInvoiceOrder, useShipOrder, usePayOrder, useCloseOrder,
 } from "../api/hooks";
+import type { Order } from "../api/types";
 import { ORDER_STATUSES } from "../api/types";
+
+/** Pull the ProblemDetails message out of a 409/4xx axios error. */
+function actionErrorMessage(e: unknown): string {
+  const detail = (e as { response?: { data?: { detail?: string } } })?.response?.data?.detail;
+  return typeof detail === "string" ? detail : "The action could not be completed.";
+}
 
 const STATUS_NAME: Record<number, string> = {
   1: "Closed", 2: "Invoiced", 3: "New", 4: "Shipped", 5: "Paid",
@@ -121,6 +129,112 @@ function AddLineDialog({
   );
 }
 
+function ShipDialog({
+  open, order, onClose, onError,
+}: { open: boolean; order: Order; onClose: () => void; onError: (m: string) => void }) {
+  const ship = useShipOrder();
+  const { data: shippers } = useShippers();
+  const [shippedDate, setShippedDate] = useState("");
+  const [shipperId, setShipperId] = useState("");
+  const [shippingFee, setShippingFee] = useState("");
+
+  useEffect(() => {
+    if (open) {
+      setShippedDate(new Date().toISOString().slice(0, 10));
+      setShipperId("");
+      setShippingFee(order.shippingFee != null ? String(order.shippingFee) : "");
+    }
+  }, [open, order]);
+
+  const submit = async () => {
+    try {
+      await ship.mutateAsync({
+        id: order.orderId,
+        data: {
+          shippedDate: shippedDate || null,
+          shipperId: shipperId ? Number(shipperId) : null,
+          shippingFee: shippingFee ? Number(shippingFee) : null,
+        },
+      });
+      onClose();
+    } catch (e) { onError(actionErrorMessage(e)); }
+  };
+
+  return (
+    <Dialog open={open} onClose={onClose} maxWidth="xs" fullWidth>
+      <DialogTitle>Ship Order</DialogTitle>
+      <DialogContent sx={{ display: "flex", flexDirection: "column", gap: 2, pt: 1 }}>
+        <TextField label="Shipped Date" type="date" value={shippedDate}
+          onChange={(e) => setShippedDate(e.target.value)} size="small"
+          slotProps={{ inputLabel: { shrink: true } }} />
+        <FormControl size="small" fullWidth>
+          <InputLabel>Ship Via</InputLabel>
+          <Select value={shipperId} label="Ship Via" onChange={(e) => setShipperId(e.target.value)}>
+            <MenuItem value=""><em>—</em></MenuItem>
+            {shippers?.map((s) => (
+              <MenuItem key={s.companyId} value={String(s.companyId)}>{s.companyName}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+        <TextField label="Shipping Fee" type="number" value={shippingFee}
+          onChange={(e) => setShippingFee(e.target.value)} size="small"
+          slotProps={{ input: { startAdornment: <InputAdornment position="start">$</InputAdornment> } }} />
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={onClose}>Cancel</Button>
+        <Button variant="contained" onClick={submit} disabled={ship.isPending}>Ship</Button>
+      </DialogActions>
+    </Dialog>
+  );
+}
+
+function PayDialog({
+  open, order, onClose, onError,
+}: { open: boolean; order: Order; onClose: () => void; onError: (m: string) => void }) {
+  const pay = usePayOrder();
+  const [paymentMethod, setPaymentMethod] = useState("");
+  const [paidDate, setPaidDate] = useState("");
+
+  useEffect(() => {
+    if (open) {
+      setPaymentMethod("");
+      setPaidDate(new Date().toISOString().slice(0, 10));
+    }
+  }, [open]);
+
+  const submit = async () => {
+    try {
+      await pay.mutateAsync({
+        id: order.orderId,
+        data: { paymentMethod: paymentMethod || null, paidDate: paidDate || null },
+      });
+      onClose();
+    } catch (e) { onError(actionErrorMessage(e)); }
+  };
+
+  return (
+    <Dialog open={open} onClose={onClose} maxWidth="xs" fullWidth>
+      <DialogTitle>Record Payment</DialogTitle>
+      <DialogContent sx={{ display: "flex", flexDirection: "column", gap: 2, pt: 1 }}>
+        <FormControl size="small" fullWidth>
+          <InputLabel>Payment Method</InputLabel>
+          <Select value={paymentMethod} label="Payment Method" onChange={(e) => setPaymentMethod(e.target.value)}>
+            <MenuItem value=""><em>—</em></MenuItem>
+            {["Cash", "Check", "Credit Card"].map((m) => <MenuItem key={m} value={m}>{m}</MenuItem>)}
+          </Select>
+        </FormControl>
+        <TextField label="Paid Date" type="date" value={paidDate}
+          onChange={(e) => setPaidDate(e.target.value)} size="small"
+          slotProps={{ inputLabel: { shrink: true } }} />
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={onClose}>Cancel</Button>
+        <Button variant="contained" onClick={submit} disabled={pay.isPending}>Record Payment</Button>
+      </DialogActions>
+    </Dialog>
+  );
+}
+
 export default function OrderDetailPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -138,6 +252,17 @@ export default function OrderDetailPage() {
   const updateOrder = useUpdateOrder();
   const deleteOrder = useDeleteOrder();
   const deleteDetail = useDeleteOrderDetail();
+  const invoiceOrder = useInvoiceOrder();
+  const closeOrder = useCloseOrder();
+
+  const [shipOpen, setShipOpen] = useState(false);
+  const [payOpen, setPayOpen] = useState(false);
+  const [actionError, setActionError] = useState<string | null>(null);
+
+  const runAction = async (fn: () => Promise<unknown>) => {
+    setActionError(null);
+    try { await fn(); } catch (e) { setActionError(actionErrorMessage(e)); }
+  };
 
   const { register, handleSubmit, reset, control } = useForm<OrderHeaderForm>();
 
@@ -243,6 +368,41 @@ export default function OrderDetailPage() {
           </>
         )}
       </Box>
+
+      {/* Workflow actions (ported from frmOrderDetails) */}
+      {!isNew && !editing && data && (
+        <Box sx={{ mb: 3 }}>
+          {actionError && (
+            <Alert severity="error" onClose={() => setActionError(null)} sx={{ mb: 1 }}>{actionError}</Alert>
+          )}
+          <Box sx={{ display: "flex", gap: 1, alignItems: "center", flexWrap: "wrap" }}>
+            <Typography variant="body2" color="text.secondary">Workflow:</Typography>
+            {statusId === 3 && (
+              <Button variant="contained" disabled={invoiceOrder.isPending}
+                onClick={() => runAction(() => invoiceOrder.mutateAsync(orderId))}>
+                Create Invoice
+              </Button>
+            )}
+            {statusId === 2 && (
+              <Button variant="contained" onClick={() => { setActionError(null); setShipOpen(true); }}>
+                Ship Order
+              </Button>
+            )}
+            {statusId === 4 && (
+              <Button variant="contained" onClick={() => { setActionError(null); setPayOpen(true); }}>
+                Record Payment
+              </Button>
+            )}
+            {statusId === 5 && (
+              <Button variant="contained" disabled={closeOrder.isPending}
+                onClick={() => runAction(() => closeOrder.mutateAsync(orderId))}>
+                Close Order
+              </Button>
+            )}
+            {statusId === 1 && <Typography variant="body2" color="text.secondary">This order is closed.</Typography>}
+          </Box>
+        </Box>
+      )}
 
       {/* View mode */}
       {!editing && data && (
@@ -385,6 +545,12 @@ export default function OrderDetailPage() {
             orderId={orderId}
             onClose={() => setAddLineOpen(false)}
           />
+          {data && (
+            <>
+              <ShipDialog open={shipOpen} order={data} onClose={() => setShipOpen(false)} onError={setActionError} />
+              <PayDialog open={payOpen} order={data} onClose={() => setPayOpen(false)} onError={setActionError} />
+            </>
+          )}
         </>
       )}
     </Box>

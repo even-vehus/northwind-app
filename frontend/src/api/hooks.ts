@@ -155,6 +155,39 @@ export const useDeleteOrderDetail = () => {
   });
 };
 
+// ── Order workflow transitions ───────────────────────────────────────────────
+
+const invalidateAfterTransition = (qc: ReturnType<typeof useQueryClient>) => {
+  qc.invalidateQueries({ queryKey: ["orders"] });
+  qc.invalidateQueries({ queryKey: ["product-inventory"] });   // line-item statuses changed
+};
+
+export const useInvoiceOrder = () => {
+  const qc = useQueryClient();
+  return useMutation({ mutationFn: (id: number) => ordersApi.invoice(id), onSuccess: () => invalidateAfterTransition(qc) });
+};
+
+export const useShipOrder = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, data }: { id: number; data: Parameters<typeof ordersApi.ship>[1] }) => ordersApi.ship(id, data),
+    onSuccess: () => invalidateAfterTransition(qc),
+  });
+};
+
+export const usePayOrder = () => {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, data }: { id: number; data: Parameters<typeof ordersApi.pay>[1] }) => ordersApi.pay(id, data),
+    onSuccess: () => invalidateAfterTransition(qc),
+  });
+};
+
+export const useCloseOrder = () => {
+  const qc = useQueryClient();
+  return useMutation({ mutationFn: (id: number) => ordersApi.close(id), onSuccess: () => invalidateAfterTransition(qc) });
+};
+
 // ── Employees ─────────────────────────────────────────────────────────────────
 
 export const useEmployees = (params?: Parameters<typeof employeesApi.list>[0]) =>
@@ -162,6 +195,9 @@ export const useEmployees = (params?: Parameters<typeof employeesApi.list>[0]) =
 
 export const useEmployee = (id: number) =>
   useQuery({ queryKey: ["employees", id], queryFn: () => employeesApi.get(id), enabled: id > 0 });
+
+export const useTitles = () =>
+  useQuery({ queryKey: ["titles"], queryFn: employeesApi.titles, staleTime: 5 * 60 * 1000 });
 
 export const useCreateEmployee = () => {
   const qc = useQueryClient();

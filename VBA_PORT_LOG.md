@@ -36,10 +36,10 @@ seed data make the inventory math unit-testable deterministically.
 
 ---
 
-## Phase 0 — Foundations  🟡 partial
+## Phase 0 — Foundations  ✅ DONE
 - ✅ `OrderStatusId` / `OrderDetailStatusId` / `PurchaseOrderStatusId` enums in `Northwind.Domain/Enums` (values = seed IDs above).
 - ✅ `Northwind.Infrastructure/Services/` folder + DI registration.
-- ⬜ `BusinessRuleException` + exception→409 mapping and `Strings` message constants — deferred to Phase 2 (first needed for workflow guards).
+- ✅ `BusinessRuleException` (`Northwind.Infrastructure.Services`) + `BusinessRuleExceptionFilter` in the API maps it → **409** and `KeyNotFoundException` → **404**, both as `ProblemDetails`. Message text taken verbatim from the `Strings` table.
 
 ## Phase 1 — Inventory engine (`modInventory`)  ✅ DONE
 `InventoryService` (`Northwind.Infrastructure/Services/InventoryService.cs`) implements all
@@ -71,16 +71,23 @@ the in-memory provider, which ignores column types).
 - `AllocateInventory(productId)` — **the state machine.** Order detail lines in status (Allocated, NoStock, OnOrder), oldest order first: qty ≤ available → Allocated; else qty ≤ available+onOrder → OnOrder; else NoStock.
 - Endpoint: `GET api/products/{id}/inventory` for the Product detail page. Unit tests vs. seed data.
 
-## Phase 2 — Order workflow (`frmOrderDetails`)  ⬜ todo
-`OrderWorkflowService` transitions (each guarded; cascade line-item status):
-- **Invoice**: only if New; needs ≥1 line **and all lines Allocated**; Order→Invoiced, lines→Invoiced.
-- **Ship**: only if Invoiced; needs shipping fields filled; Order→Shipped, lines→Shipped.
-- **Pay**: only if Shipped; needs paid fields filled; Order→Paid.
+## Phase 2 — Order workflow (`frmOrderDetails`)  ✅ DONE (backend)
+`OrderWorkflowService` (`Northwind.Infrastructure/Services/OrderWorkflowService.cs`):
+- **Invoice**: only if New; needs ≥1 line **and all lines Allocated** and a ShippingFee; Order→Invoiced (+ InvoiceDate), lines→Invoiced.
+- **Ship**: only if Invoiced; applies supplied shipping fields then requires ShippedDate+ShipperId+ShippingFee; Order→Shipped, lines→Shipped.
+- **Pay**: only if Shipped; applies supplied payment fields then requires PaymentMethod+PaidDate; Order→Paid.
 - **Close**: only if Paid; Order→Closed.
-- **Create** default status = New; setting Customer sets TaxStatus from `Companies.StandardTaxStatusID`.
-- **Delete guard**: only if New or Invoiced; on delete, re-run `AllocateInventory` per product (release allocations).
-- Trigger `AllocateInventory(product)` when a line item is added/changed.
-- Endpoints: `POST api/orders/{id}/{invoice|ship|pay|close}`.
+- **Create**: default status now = New (**bug fixed** — was hard-coded `0`); setting Customer defaults TaxStatus from `Companies.StandardTaxStatusID`.
+- **Delete guard**: only if New or Invoiced; deletes line items + order, then re-runs `AllocateInventory` per affected product.
+- Endpoints: `POST api/orders/{id}/{invoice|ship|pay|close}`, guard on `DELETE api/orders/{id}`.
+- 14 unit tests in `OrderWorkflowServiceTests.cs` (transitions + guards + delete). Verified live: order read works, guards return 409 with the Strings message.
+
+**Bug fixed en route:** `OrderDetail.Quantity` was `decimal` but the DB column is `INT` →
+`InvalidCastException` on every full-entity order load (this had been breaking `GET api/orders/{id}`).
+Changed entity + DTOs to `int` and dropped the `decimal(18,4)` mapping. (Resolves the Phase 1 carry-over.)
+
+⬜ Remaining for later: trigger `AllocateInventory` when an order **line item is added/changed**
+(`POST/DELETE api/orders/{id}/details`) — currently only delete re-allocates. Frontend buttons = Phase 5.
 
 ## Phase 3 — Purchase Order workflow (`frmPurchaseOrderDetails`, `modPurchaseOrders`)  ⬜ todo
 `PurchaseOrderWorkflowService`:
@@ -97,9 +104,14 @@ the in-memory provider, which ignores column types).
 - **Company**: cannot delete or change type if it has Customer Orders, Shipper Orders, or Vendor POs (count > 0), or is an active vendor with products. If only Contacts / Product-Vendor links exist, allow with cascade + confirmation.
 - Order delete guard (New/Invoiced) and PO delete guard (New/Submitted) — enforce server-side in Phase 2/3.
 
-## Phase 5 — Frontend wiring  ⬜ todo
-- Order/PO detail: status-transition action buttons (Invoice/Ship/Pay/Close, Submit/Approve/Receive/Close) with 409-error surfacing.
-- Product detail: show inventory figures (Available, Allocated, On Order, To Sell) + reorder suggestion with a "Create PO" action.
+## Phase 5 — Frontend wiring  🟡 partial
+- ✅ Product detail: inventory figures (Available, Allocated, On Order, To Sell, No Stock) + reorder suggestion (Phase 1).
+- ✅ Order detail: status-driven workflow buttons (Create Invoice / Ship / Record Payment / Close) with Ship & Pay dialogs and 409-error surfacing in an Alert. Transitions invalidate orders + product-inventory queries.
+- ⬜ PO detail: Submit/Approve/Receive/Close buttons (after Phase 3).
+- ⬜ Product detail: "Create PO" from the reorder suggestion (after Phase 3).
+
+## Non-port bug fixes (found while porting)
+- **Employee create 500**: `Employees.Title` is a FK to the `Titles` lookup (valid: blank, `Mr.`, `Ms.`), but the form was free text. Added a `Title` entity + `GET api/employees/titles` lookup + a dropdown on the Employee form. ⚠️ `Companies.StateAbbrev` → `States` is the same latent pattern (not yet fixed).
 
 ---
 

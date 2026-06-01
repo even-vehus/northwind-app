@@ -148,6 +148,11 @@ public record UpdateOrderRequest(
     string? Notes
 );
 
+// ── Order workflow transitions ───────────────────────────────────────────────
+
+public record ShipOrderRequest(DateTime? ShippedDate, int? ShipperId, decimal? ShippingFee);
+public record PayOrderRequest(string? PaymentMethod, DateTime? PaidDate);
+
 // ── Lookups ──────────────────────────────────────────────────────────────────
 
 public record CompanyTypeLookupDto(int CompanyTypeId, string? CompanyType);

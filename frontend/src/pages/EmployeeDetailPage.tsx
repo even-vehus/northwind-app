@@ -15,7 +15,7 @@ import SaveIcon from "@mui/icons-material/Save";
 import {
   useEmployee, useCreateEmployee, useUpdateEmployee, useDeleteEmployee,
   useEmployees, useEmployeePrivileges, useAddEmployeePrivilege,
-  useRemoveEmployeePrivilege, usePrivileges, useEmployeeOrders,
+  useRemoveEmployeePrivilege, usePrivileges, useEmployeeOrders, useTitles,
 } from "../api/hooks";
 
 type EmployeeForm = {
@@ -47,6 +47,7 @@ export default function EmployeeDetailPage() {
   const addPrivilege = useAddEmployeePrivilege();
   const removePrivilege = useRemoveEmployeePrivilege();
   const { data: allEmployees } = useEmployees({ pageSize: 100 });
+  const { data: titles } = useTitles();
   const createEmployee = useCreateEmployee();
   const updateEmployee = useUpdateEmployee();
   const deleteEmployee = useDeleteEmployee();
@@ -163,8 +164,21 @@ export default function EmployeeDetailPage() {
       {editing && (
         <Grid container spacing={2} component="form" onSubmit={handleSubmit(onSubmit)}>
           <Grid size={{ xs: 3, sm: 2 }}>
-            <TextField label="Title" {...register("title")} fullWidth size="small"
-              placeholder="Mr/Ms/Dr" />
+            <Controller
+              name="title"
+              control={control}
+              render={({ field }) => (
+                <FormControl fullWidth size="small">
+                  <InputLabel>Title</InputLabel>
+                  <Select {...field} value={field.value ?? ""} label="Title">
+                    <MenuItem value=""><em>—</em></MenuItem>
+                    {titles?.filter((t) => t !== "").map((t) => (
+                      <MenuItem key={t} value={t}>{t}</MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
+              )}
+            />
           </Grid>
           <Grid size={{ xs: 9, sm: 4 }}>
             <TextField label="First Name" {...register("firstName")} fullWidth size="small" />

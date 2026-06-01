@@ -91,6 +91,15 @@ export const ordersApi = {
     apiClient.post(`/api/orders/${orderId}/details`, data).then((r) => r.data),
   deleteDetail: (orderId: number, detailId: number) =>
     apiClient.delete(`/api/orders/${orderId}/details/${detailId}`),
+  // Workflow transitions (ported from frmOrderDetails)
+  invoice: (id: number) =>
+    apiClient.post(`/api/orders/${id}/invoice`),
+  ship: (id: number, data: { shippedDate?: string | null; shipperId?: number | null; shippingFee?: number | null }) =>
+    apiClient.post(`/api/orders/${id}/ship`, data),
+  pay: (id: number, data: { paymentMethod?: string | null; paidDate?: string | null }) =>
+    apiClient.post(`/api/orders/${id}/pay`, data),
+  close: (id: number) =>
+    apiClient.post(`/api/orders/${id}/close`),
 };
 
 // ── Employees ───────────────────────────────────────────────────────────────────
@@ -108,6 +117,8 @@ export const employeesApi = {
     apiClient.delete(`/api/employees/${id}`),
   orders: (employeeId: number, params?: { page?: number; pageSize?: number }) =>
     apiClient.get<PagedResult<Order>>(`/api/employees/${employeeId}/orders`, { params }).then((r) => r.data),
+  titles: () =>
+    apiClient.get<string[]>("/api/employees/titles").then((r) => r.data),
 };
 
 // ── Lookups ───────────────────────────────────────────────────────────────────

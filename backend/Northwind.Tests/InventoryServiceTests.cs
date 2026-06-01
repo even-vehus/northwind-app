@@ -105,7 +105,7 @@ public class InventoryServiceTests
         db.PurchaseOrderDetails.Add(new PurchaseOrderDetail { PurchaseOrderDetailId = 1, PurchaseOrderId = 1, PurchaseOrder = approvedPo, ProductId = 2, Quantity = 60 });
 
         // Three open (NoStock) lines, oldest first. All start NoStock to prove re-allocation.
-        void AddLine(int id, DateTime date, decimal qty)
+        void AddLine(int id, DateTime date, int qty)
         {
             var o = new Order { OrderId = id, OrderDate = date, OrderStatusId = (int)OrderStatusId.New };
             db.Orders.Add(o);

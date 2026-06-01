@@ -342,3 +342,13 @@ public class SystemSettingConfiguration : IEntityTypeConfiguration<SystemSetting
         b.Property(e => e.Notes).HasMaxLength(255);
     }
 }
+
+public class TitleConfiguration : IEntityTypeConfiguration<Title>
+{
+    public void Configure(EntityTypeBuilder<Title> b)
+    {
+        b.ToTable("Titles");
+        b.HasKey(e => e.Name);
+        b.Property(e => e.Name).HasColumnName("Title").HasMaxLength(20);
+    }
+}

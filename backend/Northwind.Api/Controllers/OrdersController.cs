@@ -3,14 +3,16 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Northwind.Api.Dtos;
 using Northwind.Domain.Entities;
+using Northwind.Domain.Enums;
 using Northwind.Infrastructure.Data;
+using Northwind.Infrastructure.Services;
 
 namespace Northwind.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
 [Authorize]
-public class OrdersController(NorthwindDbContext db) : ControllerBase
+public class OrdersController(NorthwindDbContext db, IOrderWorkflowService workflow) : ControllerBase
 {
     [HttpGet]
     public async Task<ActionResult<PagedResult<OrderDto>>> GetAll(
@@ -64,10 +66,19 @@ public class OrdersController(NorthwindDbContext db) : ControllerBase
             EmployeeId = req.EmployeeId,
             OrderDate = req.OrderDate ?? DateTime.UtcNow,
             Notes = req.Notes,
-            OrderStatusId = 0, // New
+            OrderStatusId = (int)OrderStatusId.New,
             AddedBy = User.Identity?.Name,
             AddedOn = DateTime.UtcNow,
         };
+
+        // Default tax status from the customer (frmOrderDetails.CustomerID_AfterUpdate).
+        if (req.CustomerId is not null)
+        {
+            order.TaxStatusId = await db.Companies
+                .Where(c => c.CompanyId == req.CustomerId)
+                .Select(c => c.StandardTaxStatusId)
+                .FirstOrDefaultAsync(ct);
+        }
 
         foreach (var detail in req.OrderDetails ?? [])
         {
@@ -110,15 +121,38 @@ public class OrdersController(NorthwindDbContext db) : ControllerBase
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id, CancellationToken ct)
     {
-        var order = await db.Orders
-            .Include(o => o.OrderDetails)
-            .FirstOrDefaultAsync(o => o.OrderId == id, ct);
+        // Guard (New/Invoiced only) + inventory re-allocation handled by the workflow service.
+        await workflow.DeleteAsync(id, ct);
+        return NoContent();
+    }
 
-        if (order is null) return NotFound();
+    // ── Workflow transitions (ported from frmOrderDetails) ───────────────────
 
-        db.OrderDetails.RemoveRange(order.OrderDetails);
-        db.Orders.Remove(order);
-        await db.SaveChangesAsync(ct);
+    [HttpPost("{id:int}/invoice")]
+    public async Task<IActionResult> Invoice(int id, CancellationToken ct)
+    {
+        await workflow.InvoiceAsync(id, ct);
+        return NoContent();
+    }
+
+    [HttpPost("{id:int}/ship")]
+    public async Task<IActionResult> Ship(int id, [FromBody] ShipOrderRequest? req, CancellationToken ct)
+    {
+        await workflow.ShipAsync(id, new ShipOrderArgs(req?.ShippedDate, req?.ShipperId, req?.ShippingFee), ct);
+        return NoContent();
+    }
+
+    [HttpPost("{id:int}/pay")]
+    public async Task<IActionResult> Pay(int id, [FromBody] PayOrderRequest? req, CancellationToken ct)
+    {
+        await workflow.PayAsync(id, new PayOrderArgs(req?.PaymentMethod, req?.PaidDate), ct);
+        return NoContent();
+    }
+
+    [HttpPost("{id:int}/close")]
+    public async Task<IActionResult> Close(int id, CancellationToken ct)
+    {
+        await workflow.CloseAsync(id, ct);
         return NoContent();
     }
 

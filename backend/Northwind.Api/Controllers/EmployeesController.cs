@@ -51,6 +51,18 @@ public class EmployeesController(NorthwindDbContext db) : ControllerBase
         return Ok(employees);
     }
 
+    [HttpGet("titles")]
+    public async Task<ActionResult<IReadOnlyList<string>>> GetTitles(CancellationToken ct)
+    {
+        // Employees.Title is a FK to the Titles lookup — only these values are valid.
+        var titles = await db.Titles
+            .AsNoTracking()
+            .Select(t => t.Name)
+            .OrderBy(t => t)
+            .ToListAsync(ct);
+        return Ok(titles);
+    }
+
     [HttpGet("{id:int}")]
     public async Task<ActionResult<EmployeeDto>> GetById(int id, CancellationToken ct)
     {

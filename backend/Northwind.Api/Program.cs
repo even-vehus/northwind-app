@@ -59,9 +59,11 @@ else
 
 // ── Business logic services (ported from Access VBA) ─────────────────────────
 builder.Services.AddScoped<IInventoryService, InventoryService>();
+builder.Services.AddScoped<IOrderWorkflowService, OrderWorkflowService>();
 
 // ── Controllers + OpenAPI ────────────────────────────────────────────────────
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+    options.Filters.Add<Northwind.Api.BusinessRuleExceptionFilter>());
 builder.Services.AddOpenApi();
 
 // ── Health checks ────────────────────────────────────────────────────────────
