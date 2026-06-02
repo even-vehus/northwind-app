@@ -23,11 +23,6 @@ services:
       AzureAd__Audience: ${AZUREAD__AUDIENCE}
       AllowedOrigins__0: http://localhost:5173
     restart: unless-stopped
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
 
   web:
     build:
@@ -42,5 +37,5 @@ services:
       - "5173:80"
     depends_on:
       api:
-        condition: service_healthy
+        condition: service_started
     restart: unless-stopped
