@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s \"http://localhost:5000/api/reports/sales-by-product-quarterly?year=2025\")"
+    ]
+  }
+}

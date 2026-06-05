@@ -15,18 +15,23 @@ public class ReportsController(NorthwindDbContext db) : ControllerBase
     public async Task<ActionResult<IReadOnlyList<SalesByEmployeeRow>>> GetSalesByEmployee(
         [FromQuery] int? year, CancellationToken ct)
     {
-        var query = db.OrderDetails
+        var data = await db.OrderDetails
             .AsNoTracking()
-            .Where(d => d.Order != null)
-            .Where(d => year == null || (d.Order!.OrderDate != null && d.Order.OrderDate!.Value.Year == year));
-
-        var rows = await query
-            .GroupBy(d => new
+            .Where(d => d.Order != null && d.Order.EmployeeId != null)
+            .Where(d => year == null || (d.Order!.OrderDate != null && d.Order.OrderDate!.Value.Year == year))
+            .Select(d => new
             {
                 d.Order!.EmployeeId,
-                FirstName = d.Order.Employee != null ? d.Order.Employee.FirstName : null,
-                LastName = d.Order.Employee != null ? d.Order.Employee.LastName : null,
+                FirstName = d.Order.Employee!.FirstName,
+                LastName = d.Order.Employee!.LastName,
+                d.UnitPrice,
+                d.Quantity,
+                d.Discount,
             })
+            .ToListAsync(ct);
+
+        var rows = data
+            .GroupBy(d => new { d.EmployeeId, d.FirstName, d.LastName })
             .Select(g => new SalesByEmployeeRow(
                 g.Key.EmployeeId,
                 (g.Key.FirstName + " " + g.Key.LastName).Trim(),
@@ -34,7 +39,7 @@ public class ReportsController(NorthwindDbContext db) : ControllerBase
                 g.Sum(d => d.UnitPrice * d.Quantity * (decimal)(1.0 - (d.Discount ?? 0)))
             ))
             .OrderByDescending(r => r.Revenue)
-            .ToListAsync(ct);
+            .ToList();
 
         return Ok(rows);
     }
@@ -45,19 +50,23 @@ public class ReportsController(NorthwindDbContext db) : ControllerBase
     public async Task<ActionResult<IReadOnlyList<SalesByProductRow>>> GetSalesByProduct(
         [FromQuery] int? year, CancellationToken ct)
     {
-        var query = db.OrderDetails
+        var data = await db.OrderDetails
             .AsNoTracking()
-            .Where(d => d.Order != null)
-            .Where(d => year == null || (d.Order!.OrderDate != null && d.Order.OrderDate!.Value.Year == year));
-
-        var rows = await query
-            .GroupBy(d => new
+            .Where(d => d.Order != null && d.ProductId != null)
+            .Where(d => year == null || (d.Order!.OrderDate != null && d.Order.OrderDate!.Value.Year == year))
+            .Select(d => new
             {
                 d.ProductId,
-                ProductName = d.Product != null ? d.Product.ProductName : null,
-                CategoryName = d.Product != null && d.Product.ProductCategory != null
-                    ? d.Product.ProductCategory.CategoryName : null,
+                ProductName = d.Product!.ProductName,
+                CategoryName = d.Product!.ProductCategory != null ? d.Product.ProductCategory.CategoryName : null,
+                d.UnitPrice,
+                d.Quantity,
+                d.Discount,
             })
+            .ToListAsync(ct);
+
+        var rows = data
+            .GroupBy(d => new { d.ProductId, d.ProductName, d.CategoryName })
             .Select(g => new SalesByProductRow(
                 g.Key.ProductId,
                 g.Key.ProductName,
@@ -66,7 +75,7 @@ public class ReportsController(NorthwindDbContext db) : ControllerBase
                 g.Sum(d => d.UnitPrice * d.Quantity * (decimal)(1.0 - (d.Discount ?? 0)))
             ))
             .OrderByDescending(r => r.Revenue)
-            .ToListAsync(ct);
+            .ToList();
 
         return Ok(rows);
     }
@@ -79,16 +88,27 @@ public class ReportsController(NorthwindDbContext db) : ControllerBase
     {
         var targetYear = year ?? DateTime.UtcNow.Year;
 
-        var rows = await db.OrderDetails
+        var data = await db.OrderDetails
             .AsNoTracking()
-            .Where(d => d.Order != null
-                && d.Order.OrderDate != null
-                && d.Order.OrderDate.Value.Year == targetYear)
+            .Where(d => d.Order != null && d.Order.OrderDate != null && d.ProductId != null)
+            .Where(d => d.Order!.OrderDate!.Value.Year == targetYear)
             .Select(d => new
             {
                 d.ProductId,
-                ProductName = d.Product != null ? d.Product.ProductName : null,
-                Quarter = (d.Order!.OrderDate!.Value.Month - 1) / 3 + 1,
+                ProductName = d.Product!.ProductName,
+                Month = d.Order!.OrderDate!.Value.Month,
+                d.UnitPrice,
+                d.Quantity,
+                d.Discount,
+            })
+            .ToListAsync(ct);
+
+        var rows = data
+            .Select(d => new
+            {
+                d.ProductId,
+                d.ProductName,
+                Quarter = (d.Month - 1) / 3 + 1,
                 Revenue = d.UnitPrice * d.Quantity * (decimal)(1.0 - (d.Discount ?? 0)),
             })
             .GroupBy(x => new { x.ProductId, x.ProductName, x.Quarter })
@@ -100,7 +120,7 @@ public class ReportsController(NorthwindDbContext db) : ControllerBase
             ))
             .OrderBy(r => r.ProductName)
             .ThenBy(r => r.Quarter)
-            .ToListAsync(ct);
+            .ToList();
 
         return Ok(rows);
     }
