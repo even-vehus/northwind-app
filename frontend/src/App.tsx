@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { loginRequest, isAuthConfigured } from "./auth/msalConfig";
 import { setAuthTokenProvider } from "./api/client";
 import { useAuthToken } from "./auth/useAuthToken";
+import { useFakeAuth } from "./auth/FakeAuthContext";
 import Layout from "./components/Layout";
 import DashboardPage from "./pages/DashboardPage";
 import CompaniesPage from "./pages/CompaniesPage";
@@ -32,7 +33,9 @@ import LoginPage from "./pages/LoginPage";
 
 function AuthGuard({ children }: { children: React.ReactNode }) {
   const isAuthenticated = useIsAuthenticated();
-  if (!isAuthConfigured) return <>{children}</>;
+  const { user } = useFakeAuth();
+  // POC: when Entra isn't configured, gate on the fake session instead of allowing all.
+  if (!isAuthConfigured) return user ? <>{children}</> : <Navigate to="/login" replace />;
   return isAuthenticated ? <>{children}</> : <Navigate to="/login" replace />;
 }
 

@@ -9,6 +9,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import App from "./App";
 import { theme } from "./theme";
 import { msalConfig } from "./auth/msalConfig";
+import { FakeAuthProvider } from "./auth/FakeAuthContext";
 
 const msalInstance = new PublicClientApplication(msalConfig);
 const queryClient = new QueryClient({
@@ -21,9 +22,11 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
+          <FakeAuthProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </FakeAuthProvider>
         </ThemeProvider>
       </QueryClientProvider>
     </MsalProvider>

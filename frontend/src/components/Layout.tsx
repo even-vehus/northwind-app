@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
+import { useMsal } from "@azure/msal-react";
 import {
-  AppBar, Box, Drawer, IconButton, List, ListItemButton,
+  AppBar, Box, Button, Drawer, IconButton, List, ListItemButton,
   ListItemIcon, ListItemText, Toolbar, Typography,
 } from "@mui/material";
+import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
+import { isAuthConfigured } from "../auth/msalConfig";
+import { useFakeAuth } from "../auth/FakeAuthContext";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import BusinessIcon from "@mui/icons-material/Business";
 import ContactsIcon from "@mui/icons-material/Contacts";
@@ -33,6 +37,18 @@ export default function Layout() {
   const [open, setOpen] = useState(true);
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const { instance, accounts } = useMsal();
+  const { user, signOut } = useFakeAuth();
+
+  const displayName = isAuthConfigured ? accounts[0]?.name ?? accounts[0]?.username : user;
+  const onLogout = () => {
+    if (isAuthConfigured) {
+      instance.logoutRedirect();
+    } else {
+      signOut();
+      navigate("/login");
+    }
+  };
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -44,6 +60,15 @@ export default function Layout() {
           <Typography variant="h6" noWrap>
             Northwind
           </Typography>
+          <Box sx={{ flexGrow: 1 }} />
+          {displayName && (
+            <Typography variant="body2" sx={{ mr: 2 }} noWrap>
+              {displayName}
+            </Typography>
+          )}
+          <Button color="inherit" startIcon={<LogoutIcon />} onClick={onLogout}>
+            Logout
+          </Button>
         </Toolbar>
       </AppBar>
 
