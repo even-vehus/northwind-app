@@ -38,7 +38,7 @@ The source database is `NorthwindStarterED.accdb` — an educational/starter ver
 az login    # needed for DefaultAzureCredential → Fabric SQL
 dotnet run
 
-# Frontend (in Northwind/)
+# Frontend (in frontend/)
 npm run dev
 ```
 
@@ -105,7 +105,7 @@ backend/
     NorthwindDbContext.cs
     Configurations/EntityConfigurations.cs   All EF configs in one file
 
-Northwind/src/
+frontend/src/
   api/
     types.ts          All TS interfaces
     endpoints.ts      Axios API objects (companiesApi, ordersApi, reportsApi, …)
