@@ -26,7 +26,7 @@ services:
 
   web:
     build:
-      context: ./frontend
+      context: ./Northwind
       dockerfile: Dockerfile
       args:
         # These are baked in at build time by Vite

@@ -53,7 +53,7 @@ dotnet run
 ### Frontend
 
 ```powershell
-cd frontend
+cd Northwind
 Copy-Item .env.example .env.local   # fill VITE_* vars
 npm run dev
 # http://localhost:5173
@@ -70,7 +70,7 @@ northwind-app/
 │   ├── Northwind.Domain/       Entities + domain services (ported from VBA)
 │   ├── Northwind.Infrastructure/ EF Core DbContext + Fabric SQL config
 │   └── Northwind.Tests/        xUnit tests
-├── frontend/
+├── Northwind/
 │   └── src/
 │       ├── api/                TanStack Query hooks + axios client
 │       ├── auth/               MSAL config + token helper
