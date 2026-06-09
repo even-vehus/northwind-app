@@ -2,7 +2,7 @@
 
 Modern replacement for the NorthwindStarterED Access application.
 
-**Stack:** React 18 + Vite + TypeScript + Material UI | ASP.NET Core 10 Web API + EF Core + Fabric SQL | Entra ID auth
+**Stack:** React 19 + Vite + TypeScript + Material UI v9 | ASP.NET Core 10 Web API + EF Core + Fabric SQL | Entra ID auth
 
 ---
 
@@ -67,8 +67,8 @@ npm run dev
 northwind-app/
 ├── backend/
 │   ├── Northwind.Api/          ASP.NET Core Web API (controllers, auth, OpenAPI)
-│   ├── Northwind.Domain/       Entities + domain services (ported from VBA)
-│   ├── Northwind.Infrastructure/ EF Core DbContext + Fabric SQL config
+│   ├── Northwind.Domain/       Domain entities
+│   ├── Northwind.Infrastructure/ EF Core DbContext + Fabric SQL config + Services/ (VBA-ported domain logic)
 │   └── Northwind.Tests/        xUnit tests
 ├── frontend/
 │   └── src/
@@ -76,12 +76,10 @@ northwind-app/
 │       ├── auth/               MSAL config + token helper
 │       ├── components/         Shared MUI components (Layout, …)
 │       └── pages/              One file per route
-├── docs/
-│   ├── ARCHITECTURE.md
-│   ├── VBA_PORT_LOG.md         Status of each VBA module → C# port
-│   └── ACCESS_FORMS_MAP.md     Access form → React route mapping
-├── docker-compose.yml
-└── .env.example
+├── VBA_PORT_LOG.md             Status of each VBA module → C# port
+├── CLAUDE.md                   Detailed project guide (routes, controllers, patterns)
+├── migration_output/           Baseline schema + seed SQL from the migration tooling
+└── docker-compose.yml
 ```
 
 ---
@@ -90,7 +88,8 @@ northwind-app/
 
 - Frontend: `@azure/msal-react` — acquires tokens via Entra ID (browser popup / redirect)
 - Backend: `Microsoft.Identity.Web` — validates JWT Bearer tokens from Entra ID
-- Required app registrations: one for the API, one for the SPA (see `.env.example` for variable names)
+- Required app registrations: one for the API, one for the SPA (see `docker-compose.yml` / `.env` for the variable names)
+- **POC dummy sign-in**: the frontend currently wraps the app in a `FakeAuthProvider` (`src/auth/FakeAuthContext.tsx`) so you can sign in without a real Entra tenant. Backend auth is also bypassed in dev when `AzureAd:ClientId` is absent. Remove/disable both when wiring up real Entra ID.
 
 ---
 
@@ -117,11 +116,21 @@ dotnet ef dbcontext scaffold $env:CONNECTIONSTRINGS__FABRICSQL `
 
 ## VBA Port Status
 
-See [docs/VBA_PORT_LOG.md](docs/VBA_PORT_LOG.md) for module-by-module porting status.
+See [VBA_PORT_LOG.md](VBA_PORT_LOG.md) for module-by-module porting status.
 
 ---
 
-## v1 Scope
+## Scope
 
-Routes implemented: `/companies`, `/contacts`, `/products`, `/orders`  
-Pending (v1.5+): Purchase Orders, Inventory, Admin, Reports
+All major Access forms and reports have been ported. Implemented areas:
+
+- **Companies** & **Contacts** — list, detail, CRUD; company sub-tabs (contacts, orders, shipper orders, vendor POs)
+- **Products** — list, detail, CRUD; categories, vendors, stock-takes
+- **Orders** — list, detail, line items, printable invoice
+- **Purchase Orders** — list, detail, line items, printable order form
+- **Employees** — list, detail, privileges
+- **Admin** — system settings + lookup tables
+- **Reports** — dashboard + 6 reports (sales by employee/product, directory, catalog, customer list)
+- **VBA domain logic** — inventory, order/PO workflow state machines, referential guards (see [VBA_PORT_LOG.md](VBA_PORT_LOG.md))
+
+Remaining gaps are low-value/deferred items (e.g. `frmEmployeeTitles` CRUD, Access dev utilities, privilege *enforcement* pending real auth). See [CLAUDE.md](CLAUDE.md) for the full breakdown.
